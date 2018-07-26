@@ -51,9 +51,7 @@ namespace Reti.PCManagement.DAL
         }
 
 
-        //TODO
-        //Associare il progetto a git!!
-        //Creare il File di Log!!
+        //TODO - 
         //http://blog.gauffin.org/2013/01/ado-net-the-right-way/
         //Creare un repository generico e poi uno specifico per per ogni classe. Segui il link sopra.
     }

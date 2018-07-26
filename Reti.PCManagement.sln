@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reti.PCManagement.DAL", "Reti.PCManagement.DAL\Reti.PCManagement.DAL.csproj", "{B2400E3A-6B00-45AC-9309-9FAED3C891F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reti.PCManagement.Logger", "Reti.PCManagement.Logger\Reti.PCManagement.Logger.csproj", "{173E564E-157E-4637-9EC3-40DC62C1BBE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{11E131A8-E030-4A61-888B-A639096CEC3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B2400E3A-6B00-45AC-9309-9FAED3C891F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2400E3A-6B00-45AC-9309-9FAED3C891F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2400E3A-6B00-45AC-9309-9FAED3C891F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173E564E-157E-4637-9EC3-40DC62C1BBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173E564E-157E-4637-9EC3-40DC62C1BBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173E564E-157E-4637-9EC3-40DC62C1BBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173E564E-157E-4637-9EC3-40DC62C1BBE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E131A8-E030-4A61-888B-A639096CEC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E131A8-E030-4A61-888B-A639096CEC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E131A8-E030-4A61-888B-A639096CEC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E131A8-E030-4A61-888B-A639096CEC3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
