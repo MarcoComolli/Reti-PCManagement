@@ -1,5 +1,0 @@
-27/07/2018 19:48:15 - [Error] - Error in rollback of transaction - System.InvalidOperationException: A Command è già associato un DataReader aperto, che deve essere chiuso.
-   in System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
-   in System.Data.SqlClient.SqlInternalTransaction.Rollback()
-   in System.Data.SqlClient.SqlTransaction.Rollback()
-   in Reti.PCManagement.DAL.UnitOfWork.Rollback() in C:\Users\comolma1\Desktop\ProgettoPercorsoCircolare\VSProject\Reti.PCManagement\Reti.PCManagement.DAL\UnitOfWork.cs:riga 77

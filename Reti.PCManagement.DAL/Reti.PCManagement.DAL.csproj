@@ -46,7 +46,6 @@
     <Compile Include="DBContracts\ResourcesContract.cs" />
     <Compile Include="DBContracts\TeachersContract.cs" />
     <Compile Include="Repositories\CoursesRepository.cs" />
-    <Compile Include="DBManager.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Resource.cs" />

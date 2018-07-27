@@ -1,7 +1,6 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
 using System;
-using Reti.PCManagement.Logger;
 
 namespace Reti.PCManagement.DAL
 {
@@ -22,7 +21,6 @@ namespace Reti.PCManagement.DAL
             }
             catch (Exception ex)
             {
-                FileLog.LogError(ex);
                 throw ex;
             }
         }
