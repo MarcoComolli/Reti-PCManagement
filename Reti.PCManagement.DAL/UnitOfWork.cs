@@ -59,10 +59,10 @@ namespace Reti.PCManagement.DAL
                 catch (Exception rbEx)
                 {
                     // This catch block will handle any errors that may have occurred on the server that would cause the rollback to fail
-                    //TODO LogDB
+                    Logger.FileLog.LogError("Error in rollback of a non committed transaction", rbEx);
                     throw rbEx;
                 }
-                //TODO LogDB
+                Logger.FileLog.LogError("Error committing transaction", commitEx);
                 throw commitEx;
             }
             finally

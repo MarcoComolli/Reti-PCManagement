@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
 using System;
-
+using Reti.PCManagement.Logger;
 
 namespace Reti.PCManagement.DAL
 {
@@ -18,15 +18,13 @@ namespace Reti.PCManagement.DAL
             //retrieve connection string from App.config
             try
             {
-
+                 dbConnectionString = ConfigurationManager.ConnectionStrings[CONNECTION_STRING_CONFIG_NAME].ConnectionString;
             }
             catch (Exception ex)
             {
-                //TODO
-                //logdb
+                FileLog.LogError(ex);
                 throw ex;
             }
-            dbConnectionString = ConfigurationManager.ConnectionStrings[CONNECTION_STRING_CONFIG_NAME].ConnectionString;
         }
 
         public static DBManager Instance()
@@ -51,8 +49,6 @@ namespace Reti.PCManagement.DAL
         }
 
 
-        //TODO - 
-        //http://blog.gauffin.org/2013/01/ado-net-the-right-way/
-        //Creare un repository generico e poi uno specifico per per ogni classe. Segui il link sopra.
+
     }
 }

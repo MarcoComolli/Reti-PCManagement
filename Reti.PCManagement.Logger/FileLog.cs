@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Configuration;
+using static Reti.PCManagement.Logger.LogEnums;
 
 namespace Reti.PCManagement.Logger
 {
@@ -13,13 +14,7 @@ namespace Reti.PCManagement.Logger
         public static readonly string LOG_FILE_PATH;
         public static readonly string LOG_FILE_NAME;
 
-        public enum Severity
-        {
-            Debug,
-            Assert,
-            Warning,
-            Error
-        }
+
 
         //static constructor
         static FileLog()
@@ -69,10 +64,14 @@ namespace Reti.PCManagement.Logger
             WriteLine(WrapWithHelpfulData(Severity.Error, message));
         }
 
+        public static void LogError(string message, Exception ex)
+        {
+            WriteLine(WrapWithHelpfulData(Severity.Error, $"{message} - {ex.ToString()}"));
+        }
+
         public static void LogError(Exception ex)
         {
-            string message = $"{ex.Message} | {ex.StackTrace}";
-            WriteLine(WrapWithHelpfulData(Severity.Error, message));
+            WriteLine(WrapWithHelpfulData(Severity.Error, ex.ToString()));
         }
 
         public static void LogWarning(string message)
@@ -80,9 +79,9 @@ namespace Reti.PCManagement.Logger
             WriteLine(WrapWithHelpfulData(Severity.Warning, message));
         }
 
-        public static void LogAssert(string message)
+        public static void LogVerbose(string message)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Assert, message));
+            WriteLine(WrapWithHelpfulData(Severity.Verbose, message));
         }
 
         public static void LogDebug(string message)

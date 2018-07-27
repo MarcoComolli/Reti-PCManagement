@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Severity.cs" />
     <Compile Include="FileLog.cs" />
     <Compile Include="DbLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

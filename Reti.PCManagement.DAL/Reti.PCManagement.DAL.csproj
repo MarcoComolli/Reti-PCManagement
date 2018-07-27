@@ -53,5 +53,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reti.PCManagement.Logger\Reti.PCManagement.Logger.csproj">
+      <Project>{173e564e-157e-4637-9ec3-40dc62c1bbe8}</Project>
+      <Name>Reti.PCManagement.Logger</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
