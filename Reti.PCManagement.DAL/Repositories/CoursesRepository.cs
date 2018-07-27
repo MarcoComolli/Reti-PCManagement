@@ -31,8 +31,10 @@ namespace Reti.PCManagement.DAL.Repositories
                 using (var command = uow.CreateCommand())
                 {
 
-                    command.CommandText = @"INSERT INTO [dbo].[Courses] ([DESCRIPTION], [REF_YEAR], [START_DATE],[END_DATE],[IS_PERIODIC],[COORDINATOR_ID]) 
-                                      VALUES(@DESCRIPTION, @REF_YEAR, @START_DATE, @END_DATE, @IS_PERIODIC, @COORDINATOR_ID)";
+                    command.CommandText = $"INSERT INTO {CoursesContract.TABLE_NAME} ([{CoursesContract.DESCRIPTION}], [{CoursesContract.REF_YEAR}]," +
+                                                        $"[{CoursesContract.START_DATE}],[{CoursesContract.END_DATE}]," +
+                                                        $"[{CoursesContract.IS_PERIODIC}],[{CoursesContract.COORDINATOR_ID}])" +
+                                          $"VALUES(@DESCRIPTION, @REF_YEAR, @START_DATE, @END_DATE, @IS_PERIODIC, @COORDINATOR_ID)";
                     command.AddParameter("DESCRIPTION", course.Description ?? (object)DBNull.Value);
                     command.AddParameter("REF_YEAR", course.RefYear);
                     command.AddParameter("START_DATE", course.StartDate ?? (object)DBNull.Value);
@@ -57,11 +59,11 @@ namespace Reti.PCManagement.DAL.Repositories
                 {
 
 
-                    command.CommandText = @"UPDATE [dbo].[Courses] 
-                                        SET [DESCRIPTION] = @DESCRIPTION, [REF_YEAR] = @REF_YEAR,
-                                            [START_DATE] = @START_DATE, [END_DATE] = @END_DATE, [IS_PERIODIC] = @IS_PERIODIC, 
-                                            [COORDINATOR_ID] = @COORDINATOR_ID 
-                                      WHERE [ID] = @ID";
+                    command.CommandText = $"UPDATE {CoursesContract.TABLE_NAME}" +
+                                          $"SET [{CoursesContract.DESCRIPTION}] = @DESCRIPTION, [{CoursesContract.REF_YEAR}] = @REF_YEAR," +
+                                             $"[{CoursesContract.START_DATE}] = @START_DATE, [{CoursesContract.END_DATE}] = @END_DATE, " +
+                                             $"[{CoursesContract.IS_PERIODIC}] = @IS_PERIODIC, [{CoursesContract.COORDINATOR_ID}] = @COORDINATOR_ID " +
+                                          $"WHERE [{CoursesContract.ID}] = @ID";
                     command.AddParameter("DESCRIPTION", course.Description ?? (object)DBNull.Value);
                     command.AddParameter("REF_YEAR", course.RefYear);
                     command.AddParameter("START_DATE", course.StartDate ?? (object)DBNull.Value);
@@ -87,15 +89,15 @@ namespace Reti.PCManagement.DAL.Repositories
                 {
 
 
-                    command.CommandText = @"DELETE FROM [dbo].[Courses]
-                                            WHERE [ID] = @ID";
+                    command.CommandText = $"DELETE FROM {CoursesContract.TABLE_NAME}" +
+                                          $"WHERE [{CoursesContract.ID}] = @ID";
                     command.AddParameter("ID", id);
                     command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                DbLog.LogError($"Error deleting course of id! {id}", ex);
+                DbLog.LogError($"Error deleting course of id {id}", ex);
                 throw ex;
             }
         }
@@ -106,7 +108,7 @@ namespace Reti.PCManagement.DAL.Repositories
             {
                 using (var command = uow.CreateCommand())
                 {
-                    command.CommandText = @"SELECT * FROM [dbo].[Courses]";
+                    command.CommandText = $"SELECT * FROM {CoursesContract.TABLE_NAME}";
                     return ToList(command);
                 }
             }
@@ -129,7 +131,7 @@ namespace Reti.PCManagement.DAL.Repositories
             {
                 using (var command = uow.CreateCommand())
                 {
-                    command.CommandText = @"SELECT * FROM [dbo].[Courses] WHERE [ID] = @id";
+                    command.CommandText = $"SELECT * FROM {CoursesContract.TABLE_NAME} WHERE [{CoursesContract.ID}] = @id";
                     command.AddParameter("ID", id);
                     using (var reader = command.ExecuteReader())
                     {
