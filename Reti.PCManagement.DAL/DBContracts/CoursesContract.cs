@@ -3,6 +3,7 @@ namespace Reti.PCManagement.DAL.DBContracts
 {
     class CoursesContract
     {
+        public static readonly string TABLE_NAME = "[dbo].[Courses]";
 
         public static readonly string ID = "ID";
         public static readonly string DESCRIPTION = "DESCRIPTION";

@@ -44,7 +44,7 @@ namespace Reti.PCManagement.DAL.Repositories
             }
             catch (Exception ex)
             {
-                //DbLog.LogError($"Error inserting the new course: {course.ToString()}", ex);
+                DbLog.LogError($"Error inserting the new course: {course.ToString()}", ex);
                 throw ex;
             }
         }

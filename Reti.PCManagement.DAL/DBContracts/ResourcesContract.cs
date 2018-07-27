@@ -3,6 +3,10 @@ namespace Reti.PCManagement.DAL.DBContracts
 {
     class ResourcesContract
     {
+
+        public static readonly string TABLE_NAME = "[dbo].[Resources]";
+
+
         public static readonly string ID = "ID";
         public static readonly string USERNAME = "USERNAME";
         public static readonly string SURNAME = "SURNAME";
