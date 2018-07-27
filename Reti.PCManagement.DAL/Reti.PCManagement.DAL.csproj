@@ -53,6 +53,7 @@
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EnrollmentsRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TeachersRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
