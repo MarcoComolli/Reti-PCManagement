@@ -14,9 +14,10 @@ namespace Reti.PCManagement.DAL
 
         private SqlConnection connection;
         private SqlTransaction transaction;
+        public bool completedWithSuccess;
 
 
-        public static IUnitOfWork CreateUoW()
+        public static UnitOfWork CreateUoW()
         {
             var connection = DBManager.Instance().GetSqlConnection();
             connection.Open();
@@ -36,11 +37,13 @@ namespace Reti.PCManagement.DAL
         {
             this.connection = connection;
             transaction = connection.BeginTransaction();
+            completedWithSuccess = false;
         }
 
 
-        public void ApplyChanges()
+        public bool ApplyChanges()
         {
+            bool success = false;
             if(transaction == null)
             {
                 throw new InvalidOperationException("Cannot found uow transaction. Could be already used?");
@@ -48,20 +51,11 @@ namespace Reti.PCManagement.DAL
             try
             {
                 transaction.Commit();
+                success = true;
             }
             catch (Exception commitEx)
             {
-                // Attempt to roll back the transaction.
-                try
-                {
-                    transaction.Rollback();
-                }
-                catch (Exception rbEx)
-                {
-                    // This catch block will handle any errors that may have occurred on the server that would cause the rollback to fail
-                    Logger.FileLog.LogError("Error in rollback of a non committed transaction", rbEx);
-                    throw rbEx;
-                }
+                Rollback();
                 Logger.FileLog.LogError("Error committing transaction", commitEx);
                 throw commitEx;
             }
@@ -69,7 +63,27 @@ namespace Reti.PCManagement.DAL
             {
                 transaction = null;
             }
-            
+            completedWithSuccess = success;
+            return success;
+        }
+
+        public void Rollback()
+        {
+            // Attempt to roll back the transaction.
+            try
+            {
+                if (transaction != null)
+                {
+                    transaction.Rollback();
+                    transaction = null;
+                }
+            }
+            catch (Exception rbEx)
+            {
+                // This catch block will handle any errors that may have occurred on the server that would cause the rollback to fail
+                Logger.FileLog.LogError("Error in rollback of transaction", rbEx);
+                throw rbEx;
+            }
         }
 
         public void Dispose()

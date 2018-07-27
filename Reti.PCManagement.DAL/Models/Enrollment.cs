@@ -19,6 +19,8 @@ namespace Reti.PCManagement.DAL.Models
         public string Notes { get; set; }
 
 
+        public Enrollment() { }
+
         public Enrollment(int id, int reosurceId, int projectLeaderId, int courseId, DateTime? startDate, DateTime? maxEndDate, bool isAdmitted, string notes)
         {
             Id = id;
@@ -29,6 +31,11 @@ namespace Reti.PCManagement.DAL.Models
             MaxEndDate = maxEndDate;
             IsAdmitted = isAdmitted;
             Notes = notes;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Id},{ReosurceId},{ProjectLeaderId},{CourseId},{StartDate},{MaxEndDate},{IsAdmitted},{Notes}]";
         }
 
     }

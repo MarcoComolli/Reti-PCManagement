@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reti.PCManagement.Logger
+namespace Reti.PCManagement.Common
 {
-
-    public class LogEnums
+    public class Enums
     {
         public enum Severity
         {
@@ -16,5 +15,6 @@ namespace Reti.PCManagement.Logger
             Warning,
             Error
         }
+
     }
 }

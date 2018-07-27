@@ -15,6 +15,7 @@ namespace Reti.PCManagement.DAL.Models
         public string Surname { get; set; }
         public string Status { get; set; }
 
+        public Resource() { }
 
         public Resource(int id, string username, string name, string surname, string status)
         {
@@ -25,6 +26,10 @@ namespace Reti.PCManagement.DAL.Models
             Status = status;
         }
 
+        public override string ToString()
+        {
+            return $"[{Id},{Username},{Name},{Surname},{Status}]";
+        }
 
 
     }

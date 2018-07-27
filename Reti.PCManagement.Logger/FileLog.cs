@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Configuration;
-using static Reti.PCManagement.Logger.LogEnums;
+using Reti.PCManagement.Common;
 
 namespace Reti.PCManagement.Logger
 {
@@ -24,6 +24,11 @@ namespace Reti.PCManagement.Logger
                 LOG_FILE_PATH = ConfigurationManager.AppSettings["FilePath"];
                 LOG_FILE_NAME = ConfigurationManager.AppSettings["FileName"];
                 Directory.CreateDirectory(LOG_FILE_PATH); //create path if doesn't exist
+                bool append = bool.Parse(ConfigurationManager.AppSettings["LogAppend"]);
+                if(!append)
+                {
+                    File.Delete(LOG_FILE_PATH + LOG_FILE_NAME);
+                }
             }
             catch (Exception ex)
             {
@@ -36,10 +41,10 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                    using (StreamWriter sw = File.AppendText(LOG_FILE_PATH + LOG_FILE_NAME))
-                    {
-                        sw.Write(line + "\r\n");
-                    }      
+                using (StreamWriter sw = File.AppendText(LOG_FILE_PATH + LOG_FILE_NAME))
+                {
+                    sw.Write(line + "\r\n");
+                }
             }
             catch (Exception ex)
             {
@@ -48,7 +53,7 @@ namespace Reti.PCManagement.Logger
         }
 
         //add useful data to the log
-        private static string WrapWithHelpfulData(Severity severity, string msg)
+        private static string WrapWithHelpfulData(Enums.Severity severity, string msg)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now)
@@ -61,32 +66,32 @@ namespace Reti.PCManagement.Logger
 
         public static void LogError(string message)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Error, message));
+            WriteLine(WrapWithHelpfulData(Enums.Severity.Error, message));
         }
 
         public static void LogError(string message, Exception ex)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Error, $"{message} - {ex.ToString()}"));
+            WriteLine(WrapWithHelpfulData(Enums.Severity.Error, $"{message} - {ex.ToString()}"));
         }
 
         public static void LogError(Exception ex)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Error, ex.ToString()));
+            WriteLine(WrapWithHelpfulData(Enums.Severity.Error, ex.ToString()));
         }
 
         public static void LogWarning(string message)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Warning, message));
+            WriteLine(WrapWithHelpfulData(Enums.Severity.Warning, message));
         }
 
         public static void LogVerbose(string message)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Verbose, message));
+            WriteLine(WrapWithHelpfulData(Enums.Severity.Verbose, message));
         }
 
         public static void LogDebug(string message)
         {
-            WriteLine(WrapWithHelpfulData(Severity.Debug, message));
+            WriteLine(WrapWithHelpfulData(Enums.Severity.Debug, message));
         }
     }
 }

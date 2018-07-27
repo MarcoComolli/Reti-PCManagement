@@ -8,6 +8,6 @@ namespace Reti.PCManagement.DAL
 {
     public interface IUnitOfWork : IDisposable
     {
-        void ApplyChanges();
+        bool ApplyChanges();
     }
 }

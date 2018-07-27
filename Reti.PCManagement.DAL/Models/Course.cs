@@ -18,6 +18,8 @@ namespace Reti.PCManagement.DAL.Models
         public int CoordinatorId { get; set; }
 
 
+        public Course() { }
+
         public Course(int id, string description, int refYear, DateTime? startDate, DateTime? endDate, bool isPeriodic, int coordinatorId)
         {
             Id = id;
@@ -27,6 +29,11 @@ namespace Reti.PCManagement.DAL.Models
             EndDate = endDate;
             IsPeriodic = isPeriodic;
             CoordinatorId = coordinatorId;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Id},{Description},{RefYear},{StartDate},{EndDate},{IsPeriodic},{CoordinatorId}]";
         }
 
     }

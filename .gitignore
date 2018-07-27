@@ -3,7 +3,7 @@
 
 #My ignored file/folders
 ConsoleTest/
-
+Logs/
 
 # User-specific files
 *.suo

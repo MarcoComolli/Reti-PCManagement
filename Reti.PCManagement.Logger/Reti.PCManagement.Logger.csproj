@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Severity.cs" />
     <Compile Include="FileLog.cs" />
     <Compile Include="DbLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,6 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Reti.PCManagement.Common\Reti.PCManagement.Common.csproj">
+      <Project>{12e0a877-d6c5-46d2-a470-dc889c818343}</Project>
+      <Name>Reti.PCManagement.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reti.PCManagement.Logger", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{11E131A8-E030-4A61-888B-A639096CEC3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reti.PCManagement.Common", "Reti.PCManagement.Common\Reti.PCManagement.Common.csproj", "{12E0A877-D6C5-46D2-A470-DC889C818343}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{11E131A8-E030-4A61-888B-A639096CEC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11E131A8-E030-4A61-888B-A639096CEC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11E131A8-E030-4A61-888B-A639096CEC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E0A877-D6C5-46D2-A470-DC889C818343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E0A877-D6C5-46D2-A470-DC889C818343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E0A877-D6C5-46D2-A470-DC889C818343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E0A877-D6C5-46D2-A470-DC889C818343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
