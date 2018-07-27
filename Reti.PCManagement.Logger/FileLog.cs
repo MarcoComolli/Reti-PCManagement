@@ -11,7 +11,7 @@ namespace Reti.PCManagement.Logger
     public class FileLog
     {
         public static readonly string LOG_FILE_PATH;
-        public static readonly string LOG_FILE_PATH_NAME;
+        public static readonly string LOG_FILE_NAME;
 
         public enum Severity
         {
@@ -27,7 +27,8 @@ namespace Reti.PCManagement.Logger
             try
             {
                 LOG_FILE_PATH = ConfigurationManager.AppSettings["FilePath"];
-                LOG_FILE_PATH_NAME = ConfigurationManager.AppSettings["FilePathName"];
+                LOG_FILE_NAME = ConfigurationManager.AppSettings["FileName"];
+                Directory.CreateDirectory(LOG_FILE_PATH); //create path if doesn't exist
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                    using (StreamWriter sw = File.AppendText(LOG_FILE_PATH_NAME))
+                    using (StreamWriter sw = File.AppendText(LOG_FILE_PATH + LOG_FILE_NAME))
                     {
                         sw.Write(line + "\r\n");
                     }      

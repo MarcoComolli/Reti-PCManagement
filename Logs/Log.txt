@@ -1,0 +1,4 @@
+27/07/2018 12:27:50 - [Warning] - 	Il mio primo warn
+27/07/2018 12:27:50 - [Error] - 	Il mio primo errore
+27/07/2018 12:28:33 - [Warning] 	- Il mio primo warn
+27/07/2018 12:28:33 - [Error] 	- Il mio primo errore
