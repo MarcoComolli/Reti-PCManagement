@@ -53,7 +53,7 @@ namespace Reti.PCManagement.Logger
         }
 
         //add useful data to the log
-        private static string WrapWithHelpfulData(Enums.Severity severity, string msg)
+        private static string WrapWithHelpfulData(Severity severity, string msg)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now)
@@ -66,32 +66,32 @@ namespace Reti.PCManagement.Logger
 
         public static void LogError(string message)
         {
-            WriteLine(WrapWithHelpfulData(Enums.Severity.Error, message));
+            WriteLine(WrapWithHelpfulData(Severity.Error, message));
         }
 
         public static void LogError(string message, Exception ex)
         {
-            WriteLine(WrapWithHelpfulData(Enums.Severity.Error, $"{message} - {ex.ToString()}"));
+            WriteLine(WrapWithHelpfulData(Severity.Error, $"{message} - {ex.ToString()}"));
         }
 
         public static void LogError(Exception ex)
         {
-            WriteLine(WrapWithHelpfulData(Enums.Severity.Error, ex.ToString()));
+            WriteLine(WrapWithHelpfulData(Severity.Error, ex.ToString()));
         }
 
         public static void LogWarning(string message)
         {
-            WriteLine(WrapWithHelpfulData(Enums.Severity.Warning, message));
+            WriteLine(WrapWithHelpfulData(Severity.Warning, message));
         }
 
         public static void LogVerbose(string message)
         {
-            WriteLine(WrapWithHelpfulData(Enums.Severity.Verbose, message));
+            WriteLine(WrapWithHelpfulData(Severity.Verbose, message));
         }
 
         public static void LogDebug(string message)
         {
-            WriteLine(WrapWithHelpfulData(Enums.Severity.Debug, message));
+            WriteLine(WrapWithHelpfulData(Severity.Debug, message));
         }
     }
 }

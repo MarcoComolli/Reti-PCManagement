@@ -45,6 +45,8 @@
     <Compile Include="DBContracts\EnrollmentsContract.cs" />
     <Compile Include="DBContracts\ResourcesContract.cs" />
     <Compile Include="DBContracts\TeachersContract.cs" />
+    <Compile Include="DbDataProvider.cs" />
+    <Compile Include="EntitiesMapper.cs" />
     <Compile Include="Repositories\CoursesRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Models\Course.cs" />
@@ -65,6 +67,10 @@
     <ProjectReference Include="..\Reti.PCManagement.Common\Reti.PCManagement.Common.csproj">
       <Project>{12e0a877-d6c5-46d2-a470-dc889c818343}</Project>
       <Name>Reti.PCManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reti.PCManagement.Entities\Reti.PCManagement.Entities.csproj">
+      <Project>{65f9acd4-a567-4d9a-bda5-c713b43b784c}</Project>
+      <Name>Reti.PCManagement.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reti.PCManagement.Logger\Reti.PCManagement.Logger.csproj">
       <Project>{173e564e-157e-4637-9ec3-40dc62c1bbe8}</Project>

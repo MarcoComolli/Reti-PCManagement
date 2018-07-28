@@ -11,7 +11,7 @@ namespace Reti.PCManagement.Logger
     public class DbLog
     {
 
-        private static void WriteLogOnDB(Enums.Severity severity, string msg, Exception exception = null)
+        private static void WriteLogOnDB(Severity severity, string msg, Exception exception = null)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                WriteLogOnDB(Enums.Severity.Error, message);
+                WriteLogOnDB(Severity.Error, message);
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                WriteLogOnDB(Enums.Severity.Error, exception.Message, exception);
+                WriteLogOnDB(Severity.Error, exception.Message, exception);
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                WriteLogOnDB(Enums.Severity.Error, message, exception);
+                WriteLogOnDB(Severity.Error, message, exception);
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                WriteLogOnDB(Enums.Severity.Warning, message);
+                WriteLogOnDB(Severity.Warning, message);
             }
             catch (Exception ex)
             {
@@ -87,7 +87,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                WriteLogOnDB(Enums.Severity.Verbose, message);
+                WriteLogOnDB(Severity.Verbose, message);
             }
             catch (Exception ex)
             {
@@ -99,7 +99,7 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                WriteLogOnDB(Enums.Severity.Debug, message);
+                WriteLogOnDB(Severity.Debug, message);
             }
             catch (Exception ex)
             {

@@ -33,10 +33,12 @@ namespace Reti.PCManagement.DAL.Repositories
                 {
 
                     command.CommandText = $"INSERT INTO {ResourcesContract.TABLE_NAME} (" +
+                        $"[{ResourcesContract.ID}]," +
                         $"[{ResourcesContract.USERNAME}], [{ResourcesContract.NAME}], " +
                         $"[{ResourcesContract.SURNAME}], [{ResourcesContract.STATUS}])" +
-                       "VALUES(@USERNAME, @NAME, @SURNAME, @STATUS)";
+                       "VALUES(@ID, @USERNAME, @NAME, @SURNAME, @STATUS)";
 
+                    command.AddParameter("ID", resource.Id);
                     command.AddParameter("USERNAME", resource.Username);
                     command.AddParameter("NAME", resource.Name);
                     command.AddParameter("SURNAME", resource.Surname);
@@ -62,9 +64,10 @@ namespace Reti.PCManagement.DAL.Repositories
 
                     command.CommandText = $"UPDATE {ResourcesContract.TABLE_NAME}" +
                                         $"SET [{ResourcesContract.USERNAME}] = @USERNAME, [{ResourcesContract.SURNAME}] = @SURNAME," +
-                                            $"[{ResourcesContract.NAME}] = @NAME, [{ResourcesContract.STATUS}] = @STATUS," +
+                                            $"[{ResourcesContract.NAME}] = @NAME, [{ResourcesContract.STATUS}] = @STATUS, [{ResourcesContract.ID}] = @ID" +
                                         $"WHERE [{ResourcesContract.ID}] = @ID";
 
+                    command.AddParameter("ID", resource.Id);
                     command.AddParameter("USERNAME", resource.Username);
                     command.AddParameter("NAME", resource.Name);
                     command.AddParameter("SURNAME", resource.Surname);
@@ -145,6 +148,26 @@ namespace Reti.PCManagement.DAL.Repositories
             catch (Exception ex)
             {
                 DbLog.LogError($"Error retriving Resource by id {id}", ex);
+                throw ex;
+            }
+        }
+
+        public List<Resource> GetResourceByIDOrUsername(int id, string username, UnitOfWork uow)
+        {
+            try
+            {
+                using (var command = uow.CreateCommand())
+                {
+                    command.CommandText = $"SELECT * FROM {ResourcesContract.TABLE_NAME} " +
+                        $"WHERE [{ResourcesContract.ID}] = @ID OR [{ResourcesContract.USERNAME}] = @USERNAME ";
+                    command.AddParameter("ID", id);
+                    command.AddParameter("USERNAME", username);
+                    return ToList(command);
+                }
+            }
+            catch (Exception ex)
+            {
+                DbLog.LogError($"Error retriving Resource by id {id} or username {username}", ex);
                 throw ex;
             }
         }

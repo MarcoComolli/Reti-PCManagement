@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Reti.PCManagement.BL</RootNamespace>
-    <AssemblyName>Reti.PCManagement.BL</AssemblyName>
+    <AssemblyName>e</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,6 +41,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcesManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reti.PCManagement.Common\Reti.PCManagement.Common.csproj">
+      <Project>{12e0a877-d6c5-46d2-a470-dc889c818343}</Project>
+      <Name>Reti.PCManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reti.PCManagement.DAL\Reti.PCManagement.DAL.csproj">
+      <Project>{b2400e3a-6b00-45ac-9309-9faed3c891f7}</Project>
+      <Name>Reti.PCManagement.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reti.PCManagement.Entities\Reti.PCManagement.Entities.csproj">
+      <Project>{65f9acd4-a567-4d9a-bda5-c713b43b784c}</Project>
+      <Name>Reti.PCManagement.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reti.PCManagement.Logger\Reti.PCManagement.Logger.csproj">
+      <Project>{173e564e-157e-4637-9ec3-40dc62c1bbe8}</Project>
+      <Name>Reti.PCManagement.Logger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

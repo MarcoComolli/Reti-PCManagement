@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reti.PCManagement.Common
 {
-    public class Enums
-    {
+
         public enum Severity
         {
             Debug,
@@ -16,5 +15,5 @@ namespace Reti.PCManagement.Common
             Error
         }
 
-    }
+    
 }
