@@ -26,18 +26,20 @@ namespace Reti.PCManagement.BL
 
         public List<ResourceEntity> GetAllResources()
         {
-            return null;
+            DbDataProvider ddp = new DbDataProvider();
+            return ddp.GetAllResources();
         }
 
         public ResourceEntity GetResource(int id)
         {
-            return null;
+            DbDataProvider ddp = new DbDataProvider();
+            return ddp.GetResourceById(id);
         }
 
         private bool CheckResourceInsert(ResourceEntity res)
         {
             DbDataProvider ddp = new DbDataProvider();
-            var result = ddp.GetByResourceOrUsername(res.Id, res.Username);
+            var result = ddp.GetResourceByIdOrUsername(res.Id, res.Username);
             if (result != null)
             {
                 return result.Count <= 0;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reti.PCManagement.Entities
 {
-    class EnrollmentEntity
+    public class EnrollmentEntity
     {
         public int Id { get; set; }
         public ResourceEntity Resource { get; set; }

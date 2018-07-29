@@ -15,7 +15,13 @@ namespace Reti.PCManagement.Entities
 
         public TeacherEntity() { }
 
-
+        public TeacherEntity(int id, ResourceEntity resource, CourseEntity course, string notes)
+        {
+            Id = id;
+            Resource = resource;
+            Course = course;
+            Notes = notes;
+        }
 
         public override string ToString()
         {
