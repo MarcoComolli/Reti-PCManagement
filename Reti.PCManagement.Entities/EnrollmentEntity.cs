@@ -17,6 +17,8 @@ namespace Reti.PCManagement.Entities
         public bool IsAdmitted { get; set; }
         public string Notes { get; set; }
 
+        public EnrollmentEntity() { }
+
         public EnrollmentEntity(int id, ResourceEntity resource, ResourceEntity projectLeader, CourseEntity course, DateTime? startDate, DateTime? maxEndDate, bool isAdmitted, string notes)
         {
             Id = id;
@@ -27,6 +29,11 @@ namespace Reti.PCManagement.Entities
             MaxEndDate = maxEndDate;
             IsAdmitted = isAdmitted;
             Notes = notes;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Id},{Resource.ToString()},{ProjectLeader.ToString()},{Course.ToString()},{StartDate},{MaxEndDate},{IsAdmitted},{Notes}]";
         }
 
     }

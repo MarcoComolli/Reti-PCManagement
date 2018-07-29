@@ -11,6 +11,8 @@ namespace Reti.PCManagement.Entities
         public bool IsPeriodic { get; set; }
         public ResourceEntity Coordinator { get; set; }
 
+        public CourseEntity() { }
+
         public CourseEntity(int id, string description, int refYear, DateTime? startDate, DateTime? endDate, bool isPeriodic, ResourceEntity coordinator)
         {
             Id = id;
@@ -24,7 +26,7 @@ namespace Reti.PCManagement.Entities
 
         public override string ToString()
         {
-            return $"[{Id},{Description},{RefYear},{StartDate},{EndDate},{IsPeriodic},{Coordinator}]";
+            return $"[{Id},{Description},{RefYear},{StartDate},{EndDate},{IsPeriodic},{Coordinator.ToString()}]";
         }
     }
 }

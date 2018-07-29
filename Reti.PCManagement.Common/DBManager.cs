@@ -21,6 +21,7 @@ namespace Reti.PCManagement.DAL
             }
             catch (Exception ex)
             {
+                
                 throw ex;
             }
         }

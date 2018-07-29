@@ -25,7 +25,7 @@ namespace Reti.PCManagement.Entities
 
         public override string ToString()
         {
-            return $"[{Id},{Resource},{Course},{Notes}]";
+            return $"[{Id},{Resource},{Course.ToString()},{Notes}]";
         }
 
     }

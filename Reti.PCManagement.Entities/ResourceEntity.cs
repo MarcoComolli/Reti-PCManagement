@@ -14,6 +14,8 @@ namespace Reti.PCManagement.Entities
         public string Surname { get; set; }
         public string Status { get; set; }
 
+        public ResourceEntity() { }
+
         public ResourceEntity(int id, string username, string name, string surname, string status)
         {
             Id = id;
@@ -22,5 +24,12 @@ namespace Reti.PCManagement.Entities
             Surname = surname;
             Status = status;
         }
+
+        public override string ToString()
+        {
+            return $"[{Id},{Username},{Name},{Surname},{Status}]";
+        }
+
+
     }
 }
