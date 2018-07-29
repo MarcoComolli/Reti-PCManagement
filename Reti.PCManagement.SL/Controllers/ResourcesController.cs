@@ -3,7 +3,8 @@ using Reti.PCManagement.Entities;
 using Reti.PCManagement.Logger;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace Reti.PCManagement.SL.Controllers
@@ -12,37 +13,66 @@ namespace Reti.PCManagement.SL.Controllers
     [RoutePrefix("API/Resources")]
     public class ResourcesController : ApiController
     {
+
+        public readonly string GENERIC_ERROR = "Unfortunately an error occurred managin Resources. Reason:";
+
+
         [HttpGet]
         [Route("GetAll")]
-        public IEnumerable<ResourceEntity> GetAllResources()
+        public HttpResponseMessage GetAllResources()
         {
-            ResourcesManager resManager = new ResourcesManager();
-            List<ResourceEntity> users = resManager.GetAllResources();
-            return users;
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                ResourcesManager resManager = new ResourcesManager();
+                List<ResourceEntity> users = resManager.GetAllResources();
+                response = Request.CreateResponse(HttpStatusCode.OK, users);
+            }
+            catch (Exception ex)
+            {
+                response.ReasonPhrase = $"{GENERIC_ERROR}  [{ex.Message}]";
+                DbLog.LogError("Error in ResourcesController", ex);
+            }
+            return response;
         }
 
-        //[HttpGet]
-        //public IHttpActionResult GetUser(int id)
-        //{
-        //    UsersManager mng = new UsersManager();
-        //    User user = mng.GetUserById(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    // TODO: use Mappers!
-        //    return Ok(new UserVM() { Id = user.Id, UserTitleId = user.UserTitleId, Username = user.Username, Surname = user.Surname, Name = user.Name });
-        //}
+        [HttpGet]
+        [Route("GetByID/{id}")]
+        public HttpResponseMessage GetResourceById(int id)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                ResourcesManager resManager = new ResourcesManager();
+                ResourceEntity user = resManager.GetResource(id);
+                response = Request.CreateResponse(HttpStatusCode.OK, user);
+            }
+            catch (Exception ex)
+            {
+                response.ReasonPhrase = $"{GENERIC_ERROR}  [{ex.Message}]";
+                DbLog.LogError("Error in ResourcesController", ex);
+            }
+            return response;
+        }
 
-        //[HttpPost]
-        //public IHttpActionResult PostUser(UserVM item)
-        //{
-        //    UsersManager mng = new UsersManager();
-        //    // TODO: use Mappers!
-        //    User user = new User() { Id = item.Id, UserTitleId = item.UserTitleId, Username = item.Username, Surname = item.Surname, Name = item.Name };
-        //    mng.CreateUser(user);
-        //    return Ok(item);
-        //}
+        [HttpPost]
+        [Route("GetByID/{id}")]
+        public HttpResponseMessage InsertResource([FromBody] ResourceEntity resource)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                ResourcesManager resManager = new ResourcesManager();
+                resManager.InsertResource(resource);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.ReasonPhrase = $"{GENERIC_ERROR}  [{ex.Message}]";
+                DbLog.LogError("Error in ResourcesController", ex);
+            }
+            return response;
+        }
 
         //[HttpPut]
         //public IHttpActionResult PutUser(int id, [FromBody] UserVM item)
