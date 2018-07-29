@@ -228,7 +228,7 @@ namespace Reti.PCManagement.DAL
             }
         }
 
-        public List<TeacherEntity> GetTeachers()
+        public List<TeacherEntity> GetAllTeachers()
         {
             List<TeacherEntity> result = new List<TeacherEntity>();
             TeachersRepository teachRepo = new TeachersRepository();
