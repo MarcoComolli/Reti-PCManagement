@@ -8,19 +8,19 @@ namespace Reti.PCManagement.BL
 {
     public class CoursesManager
     {
-        public void InsertTeacher(CourseEntity course)
+        public void InsertCourse(CourseEntity course)
         {
             DbDataProvider ddp = new DbDataProvider();
             ddp.InsertCourse(course);
         }
 
-        public List<CourseEntity> GetAllResources()
+        public List<CourseEntity> GetAllCourses()
         {
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetAllCourses();
         }
 
-        public CourseEntity GetResource(int id)
+        public CourseEntity GetCourse(int id)
         {
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetCourseById(id);

@@ -14,7 +14,7 @@ namespace Reti.PCManagement.SL.Controllers
     public class ResourcesController : ApiController
     {
 
-        public readonly string GENERIC_ERROR = "Unfortunately an error occurred managin Resources. Reason:";
+        public readonly string GENERIC_ERROR = "Unfortunately an error occurred managing Resources. Reason:";
 
 
         [HttpGet]
@@ -56,7 +56,7 @@ namespace Reti.PCManagement.SL.Controllers
         }
 
         [HttpPost]
-        [Route("GetByID/{id}")]
+        [Route("Insert")]
         public HttpResponseMessage InsertResource([FromBody] ResourceEntity resource)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);

@@ -6,21 +6,21 @@ using System.Collections.Generic;
 
 namespace Reti.PCManagement.BL
 {
-    public class EnrollmentManager
+    public class EnrollmentsManager
     {
-        public void InsertTeacher(EnrollmentEntity enroll)
+        public void InsertEnrollment(EnrollmentEntity enroll)
         {
             DbDataProvider ddp = new DbDataProvider();
             ddp.InsertEnrollment(enroll);
         }
 
-        public List<EnrollmentEntity> GetAllResources()
+        public List<EnrollmentEntity> GetAllEnrollments()
         {
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetAllenrollments();
         }
 
-        public EnrollmentEntity GetResource(int id)
+        public EnrollmentEntity GetEnrollment(int id)
         {
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetEnrollmentById(id);

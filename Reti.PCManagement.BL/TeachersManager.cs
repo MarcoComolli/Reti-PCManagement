@@ -14,13 +14,13 @@ namespace Reti.PCManagement.BL
             ddp.InsertTeacher(tch);
         }
 
-        public List<TeacherEntity> GetAllResources()
+        public List<TeacherEntity> GetAllTeachers()
         {
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetAllTeachers();
         }
 
-        public TeacherEntity GetResource(int id)
+        public TeacherEntity GetTeacher(int id)
         {
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetTeacherById(id);
