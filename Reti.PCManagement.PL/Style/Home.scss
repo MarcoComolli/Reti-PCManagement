@@ -42,30 +42,91 @@ main {
     .error-msg {
         background-color: lightpink;
         min-height: 40px;
+        display: none;
     }
 
-    .data-list {
+    .card-style {
+        display: flex;
+        margin: 20px;
+        background-color: #a4a4a4;
+        height: 70vh;
+        justify-content: center;
+        overflow-y: auto;
+        border-radius: 10px;
+        padding: 4px;
+        width: 100%;
+    }
+
+    .data-list.full-view {
+
         .data-list-container {
             display: flex;
             justify-content: center;
         }
 
-        .table-container {
-            margin: 20px;
-            background-color: darkolivegreen;
-            min-height: 30vh;
-        }
-
         table {
+            border: solid 2px black;
             width: 100%;
+            margin: 10px;
 
             th {
                 text-align: center;
+                border-bottom: solid 2px rgba(0, 0, 0, 0.25)
+            }
+
+            tr {
+                border-bottom: solid 1px rgba(0, 0, 0, 0.15)
             }
 
             th, td {
-                width: 25%;
+                max-width: 20vw;
+                text-align: center;
                 padding: 8px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                &:nth-child(even) {
+                    background-color: aliceblue;
+                }
+
+                &:nth-child(odd) {
+                    background-color: lavender;
+                }
+            }
+        }
+    }
+
+    .data-list.partial-view {
+        width: 45%;
+        float: left;
+
+        .data-list-container {
+            display: flex;
+        }
+
+
+        table {
+            border: solid 2px black;
+            width: 100%;
+            margin: 10px;
+
+            th {
+                text-align: center;
+                border-bottom: solid 2px rgba(0, 0, 0, 0.25)
+            }
+
+            tr {
+                border-bottom: solid 1px rgba(0, 0, 0, 0.15)
+            }
+
+            th, td {
+                max-width: 20vw;
+                text-align: center;
+                padding: 8px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
 
                 &:nth-child(even) {
                     background-color: aliceblue;
@@ -79,7 +140,14 @@ main {
     }
 
     .data-detail {
-        display: none;
+        flex-direction:row;
+        display: block;
+        width: 50%;
+        float: left;
+
+        input {
+            /*display: block;*/
+        }
     }
 
     .data-insert {
