@@ -30,72 +30,97 @@ main {
     min-height: 40px;
     display: none; }
   main .card-style {
-    display: flex;
-    margin: 20px;
     background-color: #a4a4a4;
     height: 70vh;
-    justify-content: center;
     overflow-y: auto;
     border-radius: 10px;
-    padding: 4px;
+    padding: 10px;
     width: 100%; }
-  main .data-list.full-view .data-list-container {
+  main .section-container {
     display: flex;
     justify-content: center; }
-  main .data-list.full-view table {
-    border: solid 2px black;
-    width: 100%;
-    margin: 10px; }
-    main .data-list.full-view table th {
-      text-align: center;
-      border-bottom: solid 2px rgba(0, 0, 0, 0.25); }
-    main .data-list.full-view table tr {
-      border-bottom: solid 1px rgba(0, 0, 0, 0.15); }
-    main .data-list.full-view table th, main .data-list.full-view table td {
-      max-width: 20vw;
-      text-align: center;
-      padding: 8px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap; }
-      main .data-list.full-view table th:nth-child(even), main .data-list.full-view table td:nth-child(even) {
-        background-color: aliceblue; }
-      main .data-list.full-view table th:nth-child(odd), main .data-list.full-view table td:nth-child(odd) {
-        background-color: lavender; }
-  main .data-list.partial-view {
-    width: 45%;
-    float: left; }
-    main .data-list.partial-view .data-list-container {
-      display: flex; }
-    main .data-list.partial-view table {
-      border: solid 2px black;
-      width: 100%;
-      margin: 10px; }
-      main .data-list.partial-view table th {
-        text-align: center;
-        border-bottom: solid 2px rgba(0, 0, 0, 0.25); }
-      main .data-list.partial-view table tr {
-        border-bottom: solid 1px rgba(0, 0, 0, 0.15); }
-      main .data-list.partial-view table th, main .data-list.partial-view table td {
-        max-width: 20vw;
-        text-align: center;
-        padding: 8px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap; }
-        main .data-list.partial-view table th:nth-child(even), main .data-list.partial-view table td:nth-child(even) {
-          background-color: aliceblue; }
-        main .data-list.partial-view table th:nth-child(odd), main .data-list.partial-view table td:nth-child(odd) {
-          background-color: lavender; }
-  main .data-detail {
-    flex-direction: row;
-    display: block;
-    width: 50%;
-    float: left; }
-    main .data-detail input {
-      /*display: block;*/ }
-  main .data-insert {
-    display: none; }
+    main .section-container .data-list.full-view .data-list-container {
+      display: flex;
+      justify-content: center; }
+    main .section-container .data-list.full-view .table-container {
+      display: flex;
+      justify-content: center; }
+      main .section-container .data-list.full-view .table-container table {
+        border: solid 2px black;
+        width: 100%; }
+        main .section-container .data-list.full-view .table-container table th {
+          text-align: center;
+          border-bottom: solid 2px rgba(0, 0, 0, 0.25); }
+        main .section-container .data-list.full-view .table-container table tr {
+          border-bottom: solid 1px rgba(0, 0, 0, 0.15); }
+        main .section-container .data-list.full-view .table-container table th, main .section-container .data-list.full-view .table-container table td {
+          max-width: 20vw;
+          text-align: center;
+          padding: 8px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap; }
+          main .section-container .data-list.full-view .table-container table th:nth-child(even), main .section-container .data-list.full-view .table-container table td:nth-child(even) {
+            background-color: aliceblue; }
+          main .section-container .data-list.full-view .table-container table th:nth-child(odd), main .section-container .data-list.full-view .table-container table td:nth-child(odd) {
+            background-color: lavender; }
+    main .section-container .data-list.partial-view {
+      width: 50%;
+      float: left; }
+      main .section-container .data-list.partial-view .data-list-container {
+        display: flex;
+        padding: 16px; }
+        main .section-container .data-list.partial-view .data-list-container .table-container {
+          display: flex;
+          justify-content: center; }
+          main .section-container .data-list.partial-view .data-list-container .table-container table {
+            border: solid 2px black;
+            width: 100%;
+            margin: 10px; }
+            main .section-container .data-list.partial-view .data-list-container .table-container table th {
+              text-align: center;
+              border-bottom: solid 2px rgba(0, 0, 0, 0.25); }
+            main .section-container .data-list.partial-view .data-list-container .table-container table tr {
+              border-bottom: solid 1px rgba(0, 0, 0, 0.15); }
+            main .section-container .data-list.partial-view .data-list-container .table-container table th, main .section-container .data-list.partial-view .data-list-container .table-container table td {
+              max-width: 20vw;
+              text-align: center;
+              padding: 8px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap; }
+              main .section-container .data-list.partial-view .data-list-container .table-container table th:nth-child(even), main .section-container .data-list.partial-view .data-list-container .table-container table td:nth-child(even) {
+                background-color: aliceblue; }
+              main .section-container .data-list.partial-view .data-list-container .table-container table th:nth-child(odd), main .section-container .data-list.partial-view .data-list-container .table-container table td:nth-child(odd) {
+                background-color: lavender; }
+    main .section-container .data-detail {
+      display: flex;
+      width: 50%;
+      float: left;
+      flex-direction: column; }
+      main .section-container .data-detail .data-detail-container {
+        padding: 16px; }
+        main .section-container .data-detail .data-detail-container .title-row {
+          display: flex;
+          width: 100%;
+          position: relative; }
+          main .section-container .data-detail .data-detail-container .title-row .close-x {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: orangered;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px; }
+            main .section-container .data-detail .data-detail-container .title-row .close-x span {
+              font-weight: bold;
+              color: wheat;
+              margin-bottom: 5px; }
+    main .section-container .data-insert {
+      display: none; }
 
 footer {
   flex-shrink: 0;
