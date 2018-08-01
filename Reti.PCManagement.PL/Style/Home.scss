@@ -52,6 +52,27 @@ main {
         border-radius: 10px;
         padding: 10px;
         width: 100%;
+        position: relative;
+
+        .close-x {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: orangered;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+
+            span {
+                font-weight: bold;
+                color: wheat;
+                margin-bottom: 5px;
+            }
+        }
     }
 
     .section-container {
@@ -103,6 +124,7 @@ main {
         }
 
         .data-list.partial-view {
+            display: none;
             width: 50%;
             float: left;
 
@@ -151,6 +173,7 @@ main {
         }
 
         .data-detail {
+            /*display: none;*/
             display: flex;
             width: 50%;
             float: left;
@@ -163,23 +186,38 @@ main {
                     display: flex;
                     width: 100%;
                     position: relative;
+                }
 
-                    .close-x {
+                .courses-detail {
+                    margin-top: 6px;
+
+                    .det-row {
+                        margin-bottom: 6px;
+                        border: solid 1px black;
+                        border-bottom-width: 2px;
+                        border-radius: 8px;
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        background-color: orangered;
-                        border-radius: 50%;
-                        height: 20px;
-                        width: 20px;
 
-                        span {
-                            font-weight:bold;
-                            color: wheat;
-                            margin-bottom: 5px;
+
+                        div {
+                            display: inline-block;
+
+                            &:nth-child(1) {
+                                background-color: lightblue;
+                                width: 20%;
+                                padding: 8px;
+                                text-align: right;
+                                border-bottom-left-radius: 8px;
+                                border-top-left-radius: 8px;
+                            }
+
+                            &:nth-child(2) {
+                                padding: 8px;
+                                background-color: lightgrey;
+                                width: 80%;
+                                border-bottom-right-radius: 8px;
+                                border-top-right-radius: 8px;
+                            }
                         }
                     }
                 }
@@ -188,6 +226,9 @@ main {
 
         .data-insert {
             display: none;
+            .data-insert-container {
+                margin-top: 8px;
+            }
         }
     }
 }

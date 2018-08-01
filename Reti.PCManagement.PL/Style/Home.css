@@ -35,7 +35,24 @@ main {
     overflow-y: auto;
     border-radius: 10px;
     padding: 10px;
-    width: 100%; }
+    width: 100%;
+    position: relative; }
+    main .card-style .close-x {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: orangered;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      cursor: pointer; }
+      main .card-style .close-x span {
+        font-weight: bold;
+        color: wheat;
+        margin-bottom: 5px; }
   main .section-container {
     display: flex;
     justify-content: center; }
@@ -65,6 +82,7 @@ main {
           main .section-container .data-list.full-view .table-container table th:nth-child(odd), main .section-container .data-list.full-view .table-container table td:nth-child(odd) {
             background-color: lavender; }
     main .section-container .data-list.partial-view {
+      display: none;
       width: 50%;
       float: left; }
       main .section-container .data-list.partial-view .data-list-container {
@@ -94,6 +112,7 @@ main {
               main .section-container .data-list.partial-view .data-list-container .table-container table th:nth-child(odd), main .section-container .data-list.partial-view .data-list-container .table-container table td:nth-child(odd) {
                 background-color: lavender; }
     main .section-container .data-detail {
+      /*display: none;*/
       display: flex;
       width: 50%;
       float: left;
@@ -104,23 +123,33 @@ main {
           display: flex;
           width: 100%;
           position: relative; }
-          main .section-container .data-detail .data-detail-container .title-row .close-x {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: orangered;
-            border-radius: 50%;
-            height: 20px;
-            width: 20px; }
-            main .section-container .data-detail .data-detail-container .title-row .close-x span {
-              font-weight: bold;
-              color: wheat;
-              margin-bottom: 5px; }
+        main .section-container .data-detail .data-detail-container .courses-detail {
+          margin-top: 6px; }
+          main .section-container .data-detail .data-detail-container .courses-detail .det-row {
+            margin-bottom: 6px;
+            border: solid 1px black;
+            border-bottom-width: 2px;
+            border-radius: 8px;
+            display: flex; }
+            main .section-container .data-detail .data-detail-container .courses-detail .det-row div {
+              display: inline-block; }
+              main .section-container .data-detail .data-detail-container .courses-detail .det-row div:nth-child(1) {
+                background-color: lightblue;
+                width: 20%;
+                padding: 8px;
+                text-align: right;
+                border-bottom-left-radius: 8px;
+                border-top-left-radius: 8px; }
+              main .section-container .data-detail .data-detail-container .courses-detail .det-row div:nth-child(2) {
+                padding: 8px;
+                background-color: lightgrey;
+                width: 80%;
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px; }
     main .section-container .data-insert {
       display: none; }
+      main .section-container .data-insert .data-insert-container {
+        margin-top: 8px; }
 
 footer {
   flex-shrink: 0;

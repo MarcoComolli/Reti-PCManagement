@@ -142,50 +142,102 @@
                     <div class="card-style">
 
                         <div class="title-row">
-                            <div>Detail</div>
-                           <div class="close-x"><span>x</span></div>
+                            <div>Details</div>
+                            <div class="close-x"><span>x</span></div>
                         </div>
 
-                        <table class="courses-table">
-                            <tbody>
-                                <tr>
-                                    <td>Course ID:</td>
-                                    <td>235</td>
-                                </tr>
-                                <tr>
-                                    <td>Description</td>
-                                    <td>
-                                        Percorso circolare sviluppo ok ma questa riga è veramente
-                                        lunga a pensarci bene ci starebbe proprio bene un lorem ipsum.
-                                        Percorso circolare sviluppo ok ma questa riga è veramente
-                                        lunga a pensarci bene ci starebbe proprio bene un lorem ipsum
-                                        lunga a pensarci bene ci starebbe proprio bene un lorem ipsum
-                                        lunga a pensarci bene ci starebbe proprio bene un lorem ipsum
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Start date</td>
-                                    <td>2015-10-15</td>
-                                </tr>
-                                <tr>
-                                    <td>End date</td>
-                                    <td>2016-12-15</td>
-                                </tr>
-                                <tr>
-                                    <td>Recursive</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Coordinator</td>
-                                    <td>Luca Zaccaro (zaccalu1)</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="courses-detail">
+                            <div class="det-row">
+                                <div>Course ID:</div>
+                                <div>235</div>
+                            </div>
+                            <div class="det-row">
+                                <div>Description</div>
+                                <div>
+                                    Percorso circolare sviluppo ok ma questa riga è veramente
+
+                                </div>
+                            </div>
+                            <div class="det-row">
+                                <div>Start date</div>
+                                <div>2015-10-15</div>
+                            </div>
+                            <div class="det-row">
+                                <div>End date</div>
+                                <div>2016-12-15</div>
+                            </div>
+                            <div class="det-row">
+                                <div>Recursive</div>
+                                <div>Yes</div>
+                            </div>
+                            <div class="det-row">
+                                <div>Coordinator</div>
+                                <div>Luca Zaccaro (zaccalu1)</div>
+                            </div>
+
+                            <div class="buttons-row">
+                                <div class="btn-delete">
+                                    <img /> <span>Delete</span>
+                                </div>
+                                <div class="btn-edit">
+                                    <img /> <span>Edit</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <section class="data-insert">Insert</section>
-        </div>>
+            <section class="data-insert">
+                <div class="data-insert-container">
+                    <div class="card-style">
+                        <div class="close-x"><span>x</span></div>
+                        <form>
+                            <div>
+                                <label>
+                                    Reference year:
+                                </label>
+                                <input type="number" name="ref-year" required value="2018">
+                            </div>
+                            <div>
+                                <label>
+                                    Start Date:
+                                </label>
+                                <input type="date" name="start-date">
+                            </div>
+                            <div>
+                                <label>
+                                    End Date:
+                                </label>
+                                <input type="date" name="end-date">
+                            </div>
+                            <div>
+                                <label>
+                                    Is recursive?
+                                </label>
+                                <input type="checkbox" name="is-recursive">
+                            </div>
+                            <div>
+                                <label>
+                                    Coordinator (username):
+                                </label>
+                                <input type="text" name="coordinator">
+                            </div>
+                            <div>
+                                <label>
+                                    Description:
+                                </label>
+
+                                <textarea>
+                                    Una bella descrizione 
+                                </textarea>
+                            </div>
+                            <input type="button" value="Salva">
+
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>Footer</footer>
