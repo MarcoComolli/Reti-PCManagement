@@ -82,7 +82,7 @@ main {
           main .section-container .data-list.full-view .table-container table th:nth-child(odd), main .section-container .data-list.full-view .table-container table td:nth-child(odd) {
             background-color: lavender; }
     main .section-container .data-list.partial-view {
-      display: none;
+      display: block;
       width: 50%;
       float: left; }
       main .section-container .data-list.partial-view .data-list-container {
@@ -112,8 +112,8 @@ main {
               main .section-container .data-list.partial-view .data-list-container .table-container table th:nth-child(odd), main .section-container .data-list.partial-view .data-list-container .table-container table td:nth-child(odd) {
                 background-color: lavender; }
     main .section-container .data-detail {
-      /*display: none;*/
-      display: flex;
+      display: none;
+      /*display: flex;*/
       width: 50%;
       float: left;
       flex-direction: column; }
@@ -146,10 +146,57 @@ main {
                 width: 80%;
                 border-bottom-right-radius: 8px;
                 border-top-right-radius: 8px; }
+          main .section-container .data-detail .data-detail-container .courses-detail .buttons-row {
+            position: absolute;
+            bottom: 5px;
+            background-color: wheat;
+            width: 100%; }
+            main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .btn-delete {
+              display: inline-block;
+              background-color: darkred;
+              color: white;
+              padding: 4px;
+              position: absolute;
+              right: 5px; }
+            main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .btn-edit {
+              background-color: darkgoldenrod;
+              display: inline-block;
+              color: white;
+              padding: 4px; }
     main .section-container .data-insert {
-      display: none; }
+      display: flex;
+      width: 50%; }
       main .section-container .data-insert .data-insert-container {
-        margin-top: 8px; }
+        padding: 16px;
+        width: 100%; }
+        main .section-container .data-insert .data-insert-container .card-style {
+          display: flex;
+          justify-content: center; }
+        main .section-container .data-insert .data-insert-container form {
+          width: 100%;
+          padding: 10px; }
+          main .section-container .data-insert .data-insert-container form > div {
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            margin: 8px;
+            border: 1px solid black;
+            border-radius: 10px; }
+            main .section-container .data-insert .data-insert-container form > div label {
+              width: 24%;
+              padding: 6px 20px 6px 6px;
+              text-align: right; }
+            main .section-container .data-insert .data-insert-container form > div input {
+              width: 74%;
+              min-height: 18px;
+              padding: 6px; }
+            main .section-container .data-insert .data-insert-container form > div input[type=radio] {
+              width: auto;
+              margin: 0 15px; }
+            main .section-container .data-insert .data-insert-container form > div span.radio-value {
+              margin-right: 10px; }
+            main .section-container .data-insert .data-insert-container form > div textarea {
+              width: 74%; }
 
 footer {
   flex-shrink: 0;

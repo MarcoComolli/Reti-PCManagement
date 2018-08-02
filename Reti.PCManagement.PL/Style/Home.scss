@@ -124,7 +124,7 @@ main {
         }
 
         .data-list.partial-view {
-            display: none;
+            display: block;
             width: 50%;
             float: left;
 
@@ -173,8 +173,8 @@ main {
         }
 
         .data-detail {
-            /*display: none;*/
-            display: flex;
+            display: none;
+            /*display: flex;*/
             width: 50%;
             float: left;
             flex-direction: column;
@@ -220,14 +220,89 @@ main {
                             }
                         }
                     }
+
+                    .buttons-row {
+                        position: absolute;
+                        bottom: 5px;
+                        background-color: wheat;
+                        width: 100%;
+
+                        .btn-delete {
+                            display: inline-block;
+                            background-color: darkred;
+                            color: white;
+                            padding: 4px;
+                            position: absolute;
+                            right: 5px;
+                        }
+
+                        .btn-edit {
+                            background-color: darkgoldenrod;
+                            display: inline-block;
+                            color: white;
+                            padding: 4px;
+                        }
+                    }
                 }
             }
         }
 
         .data-insert {
-            display: none;
+            display: flex;
+            width: 50%;
+
+
             .data-insert-container {
-                margin-top: 8px;
+                padding: 16px;
+                width: 100%;
+
+                .card-style {
+                    display: flex;
+                    justify-content: center;
+                }
+
+
+                form {
+                    width: 100%;
+                    padding: 10px;
+
+                    > div {
+                        display: flex;
+                        align-items: center;
+                        padding: 4px;
+                        margin: 8px;
+                        border: 1px solid black;
+                        border-radius: 10px;
+
+                        label {
+                            width: 24%;
+                            padding: 6px 20px 6px 6px;
+                            text-align: right;
+                        }
+
+                        input {
+                            width: 74%;
+                            min-height: 18px;
+                            padding: 6px;
+                        }
+
+                        input[type=radio] {
+                            width: auto;
+                            margin: 0 15px;
+                        }
+
+                        span {
+                            &.radio-value {
+                                margin-right: 10px;
+                            }
+                        }
+
+                        textarea {
+                            width: 74%;
+                        }
+                        
+                    }
+                }
             }
         }
     }
