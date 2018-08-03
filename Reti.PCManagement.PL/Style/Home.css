@@ -149,8 +149,7 @@ main {
           main .section-container .data-detail .data-detail-container .courses-detail .buttons-row {
             position: absolute;
             bottom: 5px;
-            background-color: wheat;
-            width: 100%; }
+            background-color: wheat; }
             main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .btn-delete {
               display: inline-block;
               background-color: darkred;
@@ -172,31 +171,56 @@ main {
         main .section-container .data-insert .data-insert-container .card-style {
           display: flex;
           justify-content: center; }
+          main .section-container .data-insert .data-insert-container .card-style .close-x {
+            top: 8px;
+            right: 8px; }
         main .section-container .data-insert .data-insert-container form {
           width: 100%;
           padding: 10px; }
-          main .section-container .data-insert .data-insert-container form > div {
+          main .section-container .data-insert .data-insert-container form .input-row {
             display: flex;
             align-items: center;
             padding: 4px;
             margin: 8px;
             border: 1px solid black;
-            border-radius: 10px; }
-            main .section-container .data-insert .data-insert-container form > div label {
+            border-radius: 10px;
+            background-color: aquamarine; }
+            main .section-container .data-insert .data-insert-container form .input-row label {
               width: 24%;
               padding: 6px 20px 6px 6px;
               text-align: right; }
-            main .section-container .data-insert .data-insert-container form > div input {
+            main .section-container .data-insert .data-insert-container form .input-row input {
               width: 74%;
               min-height: 18px;
-              padding: 6px; }
-            main .section-container .data-insert .data-insert-container form > div input[type=radio] {
+              padding: 6px;
+              border-radius: 4px;
+              border: none;
+              outline-color: white;
+              background-color: darkslategrey;
+              color: white; }
+            main .section-container .data-insert .data-insert-container form .input-row input[type=radio] {
               width: auto;
               margin: 0 15px; }
-            main .section-container .data-insert .data-insert-container form > div span.radio-value {
+            main .section-container .data-insert .data-insert-container form .input-row span.radio-value {
               margin-right: 10px; }
-            main .section-container .data-insert .data-insert-container form > div textarea {
+            main .section-container .data-insert .data-insert-container form .input-row textarea {
               width: 74%; }
+          main .section-container .data-insert .data-insert-container form .btn-row {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0; }
+            main .section-container .data-insert .data-insert-container form .btn-row input[type=button] {
+              border: none;
+              padding: 10px;
+              width: 200px;
+              border-radius: 12px;
+              outline: none;
+              cursor: pointer; }
+              main .section-container .data-insert .data-insert-container form .btn-row input[type=button]:hover {
+                background-color: red; }
 
 footer {
   flex-shrink: 0;

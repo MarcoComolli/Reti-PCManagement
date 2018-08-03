@@ -225,7 +225,6 @@ main {
                         position: absolute;
                         bottom: 5px;
                         background-color: wheat;
-                        width: 100%;
 
                         .btn-delete {
                             display: inline-block;
@@ -259,6 +258,11 @@ main {
                 .card-style {
                     display: flex;
                     justify-content: center;
+
+                    .close-x {
+                        top: 8px;
+                        right: 8px;
+                    }
                 }
 
 
@@ -266,13 +270,14 @@ main {
                     width: 100%;
                     padding: 10px;
 
-                    > div {
+                    .input-row {
                         display: flex;
                         align-items: center;
                         padding: 4px;
                         margin: 8px;
                         border: 1px solid black;
                         border-radius: 10px;
+                        background-color: aquamarine;
 
                         label {
                             width: 24%;
@@ -284,6 +289,11 @@ main {
                             width: 74%;
                             min-height: 18px;
                             padding: 6px;
+                            border-radius: 4px;
+                            border: none;
+                            outline-color: white;
+                            background-color: darkslategrey;
+                            color: white;
                         }
 
                         input[type=radio] {
@@ -300,7 +310,28 @@ main {
                         textarea {
                             width: 74%;
                         }
-                        
+                    }
+
+                    .btn-row {
+                        display: flex;
+                        justify-content: center;
+                        position: absolute;
+                        bottom: 10px;
+                        left: 0;
+                        right: 0;
+
+                        input[type=button] {
+                            border: none;
+                            padding: 10px;
+                            width: 200px;
+                            border-radius: 12px;
+                            outline: none;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: red;
+                            }
+                        }
                     }
                 }
             }
