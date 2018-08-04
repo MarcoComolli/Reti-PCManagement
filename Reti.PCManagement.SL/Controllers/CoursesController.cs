@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Reti.PCManagement.SL.Controllers
 {
-    //[EnableCors(origins: "http://localhost:8088", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("API/Courses")]
     public class CoursesController : ApiController
     {

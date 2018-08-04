@@ -14,8 +14,12 @@ define(["require", "exports"], function (require, exports) {
         return Course;
     }());
     exports.Course = Course;
+    var Coordinator = /** @class */ (function () {
+        function Coordinator() {
+            this.Username = "";
+        }
+        return Coordinator;
+    }());
+    exports.Coordinator = Coordinator;
 });
-//export class Coordinator{
-//    Username: string = " ";
-//}
 //# sourceMappingURL=Course.js.map
