@@ -81,9 +81,12 @@ main {
 
         .data-list.full-view {
 
+            width: 100%;
+
             .data-list-container {
                 display: flex;
                 justify-content: center;
+                padding: 16px;
             }
 
             .table-container {
