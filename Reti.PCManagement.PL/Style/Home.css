@@ -1,4 +1,5 @@
-﻿html, body {
+﻿/* -- VARIABLES -- */
+html, body {
   height: 100%; }
 
 body {
@@ -42,8 +43,8 @@ main {
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 5px;
+      right: 5px;
       background-color: orangered;
       border-radius: 50%;
       height: 20px;
@@ -56,6 +57,28 @@ main {
   main .section-container {
     display: flex;
     justify-content: center; }
+    main .section-container .data-list .add-plus {
+      /*position: sticky;*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0px;
+      right: 0px;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      background-color: green;
+      float: right;
+      /*display: none;*/ }
+      main .section-container .data-list .add-plus span {
+        font-weight: bold;
+        color: wheat;
+        margin-bottom: 8px;
+        font-size: 2em; }
+    main .section-container .data-list .title-row {
+      display: inline-block;
+      font-size: x-large; }
     main .section-container .data-list.full-view {
       width: 100%; }
       main .section-container .data-list.full-view .data-list-container {
@@ -64,15 +87,17 @@ main {
         padding: 16px; }
       main .section-container .data-list.full-view .table-container {
         display: flex;
-        justify-content: center; }
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px; }
         main .section-container .data-list.full-view .table-container table {
           border: solid 2px black;
           width: 100%; }
           main .section-container .data-list.full-view .table-container table th {
             text-align: center;
-            border-bottom: solid 2px rgba(0, 0, 0, 0.25); }
+            border-bottom: solid 2px black; }
           main .section-container .data-list.full-view .table-container table tr {
-            border-bottom: solid 1px rgba(0, 0, 0, 0.15); }
+            border-bottom: solid 1px black; }
           main .section-container .data-list.full-view .table-container table th, main .section-container .data-list.full-view .table-container table td {
             max-width: 20vw;
             text-align: center;
@@ -93,7 +118,8 @@ main {
         padding: 16px; }
         main .section-container .data-list.partial-view .data-list-container .table-container {
           display: flex;
-          justify-content: center; }
+          justify-content: center;
+          width: 100%; }
           main .section-container .data-list.partial-view .data-list-container .table-container table {
             border: solid 2px black;
             width: 100%;
@@ -131,7 +157,7 @@ main {
           main .section-container .data-detail .data-detail-container .courses-detail .det-row {
             margin-bottom: 6px;
             border: solid 1px black;
-            border-bottom-width: 2px;
+            border-bottom-width: 3px;
             border-radius: 8px;
             display: flex; }
             main .section-container .data-detail .data-detail-container .courses-detail .det-row div {
@@ -152,19 +178,27 @@ main {
           main .section-container .data-detail .data-detail-container .courses-detail .buttons-row {
             position: absolute;
             bottom: 5px;
-            background-color: wheat; }
-            main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .btn-delete {
+            background-color: wheat;
+            right: 0;
+            left: 0;
+            padding: 15px 30px; }
+            main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .button {
+              padding: 6px;
               display: inline-block;
-              background-color: darkred;
-              color: white;
-              padding: 4px;
-              position: absolute;
-              right: 5px; }
-            main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .btn-edit {
-              background-color: darkgoldenrod;
-              display: inline-block;
-              color: white;
-              padding: 4px; }
+              width: 100px;
+              text-align: center;
+              border-radius: 4px;
+              border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+              border-right: 1px solid rgba(0, 0, 0, 0.15);
+              cursor: pointer;
+              user-select: none; }
+              main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .button.btn-delete {
+                background-color: darkred;
+                color: white; }
+              main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .button.btn-edit {
+                background-color: darkgoldenrod;
+                color: white;
+                float: right; }
     main .section-container .data-insert {
       display: flex;
       width: 50%; }

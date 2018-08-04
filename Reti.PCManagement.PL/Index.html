@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title>Reti - Gestione Percorso Circolare</title>
-    <link rel="stylesheet" href="Content/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./Style/Home.css">
-    <script src="Scripts/jquery-3.3.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/CustomScripts/test.js"></script>
-    <script src="Scripts/CustomScripts/Main.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script data-main="Scripts/module" src="node_modules/requirejs/require.js"></script>
+    <script src="Scripts/test.js"></script>
+    <script src="Scripts/Main.js"></script>
 
 </head>
 <body>
@@ -28,8 +29,13 @@
         <div class="error-msg col-sm-12">ERROR!</div>
         <div class="section-container">
             <section class="data-list partial-view">
+                
                 <div class="data-list-container">
+                    
                     <div class="card-style">
+                        <div class="title-row">Courses</div>
+                        <div class="add-plus"><span>+</span></div>
+
                         <div class="table-container">
                             <table class="courses-table">
                                 <thead>
@@ -177,10 +183,10 @@
                             </div>
 
                             <div class="buttons-row">
-                                <div class="btn-delete">
+                                <div class="button btn-delete">
                                     <img /> <span>Delete</span>
                                 </div>
-                                <div class="btn-edit">
+                                <div class="button btn-edit">
                                     <img /> <span>Edit</span>
                                 </div>
                             </div>
