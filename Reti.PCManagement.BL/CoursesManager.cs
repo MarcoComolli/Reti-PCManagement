@@ -11,7 +11,24 @@ namespace Reti.PCManagement.BL
         public void InsertCourse(CourseEntity course)
         {
             DbDataProvider ddp = new DbDataProvider();
-            ddp.InsertCourse(course);
+            //if coordinator not arriving from controller
+            if (course.Coordinator?.Id == -1)
+            {
+                var result = ddp.GetResourceByIdOrUsername(-1, course.Coordinator.Username);
+                if(result != null && result.Count == 1)
+                {
+                    course.Coordinator = result[0];
+                    ddp.InsertCourse(course);
+                } 
+                else
+                {
+                    throw new Exception("Cannot retrieve resource form user or id");
+                }
+            } 
+            else
+            {
+                ddp.InsertCourse(course);
+            }
         }
 
         public List<CourseEntity> GetAllCourses()
