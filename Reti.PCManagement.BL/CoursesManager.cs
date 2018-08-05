@@ -42,5 +42,11 @@ namespace Reti.PCManagement.BL
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetCourseById(id);
         }
+
+        public CourseEntity DeleteCourse(CourseEntity course)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+            return ddp.DeleteCourse(course);
+        }
     }
 }

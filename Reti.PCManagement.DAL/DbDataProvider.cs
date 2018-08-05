@@ -152,6 +152,26 @@ namespace Reti.PCManagement.DAL
             return result;
         }
 
+        public CourseEntity DeleteCourse(CourseEntity course)
+        {
+            CourseEntity result = null;
+            CoursesRepository courseRepo = new CoursesRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    courseRepo.Delete(course.Id, uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error deleting course " + course.Id, ex);
+                }
+
+            }
+            return result;
+        }
+
         public void InsertEnrollment(EnrollmentEntity enroll)
         {
             EnrollmentsRepository enrollRepo = new EnrollmentsRepository();
