@@ -128,6 +128,7 @@
     <TypeScriptCompile Include="Scripts\ConnectionManager.ts" />
     <TypeScriptCompile Include="Scripts\Main.ts" />
     <TypeScriptCompile Include="ViewModels\Course.ts" />
+    <TypeScriptCompile Include="ViewModels\Resource.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -1,24 +1,21 @@
+import { Resource } from "./Resource";
+
 export class Course {
     Id: number;
     Description: string;
     RefYear: number;
-    StartDate: Date;
-    EndDate: Date;
+    StartDate: Date | null;
+    EndDate: Date | null;
     IsPeriodic: boolean;
-    ResourceEntity: Coordinator; 
+    Coordinator: Resource; 
 
-    constructor(id: number, desc: string, refYear: number, startD: Date, endD: Date, isPeriodic: boolean, resource: Coordinator) {
+    constructor(id: number, desc: string, refYear: number, startD: Date, endD: Date, isPeriodic: boolean, coordinator: Resource) {
         this.Id = id;
         this.Description = desc;
         this.RefYear = refYear;
         this.StartDate = startD;
         this.EndDate = endD;
         this.IsPeriodic = isPeriodic;
-        this.ResourceEntity = resource; 
+        this.Coordinator = coordinator; 
     }
-}
-
-export class Coordinator{
-    Username: string = "";
-    
 }

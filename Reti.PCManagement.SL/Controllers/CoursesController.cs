@@ -69,7 +69,7 @@ namespace Reti.PCManagement.SL.Controllers
             }
             catch (Exception ex)
             {
-                response.ReasonPhrase = $"{GENERIC_ERROR}  [{ex.Message}]";
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
                 DbLog.LogError("Error in CoursesController", ex);
             }
             return response;

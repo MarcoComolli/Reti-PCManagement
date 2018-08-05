@@ -107,6 +107,7 @@ namespace Reti.PCManagement.DAL
                 {
                     uow.Rollback();
                     DbLog.LogError("Error inserting course " + course, ex);
+                    throw ex;
                 }
 
             }
