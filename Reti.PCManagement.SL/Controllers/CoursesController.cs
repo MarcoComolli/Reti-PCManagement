@@ -10,7 +10,7 @@ using System.Web.Http.Cors;
 
 namespace Reti.PCManagement.SL.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "GET,POST,PUT,DELETE,OPTIONS")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("API/Courses")]
     public class CoursesController : ApiController
     {
@@ -75,7 +75,7 @@ namespace Reti.PCManagement.SL.Controllers
             return response;
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("Delete")]
         public HttpResponseMessage DeleteCourse([FromBody] CourseEntity Course)
         {

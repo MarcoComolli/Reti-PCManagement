@@ -15,7 +15,7 @@ namespace Reti.PCManagement.SL
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var cors = new EnableCorsAttribute("http://localhost:58741", "*", "*");
+            var cors = new EnableCorsAttribute("http://localhost:58741", "*", "GET, POST, PUT, DELETE, OPTIONS");
             config.EnableCors();
 
             config.Routes.MapHttpRoute(
