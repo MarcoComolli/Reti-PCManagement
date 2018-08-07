@@ -10,7 +10,7 @@ using System.Web.Http.Cors;
 
 namespace Reti.PCManagement.SL.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "GET, POST, DELETE, PUT, OPTIONS")]
     [RoutePrefix("API/Courses")]
     public class CoursesController : ApiController
     {
@@ -84,6 +84,26 @@ namespace Reti.PCManagement.SL.Controllers
             {
                 CoursesManager courseManager = new CoursesManager();
                 courseManager.DeleteCourse(Course);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in CoursesController", ex);
+            }
+            return response;
+        }
+
+
+        [HttpPut]
+        [Route("Edit")]
+        public HttpResponseMessage EditCourse([FromBody] CourseEntity Course)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                CoursesManager courseManager = new CoursesManager();
+                courseManager.EditCourse(Course);
                 response = Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

@@ -127,6 +127,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\ConnectionManager.ts" />
     <TypeScriptCompile Include="Scripts\Main.ts" />
+    <TypeScriptCompile Include="Scripts\Constants.ts" />
+    <TypeScriptCompile Include="Scripts\ViewState.ts" />
     <TypeScriptCompile Include="ViewModels\Course.ts" />
     <TypeScriptCompile Include="ViewModels\Resource.ts" />
   </ItemGroup>

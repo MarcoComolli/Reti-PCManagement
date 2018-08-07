@@ -172,6 +172,29 @@ namespace Reti.PCManagement.DAL
             return result;
         }
 
+
+        public void EditCourse(CourseEntity course)
+        {
+            CoursesRepository courseRepo = new CoursesRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    courseRepo.Update(EntitiesMapper.ToDbModel(course), uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    DbLog.LogError("Error editing course " + course, ex);
+                    throw ex;
+                }
+
+            }
+        }
+
+
+
         public void InsertEnrollment(EnrollmentEntity enroll)
         {
             EnrollmentsRepository enrollRepo = new EnrollmentsRepository();
