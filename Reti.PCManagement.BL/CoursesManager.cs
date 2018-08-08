@@ -52,7 +52,25 @@ namespace Reti.PCManagement.BL
         public void EditCourse(CourseEntity course)
         {
             DbDataProvider ddp = new DbDataProvider();
-            ddp.EditCourse(course);
+ 
+            //if coordinator not arriving from controller
+            if (course.Coordinator?.Id == -1)
+            {
+                var result = ddp.GetResourceByIdOrUsername(-1, course.Coordinator.Username);
+                if (result != null && result.Count == 1)
+                {
+                    course.Coordinator = result[0];
+                    ddp.EditCourse(course);
+                }
+                else
+                {
+                    throw new Exception("Cannot retrieve resource form user or id");
+                }
+            }
+            else
+            {
+                ddp.EditCourse(course);
+            }
         }
     }
 }
