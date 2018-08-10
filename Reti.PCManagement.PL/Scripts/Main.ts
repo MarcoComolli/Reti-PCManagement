@@ -225,6 +225,12 @@ function onInsertResourceSuccess(data: any, textStatus: string, jqXHR: JQuery.jq
     updateResourcesList();
 }
 
+function onInsertTeacherSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    updateTeachersList();
+}
+
+
+
 function onDeleteCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     closeDetail();
     updateCoursesList();
@@ -607,6 +613,41 @@ function insertOrUpdateData(type: ResourceType) {
                 let cnm = new ConnectionManager();
                 if (state.isCurrentInsert) {
                     cnm.insertResource(newResource, onInsertResourceSuccess, onError);
+                } else {
+                    // newCourse.Id = state.courses[state.currentIdx].Id;
+                    // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
+                    // cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
+                }
+
+            }
+            break;
+            case ResourceType.Teacher:
+            //read data from html
+            let tchrTeacher = $(".teacher-data-entry input[name=teacher]").first().val().toString();
+            let tchrCourse = $(".teacher-data-entry input[name=course]").first().val().toString();
+            let tchrNotes = $(".teacher-data-entry .input-description").first().val().toString();
+    
+
+            let tchrError = false;
+            let tchrErrorMessage = "";
+            //error handling
+            if (!tchrTeacher || tchrTeacher === "") {
+                tchrError = true;
+                tchrErrorMessage = "Please provide a valid teacher username.";
+            }
+    
+            if (tchrError) {
+                showMessage(tchrErrorMessage);
+            } else {
+                //convert Data
+                let tchrCourseID = parseInt(tchrCourse);
+                let resourceFake = new Resource(-1, tchrTeacher, "", "", "");
+                let courseFake = new Course(tchrCourseID, "", 0, "", "", false, resourceFake);
+                let newTeacher = new Teacher(-1, resourceFake, courseFake, tchrNotes);
+
+                let cnm = new ConnectionManager();
+                if (state.isCurrentInsert) {
+                    cnm.insertTeacher(newTeacher, onInsertTeacherSuccess, onError);
                 } else {
                     // newCourse.Id = state.courses[state.currentIdx].Id;
                     // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
