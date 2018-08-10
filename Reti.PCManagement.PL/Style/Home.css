@@ -164,37 +164,37 @@ main {
           display: flex;
           width: 100%;
           position: relative; }
-        main .section-container .data-detail .data-detail-container .courses-detail {
+        main .section-container .data-detail .data-detail-container .detail {
           margin-top: 6px; }
-          main .section-container .data-detail .data-detail-container .courses-detail .det-row {
+          main .section-container .data-detail .data-detail-container .detail .det-row {
             margin-bottom: 6px;
             border: solid 1px black;
             border-bottom-width: 3px;
             border-radius: 8px;
             display: flex; }
-            main .section-container .data-detail .data-detail-container .courses-detail .det-row div {
+            main .section-container .data-detail .data-detail-container .detail .det-row div {
               display: inline-block; }
-              main .section-container .data-detail .data-detail-container .courses-detail .det-row div:nth-child(1) {
+              main .section-container .data-detail .data-detail-container .detail .det-row div:nth-child(1) {
                 background-color: lightblue;
                 width: 20%;
                 padding: 8px;
                 text-align: right;
                 border-bottom-left-radius: 8px;
                 border-top-left-radius: 8px; }
-              main .section-container .data-detail .data-detail-container .courses-detail .det-row div:nth-child(2) {
+              main .section-container .data-detail .data-detail-container .detail .det-row div:nth-child(2) {
                 padding: 8px;
                 background-color: lightgrey;
                 width: 80%;
                 border-bottom-right-radius: 8px;
                 border-top-right-radius: 8px; }
-          main .section-container .data-detail .data-detail-container .courses-detail .buttons-row {
+          main .section-container .data-detail .data-detail-container .detail .buttons-row {
             position: absolute;
             bottom: 5px;
             background-color: wheat;
             right: 0;
             left: 0;
             padding: 15px 30px; }
-            main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .button {
+            main .section-container .data-detail .data-detail-container .detail .buttons-row .button {
               padding: 6px;
               display: inline-block;
               width: 100px;
@@ -204,10 +204,10 @@ main {
               border-right: 1px solid rgba(0, 0, 0, 0.15);
               cursor: pointer;
               user-select: none; }
-              main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .button.btn-delete {
+              main .section-container .data-detail .data-detail-container .detail .buttons-row .button.btn-delete {
                 background-color: darkred;
                 color: white; }
-              main .section-container .data-detail .data-detail-container .courses-detail .buttons-row .button.btn-edit {
+              main .section-container .data-detail .data-detail-container .detail .buttons-row .button.btn-edit {
                 background-color: darkgoldenrod;
                 color: white;
                 float: right; }
