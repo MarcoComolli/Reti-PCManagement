@@ -229,7 +229,9 @@ function onInsertTeacherSuccess(data: any, textStatus: string, jqXHR: JQuery.jqX
     updateTeachersList();
 }
 
-
+function onInsertEnrollmentSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    updateEnrollmentsList();
+}
 
 function onDeleteCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     closeDetail();
@@ -621,7 +623,7 @@ function insertOrUpdateData(type: ResourceType) {
 
             }
             break;
-            case ResourceType.Teacher:
+        case ResourceType.Teacher:
             //read data from html
             let tchrTeacher = $(".teacher-data-entry input[name=teacher]").first().val().toString();
             let tchrCourse = $(".teacher-data-entry input[name=course]").first().val().toString();
@@ -648,6 +650,54 @@ function insertOrUpdateData(type: ResourceType) {
                 let cnm = new ConnectionManager();
                 if (state.isCurrentInsert) {
                     cnm.insertTeacher(newTeacher, onInsertTeacherSuccess, onError);
+                } else {
+                    // newCourse.Id = state.courses[state.currentIdx].Id;
+                    // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
+                    // cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
+                }
+
+            }
+            break;
+            case ResourceType.Enrollment:
+            //read data from html
+            let enrlApplicant = $(".enroll-data-entry input[name=applicant]").first().val().toString();
+            let enrlLeader = $(".enroll-data-entry input[name=leader]").first().val().toString();
+            let enrlStartStr = $(".enroll-data-entry input[name=start-date]").first().val().toString();
+            let enrlCourse = $(".enroll-data-entry input[name=course]").first().val().toString();
+            let enrlNotes = $(".enroll-data-entry .input-description").first().val().toString();
+            let enrlIsAdmitStr = $(".enroll-data-entry input[name=is-admitted]:checked").first().val();
+    
+
+            let enrlError = false;
+            let enrlErrorMessage = "";
+            //error handling
+            if (!enrlApplicant || enrlApplicant === "") {
+                enrlError = true;
+                enrlErrorMessage = "Please provide a valid applicant username.";
+            }
+            if (!enrlLeader || enrlLeader === "") {
+                enrlError = true;
+                enrlErrorMessage = "Please provide a valid project leader username.";
+            }
+            if (!enrlIsAdmitStr || enrlIsAdmitStr === "") {
+                enrlError = true;
+                enrlErrorMessage = "Please provide a value for the admission of the enrollment.";
+            }
+    
+            if (enrlError) {
+                showMessage(enrlErrorMessage);
+            } else {
+                //convert Data
+                let enrlIsAdmit = (enrlIsAdmitStr === "yes") ? true : false;
+                let enrlCourseID = parseInt(enrlCourse);
+                let applicantFake = new Resource(-1, enrlApplicant, "", "", "");
+                let leaderFake = new Resource(-1, enrlLeader, "", "", "");
+                let courseFake = new Course(enrlCourseID, "", 0, "", "", false, applicantFake);
+                let newEnroll = new Enrollment(-1,applicantFake, leaderFake, courseFake, enrlStartStr, "",enrlIsAdmit,enrlNotes);
+
+                let cnm = new ConnectionManager();
+                if (state.isCurrentInsert) {
+                    cnm.insertEnrollment(newEnroll, onInsertEnrollmentSuccess, onError);
                 } else {
                     // newCourse.Id = state.courses[state.currentIdx].Id;
                     // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
