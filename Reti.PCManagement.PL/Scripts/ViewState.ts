@@ -1,5 +1,7 @@
 ﻿import { Course } from "../ViewModels/Course";
 import { Resource } from "../ViewModels/Resource";
+import { Teacher } from "../ViewModels/Teacher";
+import { Enrollment } from "../ViewModels/Enrollment";
 
 export class ViewState {
     public resourceSelected = ResourceType.Course;
@@ -14,9 +16,9 @@ export class ViewState {
     public isCurrentInsert = false;
 
     public courses: Course[] = [];
-     public resources: Resource[] = [];
-    // public teachers: Teacher[] = [];
-    // public enrollments: Enrollment[] = [];
+    public resources: Resource[] = [];
+    public teachers: Teacher[] = [];
+    public enrollments: Enrollment[] = [];
 
 
 }

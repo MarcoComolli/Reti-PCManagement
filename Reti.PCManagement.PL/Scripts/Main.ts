@@ -3,6 +3,8 @@ import { Resource } from "../ViewModels/Resource";
 import { ConnectionManager } from "./ConnectionManager";
 import { ViewState, ResourceType } from "./ViewState";
 import { Constants } from "./Constants";
+import { Enrollment } from "../ViewModels/Enrollment";
+import { Teacher } from "../ViewModels/Teacher";
 
 
 let state: ViewState;
@@ -76,9 +78,11 @@ function changeResourceView(type: ResourceType) {
             break;
         case ResourceType.Enrollment:
             $(".data-list-container .title-row").text(Constants.TITLE_ENROLL);
+            updateEnrollmentsList();
             break;
         case ResourceType.Teacher:
             $(".data-list-container .title-row").text(Constants.TITLE_TEACHERS);
+            updateTeachersList();
             break;
         case ResourceType.Resource:
             $(".data-list-container .title-row").text(Constants.TITLE_RESOURCES);
@@ -96,7 +100,7 @@ function generateTableHeaders(type: ResourceType) {
             headersHTML = `<th>${Constants.TH_DESC}</th><th>${Constants.TH_REF_YEAR}</th><th>${Constants.TH_RECURSIVE}</th><th></th>`; 
             break;
         case ResourceType.Enrollment:
-            headersHTML = `<th>${Constants.TH_RESOURCE}</th><th>${Constants.TH_COURSE}</th><th>${Constants.TH_ADMITTED}</th><th></th>`;
+            headersHTML = `<th>${Constants.TH_APPLICANT}</th><th>${Constants.TH_COURSE}</th><th>${Constants.TH_ADMITTED}</th><th></th>`;
             break;
         case ResourceType.Teacher:
             headersHTML = `<th>${Constants.TH_RESOURCE}</th><th>${Constants.TH_COURSE}</th><th></th>`;
@@ -161,6 +165,58 @@ function onGetResourcesSuccess(data: Resource[], textStatus: string, jqXHR: JQue
     }
 }
 
+function onGetEnrollmentsSuccess(data: Enrollment[], textStatus: string, jqXHR: JQuery.jqXHR) {
+    if (data) {
+        state.enrollments = data; 
+        data.forEach((item: Enrollment) => {
+            let cell1 = `<td>${toResourceString(item.Resource)}</td>`;
+            let cell2 = `<td>${toCourseString(item.Course)}</td>`;
+            let cell3 = `<td>${item.IsAdmitted ? 'yes' : 'no'}</td>`;
+            let cell4 = `<td class='details-link'> DETAILS </td>`;
+
+            $(".table-list tbody").append(`<tr>${cell1}${cell2}${cell3}${cell4}</tr>`);
+        });
+
+        $(".data-list .table-list tbody tr .details-link").click((ev) => {
+            let index = $(ev.target).parent().index();
+            if (index >= 0 && index < data.length) {
+                state.currentIdx = index;
+                openDetail(data[index], ResourceType.Enrollment);
+            }
+        });
+       
+    } else {
+        showMessage("No Enrollment found!");
+    }
+}
+
+function onGetTeachersSuccess(data: Teacher[], textStatus: string, jqXHR: JQuery.jqXHR) {
+    if (data) {
+        state.teachers = data; 
+        data.forEach((item: Teacher) => {
+            let cell1 = `<td>${toResourceString(item.Resource)}</td>`;
+            let cell2 = `<td>${toCourseString(item.Course)}</td>`;
+            let cell3 = `<td class='details-link'> DETAILS </td>`;
+
+            $(".table-list tbody").append(`<tr>${cell1}${cell2}${cell3}</tr>`);
+        });
+
+        $(".data-list .table-list tbody tr .details-link").click((ev) => {
+            let index = $(ev.target).parent().index();
+            if (index >= 0 && index < data.length) {
+                state.currentIdx = index;
+                openDetail(data[index], ResourceType.Teacher);
+            }
+        });
+       
+    } else {
+        showMessage("No Teachers found!");
+    }
+}
+ 
+
+
+
 function onInsertCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     updateCoursesList();
 }
@@ -219,6 +275,18 @@ function updateResourcesList() {
     cm.getResources(onGetResourcesSuccess, onError);
 }
 
+function updateEnrollmentsList() {
+    clearList();
+    let cm = new ConnectionManager();
+    cm.getEnrollments(onGetEnrollmentsSuccess, onError);
+}
+
+function updateTeachersList() {
+    clearList();
+    let cm = new ConnectionManager();
+    cm.getTeachers(onGetTeachersSuccess, onError);
+}
+
 function generateDetailTemplate(type: ResourceType) {
 
     
@@ -226,13 +294,13 @@ function generateDetailTemplate(type: ResourceType) {
     switch (type) {
         case ResourceType.Course:
             htmlStr += `
-            <div class="det-row"><div>${Constants.DETROW_COURSEID}</div><div></div></div>
-            <div class="det-row"><div>${Constants.DETROW_DESCRIPTION}</div><div></div></div>
-            <div class="det-row"><div>${Constants.DETROW_REFYEAR}</div><div></div></div>
-            <div class="det-row"><div>${Constants.DETROW_STARTDATE}</div><div></div></div>
-            <div class="det-row"><div>${Constants.DETROW_ENDDATE}</div><div></div></div>
-            <div class="det-row"><div>${Constants.DETROW_RECURSIVE}</div><div></div></div>
-            <div class="det-row"><div>${Constants.DETROW_COORDINATOR}</div><div></div></div>`
+                <div class="det-row"><div>${Constants.DETROW_COURSEID}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_DESCRIPTION}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_REFYEAR}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_STARTDATE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_ENDDATE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_RECURSIVE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_COORDINATOR}</div><div></div></div>`
             break;
         case ResourceType.Resource:
             htmlStr += `
@@ -242,16 +310,25 @@ function generateDetailTemplate(type: ResourceType) {
                 <div class="det-row"><div>${Constants.DETROW_NAME}</div><div></div></div>
                 <div class="det-row"><div>${Constants.DETROW_STATUS}</div><div></div></div>`
             break;
-            // case aaa:
-            // htmlStr += `
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>
-            //     <div class="det-row"><div>${Constants.DETROW_}</div><div></div></div>`
-            // break;
+        case ResourceType.Teacher:
+            htmlStr += `
+                <div class="det-row"><div>${Constants.DETROW_TEACHERID}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_RESOURCE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_COURSE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_NOTES}</div><div></div></div>`
+            break;
+        case ResourceType.Enrollment:
+            htmlStr += `
+                <div class="det-row"><div>${Constants.DETROW_ENROLLID}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_RESOURCE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_LEADER}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_COURSE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_STARTDATE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_MAXENDDATE}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_ADMITTED}</div><div></div></div>
+                <div class="det-row"><div>${Constants.DETROW_NOTES}</div><div></div></div>`
+            break;
+
     
         default:
             break;
@@ -292,6 +369,42 @@ function openDetail(item: any, type: ResourceType) {
             let res = <Resource>item;
             Object.keys(res).forEach((key, idx) => {
                 let property = res[key];
+                $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
+            });
+            break;
+        case ResourceType.Enrollment:
+            let enroll = <Enrollment>item;
+            Object.keys(enroll).forEach((key, idx) => {
+                let property = enroll[key];
+                //convert properties to the end user
+                if (property && (key === "StartDate" || key === "MaxEndDate")) {
+                    property = new Date(property).toLocaleDateString();
+                }
+                if (key === "Resource" || key === "ProjectLeader") {
+                    let tmp = <Resource>property;
+                    property = toResourceString(tmp);
+                }
+                if (key === "IsAdmitted") {
+                    property = property ? "Yes" : "No";
+                }
+                if(key === "Course") {
+                    property = toCourseString(property);
+                }
+                $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
+            });
+            break;
+        case ResourceType.Teacher:
+            let tchr = <Teacher>item;
+            Object.keys(tchr).forEach((key, idx) => {
+                let property = tchr[key];
+                //convert properties to the end user
+                if (key === "Resource") {
+                    let tmp = <Resource>property;
+                    property = toResourceString(tmp);
+                }
+                if(key === "Course") {
+                    property = toCourseString(property);
+                }
                 $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
             });
             break;
@@ -451,6 +564,10 @@ function deleteData(resIndex: number, type: ResourceType) {
 
 function toResourceString(res: Resource) : string {
     return res.Surname + " " + res.Name + " (" + res.Username + ")";
+}
+
+function toCourseString(res: Course) : string {
+    return res.RefYear + " - " + res.Description.substr(0,30);
 }
 
 
