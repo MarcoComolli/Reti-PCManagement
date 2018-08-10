@@ -171,5 +171,24 @@ namespace Reti.PCManagement.DAL.Repositories
                 throw ex;
             }
         }
+
+        public List<Resource> GetResourcesByPartialUsername(string partialUsername, UnitOfWork uow)
+        {
+            try
+            {
+                using (var command = uow.CreateCommand())
+                {
+                    command.CommandText = $"SELECT * FROM {ResourcesContract.TABLE_NAME} " +
+                        $"WHERE [{ResourcesContract.USERNAME}] LIKE @USERNAME";
+                    command.AddParameter("USERNAME", partialUsername + "%");
+                    return ToList(command);
+                }
+            }
+            catch (Exception ex)
+            {
+                DbLog.LogError($"Error retriving Resources by partial username {partialUsername}", ex);
+                throw ex;
+            }
+        }
     }
 }

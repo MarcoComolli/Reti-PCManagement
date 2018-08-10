@@ -57,7 +57,7 @@ export class ConnectionManager {
     }
 
 
-    public insertResources(res: Resource, onSuccess, onFail) {
+    public insertResource(res: Resource, onSuccess, onFail) {
         $.ajax({
             type: "POST",
             data: res, 
@@ -97,7 +97,7 @@ export class ConnectionManager {
     }
 
 
-    public insertEnrollments(enroll: Enrollment, onSuccess, onFail) {
+    public insertEnrollment(enroll: Enrollment, onSuccess, onFail) {
         $.ajax({
             type: "POST",
             data: enroll, 
@@ -139,7 +139,7 @@ export class ConnectionManager {
     }
 
 
-    public insertTeachers(tchr: Teacher, onSuccess, onFail) {
+    public insertTeacher(tchr: Teacher, onSuccess, onFail) {
         $.ajax({
             type: "POST",
             data: tchr, 

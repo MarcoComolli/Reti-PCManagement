@@ -26,6 +26,7 @@ namespace Reti.PCManagement.DAL
                 {
                     uow.Rollback();
                     DbLog.LogError("Error inserting resource " + res, ex);
+                    throw ex;
                 }
 
             }
@@ -66,6 +67,26 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving resource " + id + " " + username, ex);
+                }
+
+            }
+            return result;
+        }
+
+        public List<ResourceEntity> GetResourcesByPartialUsername(string partUsername)
+        {
+            List<ResourceEntity> result = new List<ResourceEntity>();
+            ResourcesRepository resRepo = new ResourcesRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    var resList = resRepo.GetResourcesByPartialUsername(partUsername, uow);
+                    result = resList.Select(x => EntitiesMapper.ToEntity(x)).ToList();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error retrieving resources " + partUsername, ex);
                 }
 
             }

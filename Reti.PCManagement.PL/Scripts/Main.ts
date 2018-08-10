@@ -18,11 +18,11 @@ $("document").ready(() => {
         openInsert(state.resourceSelected);
     });
 
-    $(".data-detail .close-x").click( () => {
+    $(".data-detail .close-x").click(() => {
         closeDetail();
     });
 
-    $(".btn-edit").click( () => {
+    $(".btn-edit").click(() => {
         state.isCurrentInsert = false;
         openEdit(state.currentIdx, state.resourceSelected);
     });
@@ -36,7 +36,7 @@ $("document").ready(() => {
         closeInsert();
     });
 
-    $("section.data-detail .btn-delete").click(() => { 
+    $("section.data-detail .btn-delete").click(() => {
         deleteData(state.currentIdx, state.resourceSelected);
     });
 
@@ -97,7 +97,7 @@ function generateTableHeaders(type: ResourceType) {
     let headersHTML: string;
     switch (type) {
         case ResourceType.Course:
-            headersHTML = `<th>${Constants.TH_DESC}</th><th>${Constants.TH_REF_YEAR}</th><th>${Constants.TH_RECURSIVE}</th><th></th>`; 
+            headersHTML = `<th>${Constants.TH_DESC}</th><th>${Constants.TH_REF_YEAR}</th><th>${Constants.TH_RECURSIVE}</th><th></th>`;
             break;
         case ResourceType.Enrollment:
             headersHTML = `<th>${Constants.TH_APPLICANT}</th><th>${Constants.TH_COURSE}</th><th>${Constants.TH_ADMITTED}</th><th></th>`;
@@ -117,7 +117,7 @@ function generateTableHeaders(type: ResourceType) {
 
 function onGetCourseSuccess(data: Course[], textStatus: string, jqXHR: JQuery.jqXHR) {
     if (data) {
-        state.courses = data; 
+        state.courses = data;
         data.forEach((item: Course) => {
             let cell1 = `<td>${item.Description}</td>`;
             let cell2 = `<td>${item.RefYear}</td>`;
@@ -134,7 +134,7 @@ function onGetCourseSuccess(data: Course[], textStatus: string, jqXHR: JQuery.jq
                 openDetail(data[index], ResourceType.Course);
             }
         });
-       
+
     } else {
         showMessage("No courses found!");
     }
@@ -142,7 +142,7 @@ function onGetCourseSuccess(data: Course[], textStatus: string, jqXHR: JQuery.jq
 
 function onGetResourcesSuccess(data: Resource[], textStatus: string, jqXHR: JQuery.jqXHR) {
     if (data) {
-        state.resources = data; 
+        state.resources = data;
         data.forEach((item: Resource) => {
             let cell1 = `<td>${item.Name}</td>`;
             let cell2 = `<td>${item.Surname}</td>`;
@@ -159,7 +159,7 @@ function onGetResourcesSuccess(data: Resource[], textStatus: string, jqXHR: JQue
                 openDetail(data[index], ResourceType.Resource);
             }
         });
-       
+
     } else {
         showMessage("No resources found!");
     }
@@ -167,7 +167,7 @@ function onGetResourcesSuccess(data: Resource[], textStatus: string, jqXHR: JQue
 
 function onGetEnrollmentsSuccess(data: Enrollment[], textStatus: string, jqXHR: JQuery.jqXHR) {
     if (data) {
-        state.enrollments = data; 
+        state.enrollments = data;
         data.forEach((item: Enrollment) => {
             let cell1 = `<td>${toResourceString(item.Resource)}</td>`;
             let cell2 = `<td>${toCourseString(item.Course)}</td>`;
@@ -184,7 +184,7 @@ function onGetEnrollmentsSuccess(data: Enrollment[], textStatus: string, jqXHR: 
                 openDetail(data[index], ResourceType.Enrollment);
             }
         });
-       
+
     } else {
         showMessage("No Enrollment found!");
     }
@@ -192,7 +192,7 @@ function onGetEnrollmentsSuccess(data: Enrollment[], textStatus: string, jqXHR: 
 
 function onGetTeachersSuccess(data: Teacher[], textStatus: string, jqXHR: JQuery.jqXHR) {
     if (data) {
-        state.teachers = data; 
+        state.teachers = data;
         data.forEach((item: Teacher) => {
             let cell1 = `<td>${toResourceString(item.Resource)}</td>`;
             let cell2 = `<td>${toCourseString(item.Course)}</td>`;
@@ -208,17 +208,21 @@ function onGetTeachersSuccess(data: Teacher[], textStatus: string, jqXHR: JQuery
                 openDetail(data[index], ResourceType.Teacher);
             }
         });
-       
+
     } else {
         showMessage("No Teachers found!");
     }
 }
- 
+
 
 
 
 function onInsertCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     updateCoursesList();
+}
+
+function onInsertResourceSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    updateResourcesList();
 }
 
 function onDeleteCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
@@ -245,7 +249,7 @@ function showMessage(error?: string) {
     } else {
         $(".error-msg-txt").text(generic);
     }
-    
+
     $(".error-msg").show();
 
     $(".error-msg .close-btn").click(() => {
@@ -289,7 +293,7 @@ function updateTeachersList() {
 
 function generateDetailTemplate(type: ResourceType) {
 
-    
+
     let htmlStr = "";
     switch (type) {
         case ResourceType.Course:
@@ -329,7 +333,7 @@ function generateDetailTemplate(type: ResourceType) {
                 <div class="det-row"><div>${Constants.DETROW_NOTES}</div><div></div></div>`
             break;
 
-    
+
         default:
             break;
     }
@@ -337,7 +341,7 @@ function generateDetailTemplate(type: ResourceType) {
 }
 
 function openDetail(item: any, type: ResourceType) {
-   
+
     $("section.data-insert").first().hide();
     $("section.data-list").first().addClass("partial-view");
     $("section.data-list").first().removeClass("full-view");
@@ -387,7 +391,7 @@ function openDetail(item: any, type: ResourceType) {
                 if (key === "IsAdmitted") {
                     property = property ? "Yes" : "No";
                 }
-                if(key === "Course") {
+                if (key === "Course") {
                     property = toCourseString(property);
                 }
                 $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
@@ -402,7 +406,7 @@ function openDetail(item: any, type: ResourceType) {
                     let tmp = <Resource>property;
                     property = toResourceString(tmp);
                 }
-                if(key === "Course") {
+                if (key === "Course") {
                     property = toCourseString(property);
                 }
                 $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
@@ -419,7 +423,7 @@ function openDetail(item: any, type: ResourceType) {
 
 function closeDetail() {
     $("section.data-insert").first().hide();
-    $("section.data-detail").first().slideUp(200,() => {
+    $("section.data-detail").first().slideUp(200, () => {
         $("section.data-list").first().addClass("full-view");
         $("section.data-list").first().removeClass("partial-view");
     });
@@ -437,10 +441,10 @@ function openInsert(type: ResourceType) {
 
     if (state.prevOpenDetail) { //if detail was opened
         $("section.data-detail").first().fadeOut(150, () => {
-            showInsert();
+            showInsert(type);
         });
     } else {
-        showInsert();
+        showInsert(type);
     }
 
     state.insert = true;
@@ -448,8 +452,34 @@ function openInsert(type: ResourceType) {
 }
 
 
-function showInsert() {
+function showInsert(type: ResourceType) {
     $("section.data-insert").first().fadeIn(150);
+    switch (type) {
+        case ResourceType.Course:
+            $(".course-data-entry").show();
+            $(".resource-data-entry").hide();
+            $(".enroll-data-entry").hide();
+            $(".teacher-data-entry").hide();
+            break;
+        case ResourceType.Resource:
+            $(".course-data-entry").hide();
+            $(".resource-data-entry").show();
+            $(".enroll-data-entry").hide();
+            $(".teacher-data-entry").hide();
+            break;
+        case ResourceType.Enrollment:
+            $(".course-data-entry").hide();
+            $(".resource-data-entry").hide();
+            $(".enroll-data-entry").show();
+            $(".teacher-data-entry").hide();
+            break;
+        case ResourceType.Teacher:
+            $(".course-data-entry").hide();
+            $(".resource-data-entry").hide();
+            $(".enroll-data-entry").hide();
+            $(".teacher-data-entry").show();
+            break;
+    }
 }
 
 function closeInsert() {
@@ -464,23 +494,25 @@ function closeInsert() {
     });
 }
 
-function openEdit(resourceIdx: number,  type: ResourceType) {
+function openEdit(resourceIdx: number, type: ResourceType) {
     $("section.data-insert .btn-save").val(Constants.BTN_UPDATE);
     switch (type) {
         case ResourceType.Course:
             let course = state.courses[resourceIdx];
-            $(".data-insert .input-description").first().val(course.Description);
-
+            $(".course-data-entry .input-description").first().val(course.Description);
             //need to be in format yyyy-mm-dd to be set
-            if(course.StartDate) {
-                $(".data-insert input[name=start-date]").first().val(dateToYMD(new Date(course.StartDate)));
+            if (course.StartDate) {
+                $(".course-data-entry input[name=start-date]").first().val(dateToYMD(new Date(course.StartDate)));
             }
-            if(course.EndDate) {
-                $(".data-insert input[name=end-date]").first().val(dateToYMD(new Date(course.EndDate)));
+            if (course.EndDate) {
+                $(".course-data-entry input[name=end-date]").first().val(dateToYMD(new Date(course.EndDate)));
             }
-            $(".data-insert input[name=ref-year]").first().val(course.RefYear.toString());
-            $(".data-insert input[name=coordinator]").first().val(course.Coordinator.Username);
-            $(".data-insert input[name=is-recursive]").filter(`[value="${course.IsPeriodic}"]`).attr("checked", "true");
+            $(".course-data-entry input[name=ref-year]").first().val(course.RefYear.toString());
+            $(".course-data-entry input[name=coordinator]").first().val(course.Coordinator.Username);
+            $(".course-data-entry input[name=is-recursive]").filter(`[value="${course.IsPeriodic}"]`).attr("checked", "true");
+            break;
+        case ResourceType.Resource:
+
             break;
         default:
             break;
@@ -494,7 +526,7 @@ function openEdit(resourceIdx: number,  type: ResourceType) {
     state.isPartialList = true;
 }
 
-function closeEdit(){
+function closeEdit() {
 
 }
 
@@ -502,44 +534,85 @@ function insertOrUpdateData(type: ResourceType) {
     switch (type) {
         case ResourceType.Course:
             //read data from html
-            let description = $(".data-insert .input-description").first().val().toString();
-            let startStr = $(".data-insert input[name=start-date]").first().val().toString();
-            let endStr = $(".data-insert input[name=end-date]").first().val().toString();
-            let refYearStr = $(".data-insert input[name=ref-year]").first().val().toString();
-            let coordinatorUsername = $(".data-insert input[name=coordinator]").first().val().toString();
-            let isRecursiveStr = $(".data-insert input[name=is-recursive]:checked").first().val();
+            let crsDescription = $(".course-data-entry .input-description").first().val().toString();
+            let crsStartStr = $(".course-data-entry input[name=start-date]").first().val().toString();
+            let crsEndStr = $(".course-data-entry input[name=end-date]").first().val().toString();
+            let crsRefYearStr = $(".course-data-entry input[name=ref-year]").first().val().toString();
+            let crsCoordinatorUsername = $(".course-data-entry input[name=coordinator]").first().val().toString();
+            let crsIsRecursiveStr = $(".course-data-entry input[name=is-recursive]:checked").first().val();
 
-            let error = false;
-            let errorMessage = "";
+            let crsError = false;
+            let crsErrorMessage = "";
             //error handling
-            if (!coordinatorUsername || coordinatorUsername === "") {
-                error = true;
-                errorMessage = "Please provide a valid Username.";
+            if (!crsCoordinatorUsername || crsCoordinatorUsername === "") {
+                crsError = true;
+                crsErrorMessage = "Please provide a valid Username.";
             }
-            if (!isRecursiveStr || isRecursiveStr === "") {
-                error = true;
-                errorMessage = "Please provide a value for periodicity of the course.";
+            if (!crsIsRecursiveStr || crsIsRecursiveStr === "") {
+                crsError = true;
+                crsErrorMessage = "Please provide a value for periodicity of the course.";
             }
 
-            if (error) {
-                showMessage(errorMessage);
+            if (crsError) {
+                showMessage(crsErrorMessage);
             } else {
                 //convert Data
-                let refYear = parseInt(refYearStr);
-                let isRecursive = (isRecursiveStr === "yes") ? true : false;
+                let refYear = parseInt(crsRefYearStr);
+                let isRecursive = (crsIsRecursiveStr === "yes") ? true : false;
 
-                let resourceFake = new Resource(-1, coordinatorUsername, "", "", "");
-                let newCourse = new Course(-1, description, refYear, startStr, endStr, isRecursive, resourceFake);
+                let resourceFake = new Resource(-1, crsCoordinatorUsername, "", "", "");
+                let newCourse = new Course(-1, crsDescription, refYear, crsStartStr, crsEndStr, isRecursive, resourceFake);
 
                 let cnm = new ConnectionManager();
-                if(state.isCurrentInsert) {
+                if (state.isCurrentInsert) {
                     cnm.insertCourse(newCourse, onInsertCourseSuccess, onError);
                 } else {
                     newCourse.Id = state.courses[state.currentIdx].Id;
                     newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
                     cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
                 }
-              
+
+            }
+            break;
+        case ResourceType.Resource:
+            //read data from html
+            let resIdStr = $(".resource-data-entry input[name=res-id]").first().val().toString();
+            let resName = $(".resource-data-entry input[name=name]").first().val().toString();
+            let resSurname = $(".resource-data-entry input[name=surname]").first().val().toString();
+            let resStatusStr = $(".resource-data-entry select").first().val().toString();
+
+            let resError = false;
+            let resErrorMessage = "";
+            //error handling
+            if (!resIdStr || resIdStr === "") {
+                resError = true;
+                resErrorMessage = "Please provide a Resource identifier.";
+            }
+            if (!resName || resName === "") {
+                resError = true;
+                resErrorMessage = "Please provide a valid name.";
+            }
+            if (!resSurname || resSurname === "") {
+                resError = true;
+                resErrorMessage = "Please provide a valid surname.";
+            }
+    
+            if (resError) {
+                showMessage(resErrorMessage);
+            } else {
+                //convert Data
+                let resID = parseInt(resIdStr);
+                let newResource = new Resource(resID, "" , resName, resSurname, resStatusStr);
+
+                let cnm = new ConnectionManager();
+                if (state.isCurrentInsert) {
+                    cnm.insertResource(newResource, onInsertResourceSuccess, onError);
+                } else {
+                    // newCourse.Id = state.courses[state.currentIdx].Id;
+                    // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
+                    // cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
+                }
+
             }
             break;
     }
@@ -548,12 +621,12 @@ function insertOrUpdateData(type: ResourceType) {
 function deleteData(resIndex: number, type: ResourceType) {
     switch (type) {
         case ResourceType.Course:
-            if(resIndex > -1) {
+            if (resIndex > -1) {
                 let course: Course = state.courses[resIndex];
                 let cnm = new ConnectionManager();
-                cnm.deleteCourse(course, onDeleteCourseSuccess , onError );
+                cnm.deleteCourse(course, onDeleteCourseSuccess, onError);
             }
-            
+
             break;
         default:
             break;
@@ -562,12 +635,12 @@ function deleteData(resIndex: number, type: ResourceType) {
 
 
 
-function toResourceString(res: Resource) : string {
+function toResourceString(res: Resource): string {
     return res.Surname + " " + res.Name + " (" + res.Username + ")";
 }
 
-function toCourseString(res: Course) : string {
-    return res.RefYear + " - " + res.Description.substr(0,30);
+function toCourseString(res: Course): string {
+    return res.RefYear + " - " + res.Description.substr(0, 30);
 }
 
 
@@ -576,5 +649,5 @@ function dateToYMD(date) {
     var d = date.getDate();
     var m = date.getMonth() + 1; //Month from 0 to 11
     var y = date.getFullYear();
-    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+    return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 }

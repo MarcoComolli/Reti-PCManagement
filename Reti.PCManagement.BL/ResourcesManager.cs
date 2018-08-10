@@ -10,6 +10,11 @@ namespace Reti.PCManagement.BL
     {
         public void InsertResource(ResourceEntity res)
         {
+            if (string.IsNullOrEmpty(res.Username))
+            {
+                res.Username = GenerateUsername(res);
+            }
+
             if (CheckResourceInsert(res))
             {
                 DbDataProvider ddp = new DbDataProvider();
@@ -42,6 +47,19 @@ namespace Reti.PCManagement.BL
                 return result.Count <= 0;
             }
             return false;
+        }
+
+        private string GenerateUsername(ResourceEntity res)
+        {
+            
+            var partSurn = res.Surname.Length < 5 ? res.Surname : res.Surname.Substring(0, 5);
+            var partName = (res.Name.Length < (7 - partSurn.Length)) ? res.Name : res.Name.Substring(0, 7 - partSurn.Length);
+            string partialUsername = $"{partSurn}{partName}";
+            partialUsername = partialUsername.PadRight(7, 'a').ToUpper();
+
+            DbDataProvider ddp = new DbDataProvider();
+            var result = ddp.GetResourcesByPartialUsername(partialUsername);
+            return partialUsername + (result.Count + 1);
         }
     }
 }

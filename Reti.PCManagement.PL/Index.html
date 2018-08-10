@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Reti - Courses Management</title>
@@ -8,10 +9,11 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script data-main="Scripts/app" src="node_modules/requirejs/require.js"></script>
-<!--    <script src="Scripts/test.js"></script>-->
+    <!--    <script src="Scripts/test.js"></script>-->
     <!--<script src="Scripts/Main.js"></script>-->
 
 </head>
+
 <body>
     <header>
         <img src="./Resources/reti-logo.png" alt="Reti Logo" />
@@ -26,15 +28,20 @@
         </ul>
     </nav>
     <main>
-        <div class="error-msg col-sm-12"><span class="error-msg-txt"></span><span class="close-btn">X</span></div>
+        <div class="error-msg col-sm-12">
+            <span class="error-msg-txt"></span>
+            <span class="close-btn">X</span>
+        </div>
         <div class="section-container">
             <section class="data-list full-view">
-                
+
                 <div class="data-list-container">
-                    
+
                     <div class="card-style">
                         <div class="title-row">Courses</div>
-                        <div class="add-plus"><span>+</span></div>
+                        <div class="add-plus">
+                            <span>+</span>
+                        </div>
 
                         <div class="table-container">
                             <table class="table-list">
@@ -57,20 +64,24 @@
 
                         <div class="title-row">
                             <div>Details</div>
-                            <div class="close-x"><span>x</span></div>
+                            <div class="close-x">
+                                <span>x</span>
+                            </div>
                         </div>
 
                         <div class="detail">
                             <div class="detail-rows">
-                                
+
                             </div>
 
                             <div class="buttons-row">
                                 <div class="button btn-delete">
-                                    <img /> <span>Delete</span>
+                                    <img />
+                                    <span>Delete</span>
                                 </div>
                                 <div class="button btn-edit">
-                                    <img /> <span>Edit</span>
+                                    <img />
+                                    <span>Edit</span>
                                 </div>
                             </div>
                         </div>
@@ -79,55 +90,149 @@
             </section>
             <section class="data-insert">
                 <div class="data-insert-container">
-                    <div class="overlay"></div>
                     <div class="card-style">
-                        <div class="close-x"><span>x</span></div>
-                        <form>
-                            <div class="input-row">
-                                <label>
-                                    Reference year:
-                                </label>
-                                <input type="number" name="ref-year" required value="2018">
+                        <div class="close-x">
+                            <span>x</span>
+                        </div>
+                        <form class>
+                            <!-- COURSES -->
+                            <div class="course-data-entry">
+                                <div class="input-row">
+                                    <label>
+                                        Reference year:
+                                    </label>
+                                    <input type="number" name="ref-year" value="2018">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Start Date:
+                                    </label>
+                                    <input type="date" name="start-date">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        End Date:
+                                    </label>
+                                    <input type="date" name="end-date">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Is recursive?
+                                    </label>
+                                    <input type="radio" name="is-recursive" value="true">
+                                    <span class="radio-value">YES</span>
+                                    <input type="radio" name="is-recursive" value="false">
+                                    <span class="radio-value">NO</span>
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Coordinator (username):
+                                    </label>
+                                    <input type="text" name="coordinator">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Description:
+                                    </label>
+                                    <textarea class="input-description">Una bella descrizione</textarea>
+                                </div>
                             </div>
-                            <div class="input-row">
-                                <label>
-                                    Start Date:
-                                </label>
-                                <input type="date" name="start-date">
+                            <!-- RESOURCE -->
+                            <div class="resource-data-entry">
+                                <div class="input-row">
+                                    <label>
+                                        Resource ID:
+                                    </label>
+                                    <input type="number" name="res-id" value="1">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Name:
+                                    </label>
+                                    <input type="text" name="name">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Surname:
+                                    </label>
+                                    <input type="text" name="surname">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Status:
+                                    </label>
+                                    <select>
+                                        <option value="Available">Available</option>
+                                        <option value="Not available">Not available</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-row">
-                                <label>
-                                    End Date:
-                                </label>
-                                <input type="date" name="end-date">
+                            <!-- ENROLLMENT -->
+                            <div class="enroll-data-entry">
+                                <div class="input-row">
+                                    <label>
+                                        Course ID:
+                                    </label>
+                                    <input type="number" name="course" value="1">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Start Date:
+                                    </label>
+                                    <input type="date" name="start-date">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Applicant (username):
+                                    </label>
+                                    <input type="text" name="coordinator">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Project leader (username):
+                                    </label>
+                                    <input type="text" name="coordinator">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Is admitted?
+                                    </label>
+                                    <input type="radio" name="is-admitted" value="true">
+                                    <span class="radio-value">YES</span>
+                                    <input type="radio" name="is-admitted" value="false">
+                                    <span class="radio-value">NO</span>
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Notes:
+                                    </label>
+                                    <textarea class="input-description">Eventuali note</textarea>
+                                </div>
                             </div>
-                            <div class="input-row">
-                                <label>
-                                    Is recursive?
-                                </label>
-                                <input type="radio" name="is-recursive" value="true">
-                                <span class="radio-value">YES</span>
-                                <input type="radio" name="is-recursive" value="false">
-                                <span class="radio-value">NO</span>
-                            </div>
-                            <div class="input-row">
-                                <label>
-                                    Coordinator (username):
-                                </label>
-                                <input type="text" name="coordinator">
-                            </div>
-                            <div class="input-row">
-                                <label>
-                                    Description:
-                                </label>
-
-                                <textarea class="input-description">Una bella descrizione</textarea>
+                            <!-- TEACHER -->
+                            <div class="teacher-data-entry">
+                                <div class="input-row">
+                                    <label>
+                                        Teacher (username):
+                                    </label>
+                                    <input type="text" name="teacher">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Course ID:
+                                    </label>
+                                    <input type="number" name="course" value="1">
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        Notes:
+                                    </label>
+                                    <textarea class="input-description">Eventuali note</textarea>
+                                </div>
                             </div>
                             <div class="btn-row">
                                 <input type="button" value="Save" class="btn-save">
                             </div>
-                            
-
                         </form>
                     </div>
                 </div>
@@ -139,4 +244,5 @@
 
 
 </body>
+
 </html>
