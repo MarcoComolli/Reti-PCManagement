@@ -67,10 +67,10 @@ export class ConnectionManager {
         });
     }
 
-    public updateResource(res: Resource, onSuccess, onFail) {
+    public updateResource(newRes: Resource, oldRes: Resource, onSuccess, onFail) {
         $.ajax({
             type: "PUT",
-            data: res, 
+            data: {newResource: newRes, oldResource: oldRes}, 
             url: this.apiPrefix + "Resources/Edit",
             success: onSuccess,
             error: onFail

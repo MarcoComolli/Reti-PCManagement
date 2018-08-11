@@ -72,33 +72,46 @@ namespace Reti.PCManagement.BL
 
         private string GenerateUsername(ResourceEntity res)
         {
-            
-            var partSurn = res.Surname.Length < 5 ? res.Surname : res.Surname.Substring(0, 5);
-            var partName = (res.Name.Length < (7 - partSurn.Length)) ? res.Name : res.Name.Substring(0, 7 - partSurn.Length);
-            string partialUsername = $"{partSurn}{partName}";
-            partialUsername = partialUsername.PadRight(7, 'a').ToUpper();
-
-            DbDataProvider ddp = new DbDataProvider();
-            var result = ddp.GetResourcesByPartialUsername(partialUsername);
-            var numbers = result.Select(x => int.Parse(x.Username.Substring(6, 1)));
-            //the numbers are in sequence and no empty slot left
-            if(numbers.Max() == result.Count) {
-                return partialUsername + (result.Count + 1);
-            } 
-            //there are some free numbers in the sequence
-            else
+            try
             {
-                //search for the first free number and take it
-                for (int i = 1; i <= numbers.Count(); i++)
+                var partSurn = res.Surname.Length < 5 ? res.Surname : res.Surname.Substring(0, 5);
+                var partName = (res.Name.Length < (7 - partSurn.Length)) ? res.Name : res.Name.Substring(0, 7 - partSurn.Length);
+                string partialUsername = $"{partSurn}{partName}";
+                partialUsername = partialUsername.PadRight(7, 'a').ToUpper();
+
+                DbDataProvider ddp = new DbDataProvider();
+                var result = ddp.GetResourcesByPartialUsername(partialUsername);
+                if(result.Count() == 0)
                 {
-                    if(numbers.FirstOrDefault(x => x == i) == 0)
-                    {
-                        return partialUsername + i;
-                    }
+                    return partialUsername + 1;
                 }
-                
+                var numbers = result.Select(x => int.Parse(x.Username.Substring(7, 1)));
+                //the numbers are in sequence and no empty slot left
+                if (numbers.Max() == result.Count)
+                {
+                    return partialUsername + (result.Count + 1);
+                }
+                //there are some free numbers in the sequence
+                else
+                {
+                    //search for the first free number and take it
+                    for (int i = 1; i <= numbers.Count(); i++)
+                    {
+                        if (numbers.FirstOrDefault(x => x == i) == 0)
+                        {
+                            return partialUsername + i;
+                        }
+                    }
+
+                }
+                return partialUsername.Substring(0, 6) + 10; //only 8 chars in db..to be managed in future
             }
-            return partialUsername.Substring(0,6) + 10; //only 8 chars in db..to be managed in future
+            catch (Exception ex)
+            {
+                Logger.DbLog.LogError("Error generating username for resource " + res, ex);
+                throw ex;
+            }
+            
         }
     }
 }

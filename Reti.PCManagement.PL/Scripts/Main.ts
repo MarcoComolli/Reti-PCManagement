@@ -238,6 +238,21 @@ function onDeleteCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXH
     updateCoursesList();
 }
 
+function onDeleteResourceSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    closeDetail();
+    updateResourcesList();
+}
+
+function onDeleteEnrollSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    closeDetail();
+    updateEnrollmentsList();
+}
+
+function onDeleteTeacherSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    closeDetail();
+    updateTeachersList();
+}
+
 function onUpdateCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     updateCoursesList();
 }
@@ -604,13 +619,13 @@ function insertOrUpdateData(type: ResourceType) {
                 resError = true;
                 resErrorMessage = "Please provide a valid surname.";
             }
-    
+
             if (resError) {
                 showMessage(resErrorMessage);
             } else {
                 //convert Data
                 let resID = parseInt(resIdStr);
-                let newResource = new Resource(resID, "" , resName, resSurname, resStatusStr);
+                let newResource = new Resource(resID, "", resName, resSurname, resStatusStr);
 
                 let cnm = new ConnectionManager();
                 if (state.isCurrentInsert) {
@@ -628,7 +643,7 @@ function insertOrUpdateData(type: ResourceType) {
             let tchrTeacher = $(".teacher-data-entry input[name=teacher]").first().val().toString();
             let tchrCourse = $(".teacher-data-entry input[name=course]").first().val().toString();
             let tchrNotes = $(".teacher-data-entry .input-description").first().val().toString();
-    
+
 
             let tchrError = false;
             let tchrErrorMessage = "";
@@ -637,7 +652,7 @@ function insertOrUpdateData(type: ResourceType) {
                 tchrError = true;
                 tchrErrorMessage = "Please provide a valid teacher username.";
             }
-    
+
             if (tchrError) {
                 showMessage(tchrErrorMessage);
             } else {
@@ -658,7 +673,7 @@ function insertOrUpdateData(type: ResourceType) {
 
             }
             break;
-            case ResourceType.Enrollment:
+        case ResourceType.Enrollment:
             //read data from html
             let enrlApplicant = $(".enroll-data-entry input[name=applicant]").first().val().toString();
             let enrlLeader = $(".enroll-data-entry input[name=leader]").first().val().toString();
@@ -666,7 +681,7 @@ function insertOrUpdateData(type: ResourceType) {
             let enrlCourse = $(".enroll-data-entry input[name=course]").first().val().toString();
             let enrlNotes = $(".enroll-data-entry .input-description").first().val().toString();
             let enrlIsAdmitStr = $(".enroll-data-entry input[name=is-admitted]:checked").first().val();
-    
+
 
             let enrlError = false;
             let enrlErrorMessage = "";
@@ -683,7 +698,7 @@ function insertOrUpdateData(type: ResourceType) {
                 enrlError = true;
                 enrlErrorMessage = "Please provide a value for the admission of the enrollment.";
             }
-    
+
             if (enrlError) {
                 showMessage(enrlErrorMessage);
             } else {
@@ -693,15 +708,15 @@ function insertOrUpdateData(type: ResourceType) {
                 let applicantFake = new Resource(-1, enrlApplicant, "", "", "");
                 let leaderFake = new Resource(-1, enrlLeader, "", "", "");
                 let courseFake = new Course(enrlCourseID, "", 0, "", "", false, applicantFake);
-                let newEnroll = new Enrollment(-1,applicantFake, leaderFake, courseFake, enrlStartStr, "",enrlIsAdmit,enrlNotes);
+                let newEnroll = new Enrollment(-1, applicantFake, leaderFake, courseFake, enrlStartStr, "", enrlIsAdmit, enrlNotes);
 
                 let cnm = new ConnectionManager();
                 if (state.isCurrentInsert) {
                     cnm.insertEnrollment(newEnroll, onInsertEnrollmentSuccess, onError);
                 } else {
-                    // newCourse.Id = state.courses[state.currentIdx].Id;
+                    newEnroll.Id = state.enrollments[state.currentIdx].Id;
                     // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
-                    // cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
+                    //cnm.updateEnrollment(newEnroll, onUpdateEnrollmentSuccess, onError);
                 }
 
             }
@@ -717,7 +732,27 @@ function deleteData(resIndex: number, type: ResourceType) {
                 let cnm = new ConnectionManager();
                 cnm.deleteCourse(course, onDeleteCourseSuccess, onError);
             }
-
+            break;
+        case ResourceType.Enrollment:
+            if (resIndex > -1) {
+                let enroll: Enrollment = state.enrollments[resIndex];
+                let cnm = new ConnectionManager();
+                cnm.deleteEnrollment(enroll, onDeleteEnrollSuccess, onError);
+            }
+            break;
+        case ResourceType.Resource:
+            if (resIndex > -1) {
+                let resource: Resource = state.resources[resIndex];
+                let cnm = new ConnectionManager();
+                cnm.deleteResource(resource, onDeleteResourceSuccess, onError);
+            }
+            break;
+        case ResourceType.Teacher:
+            if (resIndex > -1) {
+                let teacher: Teacher = state.teachers[resIndex];
+                let cnm = new ConnectionManager();
+                cnm.deleteTeacher(teacher, onDeleteTeacherSuccess, onError);
+            }
             break;
         default:
             break;

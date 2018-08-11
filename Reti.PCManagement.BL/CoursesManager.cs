@@ -60,17 +60,13 @@ namespace Reti.PCManagement.BL
                 if (result != null && result.Count == 1)
                 {
                     course.Coordinator = result[0];
-                    ddp.EditCourse(course);
                 }
                 else
                 {
                     throw new Exception("Cannot retrieve resource form user or id");
                 }
             }
-            else
-            {
-                ddp.EditCourse(course);
-            }
+            ddp.EditCourse(course);
         }
     }
 }
