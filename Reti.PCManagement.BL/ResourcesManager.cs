@@ -81,25 +81,24 @@ namespace Reti.PCManagement.BL
             DbDataProvider ddp = new DbDataProvider();
             var result = ddp.GetResourcesByPartialUsername(partialUsername);
             var numbers = result.Select(x => int.Parse(x.Username.Substring(6, 1)));
-            var max = numbers.Max();
             //the numbers are in sequence and no empty slot left
-            if(max == result.Count) {
+            if(numbers.Max() == result.Count) {
                 return partialUsername + (result.Count + 1);
             } 
             //there are some free numbers in the sequence
             else
             {
+                //search for the first free number and take it
                 for (int i = 1; i <= numbers.Count(); i++)
                 {
                     if(numbers.FirstOrDefault(x => x == i) == 0)
                     {
-                        return partialUsername + i);
+                        return partialUsername + i;
                     }
                 }
                 
             }
-
-            
+            return partialUsername.Substring(0,6) + 10; //only 8 chars in db..to be managed in future
         }
     }
 }
