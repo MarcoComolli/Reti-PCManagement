@@ -70,9 +70,10 @@ namespace Reti.PCManagement.DAL.Repositories
                     command.CommandText = $"UPDATE {EnrollmentsContract.TABLE_NAME}" +
                                         $"SET [{EnrollmentsContract.COURSE_ID}] = @COURSE_ID, [{EnrollmentsContract.RESOURCE_ID}] = @RES_ID," +
                                             $"[{EnrollmentsContract.NOTES}] = @NOTES, [{EnrollmentsContract.START_DATE}] = @START_DATE," +
-                                            $"[{EnrollmentsContract.IS_ADMITTED}] = @IS_ADMIT, [{EnrollmentsContract.PROJECT_LEADER_ID}] = @PROJLD_ID" +
+                                            $"[{EnrollmentsContract.IS_ADMITTED}] = @IS_ADMIT, [{EnrollmentsContract.PROJECT_LEADER_ID}] = @PROJLD_ID " +
                                         $"WHERE [{EnrollmentsContract.ID}] = @ID";
 
+                    command.AddParameter("ID", enroll.Id);
                     command.AddParameter("RES_ID", enroll.ResourceId);
                     command.AddParameter("COURSE_ID", enroll.CourseId);
                     command.AddParameter("NOTES", enroll.Notes ?? (object)DBNull.Value);

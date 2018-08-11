@@ -94,16 +94,21 @@ namespace Reti.PCManagement.SL.Controllers
             return response;
         }
 
+        public struct DoubleResource
+        {
+            public ResourceEntity newResource;
+            public ResourceEntity oldResource;
+        }
 
         [HttpPut]
         [Route("Edit")]
-        public HttpResponseMessage EditResource([FromBody] ResourceEntity newResource, [FromBody] ResourceEntity oldResource)
+        public HttpResponseMessage EditResource([FromBody] DoubleResource doubleRes)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
             try
             {
-                ResourcesManager teachersManager = new ResourcesManager();
-                teachersManager.EditResource(newResource, oldResource);
+                ResourcesManager resManager = new ResourcesManager();
+                resManager.EditResource(doubleRes.newResource, doubleRes.oldResource);
                 response = Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

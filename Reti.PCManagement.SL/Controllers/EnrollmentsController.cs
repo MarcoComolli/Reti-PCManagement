@@ -77,7 +77,7 @@ namespace Reti.PCManagement.SL.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public HttpResponseMessage DeleteTeachers([FromBody] EnrollmentEntity enrollment)
+        public HttpResponseMessage DeleteEnrollment([FromBody] EnrollmentEntity enrollment)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
             try
@@ -97,7 +97,7 @@ namespace Reti.PCManagement.SL.Controllers
 
         [HttpPut]
         [Route("Edit")]
-        public HttpResponseMessage EditTeacher([FromBody] EnrollmentEntity enrollment)
+        public HttpResponseMessage EditEnrollment([FromBody] EnrollmentEntity enrollment)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
             try

@@ -64,7 +64,7 @@ namespace Reti.PCManagement.DAL.Repositories
 
                     command.CommandText = $"UPDATE {ResourcesContract.TABLE_NAME}" +
                                         $"SET [{ResourcesContract.USERNAME}] = @USERNAME, [{ResourcesContract.SURNAME}] = @SURNAME," +
-                                            $"[{ResourcesContract.NAME}] = @NAME, [{ResourcesContract.STATUS}] = @STATUS, [{ResourcesContract.ID}] = @ID" +
+                                            $"[{ResourcesContract.NAME}] = @NAME, [{ResourcesContract.STATUS}] = @STATUS, [{ResourcesContract.ID}] = @ID " +
                                         $"WHERE [{ResourcesContract.ID}] = @ID";
 
                     command.AddParameter("ID", resource.Id);

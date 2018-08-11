@@ -15,6 +15,7 @@ $("document").ready(() => {
 
     //click handlers 
     $(".data-list .add-plus").click(() => {
+        state.isCurrentInsert = true;
         openInsert(state.resourceSelected);
     });
 
@@ -28,7 +29,6 @@ $("document").ready(() => {
     });
 
     $("section.data-insert .btn-save").click(() => {
-        state.isCurrentInsert = true;
         insertOrUpdateData(state.resourceSelected);
     });
 
@@ -215,8 +215,6 @@ function onGetTeachersSuccess(data: Teacher[], textStatus: string, jqXHR: JQuery
 }
 
 
-
-
 function onInsertCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     updateCoursesList();
 }
@@ -255,6 +253,18 @@ function onDeleteTeacherSuccess(data: any, textStatus: string, jqXHR: JQuery.jqX
 
 function onUpdateCourseSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
     updateCoursesList();
+}
+
+function onUpdateResourceSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    updateResourcesList();
+}
+
+function onUpdateEnrollSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    updateEnrollmentsList();
+}
+
+function onUpdateTeacherSuccess(data: any, textStatus: string, jqXHR: JQuery.jqXHR) {
+    updateTeachersList();
 }
 
 function clearList() {
@@ -518,6 +528,7 @@ function closeInsert() {
 }
 
 function openEdit(resourceIdx: number, type: ResourceType) {
+    showInsert(type);
     $("section.data-insert .btn-save").val(Constants.BTN_UPDATE);
     switch (type) {
         case ResourceType.Course:
@@ -532,10 +543,32 @@ function openEdit(resourceIdx: number, type: ResourceType) {
             }
             $(".course-data-entry input[name=ref-year]").first().val(course.RefYear.toString());
             $(".course-data-entry input[name=coordinator]").first().val(course.Coordinator.Username);
-            $(".course-data-entry input[name=is-recursive]").filter(`[value="${course.IsPeriodic}"]`).attr("checked", "true");
+            $(".course-data-entry input[name=is-recursive]").filter(`[value="${course.IsPeriodic}"]`).prop("checked", "true");
             break;
         case ResourceType.Resource:
-
+            let resource = state.resources[resourceIdx];
+            $(".resource-data-entry input[name=res-id]").first().val(resource.Id.toString());
+            $(".resource-data-entry input[name=name]").first().val(resource.Name);
+            $(".resource-data-entry input[name=surname]").first().val(resource.Surname);
+            $(".resource-data-entry select").first().val(resource.Status);
+            break;
+        case ResourceType.Teacher:
+            let teacher = state.teachers[resourceIdx];
+            $(".teacher-data-entry .input-description").first().val(teacher.Notes);
+            $(".teacher-data-entry input[name=course]").first().val(teacher.Course.Id.toString());
+            $(".teacher-data-entry input[name=teacher]").first().val(teacher.Resource.Username);
+            break;
+        case ResourceType.Enrollment:
+            let enroll = state.enrollments[resourceIdx];
+            $(".enroll-data-entry .input-description").first().val(enroll.Notes);
+            //need to be in format yyyy-mm-dd to be set
+            if (enroll.StartDate) {
+                $(".enroll-data-entry input[name=start-date]").first().val(dateToYMD(new Date(enroll.StartDate)));
+            }
+            $(".enroll-data-entry input[name=course]").first().val(enroll.Course.Id.toString());
+            $(".enroll-data-entry input[name=applicant]").first().val(enroll.Resource.Username);
+            $(".enroll-data-entry input[name=leader]").first().val(enroll.ProjectLeader.Username);
+            $(".enroll-data-entry input[name=is-admitted]").filter(`[value="${enroll.IsAdmitted}"]`).prop("checked", "true");
             break;
         default:
             break;
@@ -591,7 +624,6 @@ function insertOrUpdateData(type: ResourceType) {
                     cnm.insertCourse(newCourse, onInsertCourseSuccess, onError);
                 } else {
                     newCourse.Id = state.courses[state.currentIdx].Id;
-                    newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
                     cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
                 }
 
@@ -631,9 +663,7 @@ function insertOrUpdateData(type: ResourceType) {
                 if (state.isCurrentInsert) {
                     cnm.insertResource(newResource, onInsertResourceSuccess, onError);
                 } else {
-                    // newCourse.Id = state.courses[state.currentIdx].Id;
-                    // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
-                    // cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
+                    cnm.updateResource(newResource, state.resources[state.currentIdx], onUpdateResourceSuccess, onError);
                 }
 
             }
@@ -666,9 +696,8 @@ function insertOrUpdateData(type: ResourceType) {
                 if (state.isCurrentInsert) {
                     cnm.insertTeacher(newTeacher, onInsertTeacherSuccess, onError);
                 } else {
-                    // newCourse.Id = state.courses[state.currentIdx].Id;
-                    // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
-                    // cnm.updateCourse(newCourse, onUpdateCourseSuccess, onError);
+                    newTeacher.Id = state.teachers[state.currentIdx].Id;
+                    cnm.updateTeacher(newTeacher, onUpdateTeacherSuccess, onError);
                 }
 
             }
@@ -703,7 +732,7 @@ function insertOrUpdateData(type: ResourceType) {
                 showMessage(enrlErrorMessage);
             } else {
                 //convert Data
-                let enrlIsAdmit = (enrlIsAdmitStr === "yes") ? true : false;
+                let enrlIsAdmit = (enrlIsAdmitStr === "true") ? true : false;
                 let enrlCourseID = parseInt(enrlCourse);
                 let applicantFake = new Resource(-1, enrlApplicant, "", "", "");
                 let leaderFake = new Resource(-1, enrlLeader, "", "", "");
@@ -715,8 +744,7 @@ function insertOrUpdateData(type: ResourceType) {
                     cnm.insertEnrollment(newEnroll, onInsertEnrollmentSuccess, onError);
                 } else {
                     newEnroll.Id = state.enrollments[state.currentIdx].Id;
-                    // newCourse.Coordinator.Id = state.courses[state.currentIdx].Coordinator.Id;
-                    //cnm.updateEnrollment(newEnroll, onUpdateEnrollmentSuccess, onError);
+                    cnm.updateEnrollment(newEnroll, onUpdateEnrollSuccess, onError);
                 }
 
             }

@@ -55,8 +55,11 @@ namespace Reti.PCManagement.DAL.Repositories
 
                     command.CommandText = $"UPDATE {TeachersContract.TABLE_NAME}" +
                                         $"SET [{TeachersContract.COURSE_ID}] = @COURSE_ID, [{TeachersContract.RESOURCE_ID}] = @RES_ID," +
-                                            $"[{TeachersContract.NOTES}] = @NOTES" +
+                                            $"[{TeachersContract.NOTES}] = @NOTES " +
                                         $"WHERE [{TeachersContract.ID}] = @ID";
+
+
+                    command.AddParameter("ID", teacher.Id);
                     command.AddParameter("RES_ID", teacher.ResourceId);
                     command.AddParameter("COURSE_ID", teacher.CourseId);
                     command.AddParameter("NOTES", teacher.Notes ?? (object)DBNull.Value);

@@ -70,7 +70,8 @@ export class ConnectionManager {
     public updateResource(newRes: Resource, oldRes: Resource, onSuccess, onFail) {
         $.ajax({
             type: "PUT",
-            data: {newResource: newRes, oldResource: oldRes}, 
+            data: JSON.stringify({newResource: newRes, oldResource: oldRes}), 
+            contentType: "application/json",
             url: this.apiPrefix + "Resources/Edit",
             success: onSuccess,
             error: onFail
