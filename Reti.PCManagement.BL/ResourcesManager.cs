@@ -1,8 +1,8 @@
-﻿using Reti.PCManagement.Common;
-using Reti.PCManagement.Entities;
+﻿using Reti.PCManagement.Entities;
 using Reti.PCManagement.DAL;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Reti.PCManagement.BL
 {
@@ -38,6 +38,27 @@ namespace Reti.PCManagement.BL
             return ddp.GetResourceById(id);
         }
 
+
+        public void DeleteResource(ResourceEntity res)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+            ddp.DeleteResource(res);
+        }
+
+        public void EditResource(ResourceEntity newRes, ResourceEntity oldRes)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+            newRes.Username = GenerateUsername(newRes);
+            //if the generated username match the oldone don't increase the last number by one
+            if (newRes.Username.Substring(0,7).Equals(oldRes.Username.Substring(0,7),StringComparison.OrdinalIgnoreCase))
+            {
+                newRes.Username = oldRes.Username;
+            }
+            ddp.EditResource(newRes);
+
+        }
+
+
         private bool CheckResourceInsert(ResourceEntity res)
         {
             DbDataProvider ddp = new DbDataProvider();
@@ -59,7 +80,26 @@ namespace Reti.PCManagement.BL
 
             DbDataProvider ddp = new DbDataProvider();
             var result = ddp.GetResourcesByPartialUsername(partialUsername);
-            return partialUsername + (result.Count + 1);
+            var numbers = result.Select(x => int.Parse(x.Username.Substring(6, 1)));
+            var max = numbers.Max();
+            //the numbers are in sequence and no empty slot left
+            if(max == result.Count) {
+                return partialUsername + (result.Count + 1);
+            } 
+            //there are some free numbers in the sequence
+            else
+            {
+                for (int i = 1; i <= numbers.Count(); i++)
+                {
+                    if(numbers.FirstOrDefault(x => x == i) == 0)
+                    {
+                        return partialUsername + i);
+                    }
+                }
+                
+            }
+
+            
         }
     }
 }

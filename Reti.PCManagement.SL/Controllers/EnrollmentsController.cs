@@ -58,13 +58,52 @@ namespace Reti.PCManagement.SL.Controllers
 
         [HttpPost]
         [Route("Insert")]
-        public HttpResponseMessage InsertEnrollment([FromBody] EnrollmentEntity Enrollment)
+        public HttpResponseMessage InsertEnrollment([FromBody] EnrollmentEntity enrollment)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
             try
             {
                 EnrollmentsManager enrollManager = new EnrollmentsManager();
-                enrollManager.InsertEnrollment(Enrollment);
+                enrollManager.InsertEnrollment(enrollment);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in EnrollmentsController", ex);
+            }
+            return response;
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public HttpResponseMessage DeleteTeachers([FromBody] EnrollmentEntity enrollment)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                EnrollmentsManager enrollManager = new EnrollmentsManager();
+                enrollManager.DeleteEnrollment(enrollment);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in EnrollmentsController", ex);
+            }
+            return response;
+        }
+
+
+        [HttpPut]
+        [Route("Edit")]
+        public HttpResponseMessage EditTeacher([FromBody] EnrollmentEntity enrollment)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                EnrollmentsManager enrollManager = new EnrollmentsManager();
+                enrollManager.EditEnrollment(enrollment);
                 response = Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

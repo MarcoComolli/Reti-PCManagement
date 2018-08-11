@@ -74,5 +74,45 @@ namespace Reti.PCManagement.SL.Controllers
             }
             return response;
         }
+
+
+        [HttpDelete]
+        [Route("Delete")]
+        public HttpResponseMessage DeleteTeachers([FromBody] TeacherEntity teacher)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                TeachersManager teachersManager = new TeachersManager();
+                teachersManager.DeleteTeacher(teacher);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in TeachersController", ex);
+            }
+            return response;
+        }
+
+
+        [HttpPut]
+        [Route("Edit")]
+        public HttpResponseMessage EditTeacher([FromBody] TeacherEntity teacher)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                TeachersManager teachersManager = new TeachersManager();
+                teachersManager.EditTeacher(teacher);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in TeachersController", ex);
+            }
+            return response;
+        }
     }
 }

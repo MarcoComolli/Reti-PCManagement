@@ -50,5 +50,58 @@ namespace Reti.PCManagement.BL
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetEnrollmentById(id);
         }
+
+        public void DeleteEnrollment(EnrollmentEntity enroll)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+            ddp.DeleteEnrollment(enroll);
+        }
+
+        public void EditEnrollment(EnrollmentEntity enroll)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+
+            //if resource not arriving from controller
+            if (enroll.Resource.Id == -1)
+            {
+                var result = ddp.GetResourceByIdOrUsername(-1, enroll.Resource.Username);
+                if (result != null && result.Count == 1)
+                {
+                    enroll.Resource = result[0];
+                }
+                else
+                {
+                    throw new Exception("Cannot retrieve applicant from username " + enroll.Resource.Username);
+                }
+            }
+
+            //if project leader not arriving from controller
+            if (enroll.ProjectLeader.Id == -1)
+            {
+                var result = ddp.GetResourceByIdOrUsername(-1, enroll.ProjectLeader.Username);
+                if (result != null && result.Count == 1)
+                {
+                    enroll.ProjectLeader = result[0];
+                }
+                else
+                {
+                    throw new Exception("Cannot retrieve project leader from username " + enroll.ProjectLeader.Username);
+                }
+            }
+
+
+            var course = ddp.GetCourseById(enroll.Course.Id);
+            if (course != null)
+            {
+                enroll.Course = course;
+            }
+            else
+            {
+                throw new Exception("Cannot retrieve course for id " + enroll.Course.Id);
+            }
+
+            ddp.EditEnrollment(enroll);
+
+        }
     }
 }

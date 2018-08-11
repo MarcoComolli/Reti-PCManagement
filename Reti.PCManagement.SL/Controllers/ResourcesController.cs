@@ -75,30 +75,43 @@ namespace Reti.PCManagement.SL.Controllers
             return response;
         }
 
-        //[HttpPut]
-        //public IHttpActionResult PutUser(int id, [FromBody] UserVM item)
-        //{
-        //    UsersManager mng = new UsersManager();
-        //    // TODO: use Mappers!
-        //    User user = new User() { Id = item.Id, UserTitleId = item.UserTitleId, Username = item.Username, Surname = item.Surname, Name = item.Name };
-        //    mng.UpdateUser(id, user);
+        [HttpDelete]
+        [Route("Delete")]
+        public HttpResponseMessage DeleteResource([FromBody] ResourceEntity resource)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                ResourcesManager resManager = new ResourcesManager();
+                resManager.DeleteResource(resource);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in ResourcesController", ex);
+            }
+            return response;
+        }
 
-        //    return Ok(id);
-        //}
 
-        //[HttpDelete]
-        //public IHttpActionResult DeleteUser([FromUri] int id)
-        //{
-        //    try
-        //    {
-        //        UsersManager mng = new UsersManager();
-        //        mng.DeleteUser(id);
-        //        return Ok(id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        [HttpPut]
+        [Route("Edit")]
+        public HttpResponseMessage EditResource([FromBody] ResourceEntity newResource, [FromBody] ResourceEntity oldResource)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.InternalServerError);
+            try
+            {
+                ResourcesManager teachersManager = new ResourcesManager();
+                teachersManager.EditResource(newResource, oldResource);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response.Content = new StringContent($"{GENERIC_ERROR}  [{ex.Message}]");
+                DbLog.LogError("Error in ResourcesController", ex);
+            }
+            return response;
+        }
     }
 }

@@ -93,6 +93,41 @@ namespace Reti.PCManagement.DAL
             return result;
         }
 
+        public void DeleteResource(ResourceEntity resource)
+        {
+            ResourcesRepository resRepo = new ResourcesRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    resRepo.Delete(resource.Id, uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error deleting resource " + resource.Id, ex);
+                }
+
+            }
+        }
+
+        public void EditResource(ResourceEntity resource)
+        {
+            ResourcesRepository resRepo = new ResourcesRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    resRepo.Update(EntitiesMapper.ToDbModel(resource), uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error editing resource " + resource, ex);
+                }
+            }
+        }
+
         public List<ResourceEntity> GetAllResources()
         {
             List<ResourceEntity> result = new List<ResourceEntity>();
@@ -274,6 +309,42 @@ namespace Reti.PCManagement.DAL
             return result;
         }
 
+        public void DeleteEnrollment(EnrollmentEntity enroll)
+        {
+            EnrollmentsRepository enrollRepo = new EnrollmentsRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    enrollRepo.Delete(enroll.Id, uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error deleting enrollment " + enroll.Id, ex);
+                }
+
+            }
+        }
+
+        public void EditEnrollment(EnrollmentEntity enroll)
+        {
+            EnrollmentsRepository enrollRepo = new EnrollmentsRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    enrollRepo.Update(EntitiesMapper.ToDbModel(enroll), uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error editing enrollment " + enroll, ex);
+                }
+            }
+        }
+
+
         public void InsertTeacher(TeacherEntity teacher)
         {
             TeachersRepository teachRepo = new TeachersRepository();
@@ -332,5 +403,39 @@ namespace Reti.PCManagement.DAL
             return result;
         }
 
+        public void DeleteTeacher(TeacherEntity teacher)
+        {
+            TeachersRepository teachRepo = new TeachersRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    teachRepo.Delete(teacher.Id, uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error deleting teacher " + teacher.Id, ex);
+                }
+
+            }
+        }
+
+        public void EditTeacher(TeacherEntity teacher)
+        {
+            TeachersRepository teachRepo = new TeachersRepository();
+            using (var uow = UnitOfWork.CreateUoW())
+            {
+                try
+                {
+                    teachRepo.Update(EntitiesMapper.ToDbModel(teacher), uow);
+                    uow.ApplyChanges();
+                }
+                catch (Exception ex)
+                {
+                    DbLog.LogError("Error editing teacher " + teacher, ex);
+                }
+            }
+        }
     } 
 }

@@ -41,5 +41,43 @@ namespace Reti.PCManagement.BL
             DbDataProvider ddp = new DbDataProvider();
             return ddp.GetTeacherById(id);
         }
+
+        public void DeleteTeacher(TeacherEntity teacher)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+            ddp.DeleteTeacher(teacher);
+        }
+
+        public void EditTeacher(TeacherEntity teacher)
+        {
+            DbDataProvider ddp = new DbDataProvider();
+
+            //if resource not arriving from controller
+            if (teacher.Resource?.Id == -1)
+            {
+                var result = ddp.GetResourceByIdOrUsername(-1, teacher.Resource.Username);
+                if (result != null && result.Count == 1)
+                {
+                    teacher.Resource = result[0];
+                }
+                else
+                {
+                    throw new Exception("Cannot retrieve resource form username");
+                }
+            }
+
+            var course = ddp.GetCourseById(teacher.Course.Id);
+            if (course != null)
+            {
+                teacher.Course = course;
+            }
+            else
+            {
+                throw new Exception("Cannot retrieve course for id " + teacher.Course.Id);
+            }
+                
+            ddp.EditTeacher(teacher);
+           
+        }
     }
 }
