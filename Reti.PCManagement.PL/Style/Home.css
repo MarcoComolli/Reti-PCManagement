@@ -28,17 +28,18 @@ header {
   color: white;
   position: relative; }
   header img {
-    padding: 2px;
-    width: 7%;
+    padding: 4px;
+    width: 6%;
     float: right;
-    margin-right: 15px; }
+    margin-right: 15px;
+    background-color: white; }
   header .title {
-    font-size: 3vw;
-    font-weight: 900;
+    font-size: 2vw;
+    font-weight: 600;
     position: absolute;
     top: 50%;
     transform: translateY(-55%);
-    margin-left: 15px; }
+    margin-left: 25px; }
 
 nav {
   background: linear-gradient(to bottom, #a00000 0%, #d70000 80%);
@@ -50,11 +51,11 @@ nav {
       color: white;
       font-weight: 500;
       display: inline-block;
-      padding: 10px 30px; }
+      padding: 6px 45px; }
       nav ul li:hover {
-        background-color: #a00000;
+        background-color: #7d0000;
         cursor: pointer;
-        color: wheat; }
+        color: #d4dbde; }
 
 main {
   flex: 1 0 auto; }
@@ -85,14 +86,15 @@ main {
       position: absolute;
       top: 5px;
       right: 5px;
-      background-color: orangered;
       border-radius: 50%;
       height: 20px;
       width: 20px;
-      cursor: pointer; }
+      cursor: pointer;
+      background-color: #d70000;
+      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4); }
       main .card-style .close-x span {
         font-weight: bold;
-        color: wheat;
+        color: white;
         margin-bottom: 5px; }
   main .section-container {
     display: flex;
@@ -125,8 +127,7 @@ main {
     main .section-container .data-list th {
       color: #d70000; }
     main .section-container .data-list tr {
-      color: #a00000;
-      font-weight: 600; }
+      font-weight: 500; }
       main .section-container .data-list tr:nth-child(even) {
         background-color: #ffecec; }
       main .section-container .data-list tr:nth-child(odd) {
@@ -202,38 +203,59 @@ main {
           display: flex;
           width: 100%;
           position: relative; }
+          main .section-container .data-detail .data-detail-container .title-row .title {
+            font-weight: 600;
+            color: #a00000;
+            font-size: 1.5em;
+            margin-left: 2px;
+            margin-bottom: 2px; }
         main .section-container .data-detail .data-detail-container .detail {
           margin-top: 6px; }
-          main .section-container .data-detail .data-detail-container .detail .det-row {
-            margin-bottom: 6px;
-            border: solid 1px black;
-            border-bottom-width: 3px;
-            border-radius: 8px;
-            display: flex; }
-            main .section-container .data-detail .data-detail-container .detail .det-row div {
-              display: inline-block; }
-              main .section-container .data-detail .data-detail-container .detail .det-row div:nth-child(1) {
-                background-color: lightblue;
-                width: 20%;
-                padding: 8px;
-                text-align: right;
-                border-bottom-left-radius: 8px;
-                border-top-left-radius: 8px; }
-              main .section-container .data-detail .data-detail-container .detail .det-row div:nth-child(2) {
-                padding: 8px;
-                background-color: lightgrey;
-                width: 80%;
-                border-bottom-right-radius: 8px;
-                border-top-right-radius: 8px; }
+          main .section-container .data-detail .data-detail-container .detail .detail-rows {
+            overflow: auto;
+            height: 60vh;
+            padding: 2px; }
+            main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row {
+              margin-bottom: 6px;
+              border: solid 1px #7d0000;
+              border-bottom-width: 3px;
+              border-radius: 10px;
+              display: flex;
+              margin-right: 2px; }
+              main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div {
+                display: inline-block; }
+                main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div:nth-child(1) {
+                  background-color: #a00000;
+                  width: 25%;
+                  padding: 8px;
+                  border-bottom-left-radius: 8px;
+                  border-top-left-radius: 8px;
+                  color: white;
+                  font-weight: 600;
+                  align-items: center;
+                  display: flex;
+                  justify-content: flex-end;
+                  text-align: right; }
+                main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div:nth-child(2) {
+                  padding: 8px;
+                  width: 75%;
+                  border-bottom-right-radius: 8px;
+                  border-top-right-radius: 8px;
+                  font-weight: 500;
+                  margin-left: 2px;
+                  color: #a00000;
+                  align-items: center;
+                  display: flex; }
           main .section-container .data-detail .data-detail-container .detail .buttons-row {
             position: absolute;
-            bottom: 5px;
-            background-color: wheat;
+            bottom: 0;
+            background-color: #a00000;
             right: 0;
             left: 0;
-            padding: 15px 30px; }
+            padding: 7px 30px;
+            border-top: 1px solit #7d0000; }
             main .section-container .data-detail .data-detail-container .detail .buttons-row .button {
-              padding: 6px;
+              padding: 5px;
               display: inline-block;
               width: 100px;
               text-align: center;
@@ -241,13 +263,15 @@ main {
               border-bottom: 2px solid rgba(0, 0, 0, 0.15);
               border-right: 1px solid rgba(0, 0, 0, 0.15);
               cursor: pointer;
-              user-select: none; }
+              user-select: none;
+              font-weight: 500;
+              box-shadow: 0px 0px 8px 0px rrgba(0, 0, 0, 0.78); }
               main .section-container .data-detail .data-detail-container .detail .buttons-row .button.btn-delete {
-                background-color: darkred;
-                color: white; }
+                background-color: white;
+                color: #7d0000; }
               main .section-container .data-detail .data-detail-container .detail .buttons-row .button.btn-edit {
-                background-color: darkgoldenrod;
-                color: white;
+                background-color: white;
+                color: #7d0000;
                 float: right; }
     main .section-container .data-insert {
       display: flex;
@@ -269,29 +293,38 @@ main {
             align-items: center;
             padding: 4px;
             margin: 8px;
-            border: 1px solid black;
+            border: 1px solid #7d0000;
             border-radius: 10px;
-            background-color: aquamarine; }
+            background-color: #a00000; }
             main .section-container .data-insert .data-insert-container form .input-row label {
               width: 24%;
               padding: 6px 20px 6px 6px;
-              text-align: right; }
+              text-align: right;
+              font-weight: 600;
+              color: white; }
             main .section-container .data-insert .data-insert-container form .input-row input {
               width: 74%;
               min-height: 18px;
               padding: 6px;
               border-radius: 4px;
               border: none;
-              outline-color: white;
-              background-color: darkslategrey;
-              color: white; }
+              outline-color: yellow;
+              background-color: white;
+              color: #a00000;
+              font-weight: 500; }
             main .section-container .data-insert .data-insert-container form .input-row input[type=radio] {
               width: auto;
               margin: 0 15px; }
             main .section-container .data-insert .data-insert-container form .input-row span.radio-value {
-              margin-right: 10px; }
+              margin-right: 10px;
+              color: white;
+              font-weight: 500; }
             main .section-container .data-insert .data-insert-container form .input-row textarea {
-              width: 74%; }
+              width: 74%;
+              color: #a00000;
+              font-weight: 500;
+              outline-color: yellow;
+              border-radius: 4px; }
           main .section-container .data-insert .data-insert-container form .btn-row {
             display: flex;
             justify-content: center;
@@ -310,8 +343,12 @@ main {
                 background-color: red; }
 
 footer {
+  color: #d4dbde;
   flex-shrink: 0;
-  height: 30px;
+  height: 40px;
   background-color: #a00000;
-  width: 100%; }
+  width: 100%;
+  font-size: 7pt;
+  text-align: center;
+  padding-top: 6px; }
 
