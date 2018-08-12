@@ -1,4 +1,5 @@
-﻿/* -- VARIABLES -- */
+﻿/* -- Colors-- */
+/* -- Sizes --*/
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px; }
@@ -27,6 +28,10 @@ header {
   background-color: #a00000;
   color: white;
   position: relative; }
+  @media (max-width: 900px) {
+    header {
+      min-height: 35px;
+      text-align: center; } }
   header img {
     padding: 4px;
     width: 6%;
@@ -34,6 +39,9 @@ header {
     margin-right: 15px;
     background-color: white;
     margin-top: 4px; }
+    @media (max-width: 900px) {
+      header img {
+        display: none; } }
   header .title {
     font-size: 2vw;
     font-weight: 600;
@@ -41,10 +49,19 @@ header {
     top: 50%;
     transform: translateY(-55%);
     margin-left: 25px; }
+    @media (max-width: 900px) {
+      header .title {
+        font-size: 14pt;
+        position: initial; } }
 
 nav {
   background: linear-gradient(to bottom, #a00000 0%, #d70000 80%);
   border-bottom: 2px solid rgba(0, 0, 0, 0.24); }
+  @media (max-width: 900px) {
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10; } }
   nav ul {
     margin: 0;
     padding: 0; }
@@ -53,6 +70,15 @@ nav {
       font-weight: 500;
       display: inline-block;
       padding: 8px 45px; }
+      @media (max-width: 900px) {
+        nav ul li {
+          padding: 4px 2px;
+          width: 24%;
+          text-align: center; } }
+      @media (max-width: 410px) {
+        nav ul li {
+          width: 23%;
+          font-size: 10pt; } }
       nav ul li:hover {
         background-color: #7d0000;
         cursor: pointer;
@@ -73,6 +99,9 @@ main {
     main .error-msg .error-msg-txt {
       width: 95%;
       display: inline-block; }
+      @media (max-width: 410px) {
+        main .error-msg .error-msg-txt {
+          width: 92%; } }
     main .error-msg .close-btn {
       float: right;
       color: #d70000;
@@ -114,6 +143,9 @@ main {
   main .section-container {
     display: flex;
     justify-content: center; }
+    @media (max-width: 900px) {
+      main .section-container {
+        flex-direction: column-reverse; } }
     main .section-container .data-list .add-plus {
       position: sticky;
       display: flex;
@@ -190,6 +222,10 @@ main {
       display: block;
       width: 50%;
       float: left; }
+      @media (max-width: 900px) {
+        main .section-container .data-list.partial-view {
+          width: 100%;
+          float: none; } }
       main .section-container .data-list.partial-view .data-list-container {
         display: flex;
         padding: 16px; }
@@ -225,6 +261,10 @@ main {
       width: 50%;
       float: left;
       flex-direction: column; }
+      @media (max-width: 900px) {
+        main .section-container .data-detail {
+          width: 100%;
+          float: none; } }
       main .section-container .data-detail .data-detail-container {
         padding: 16px; }
         main .section-container .data-detail .data-detail-container .title-row {
@@ -250,6 +290,9 @@ main {
               border-radius: 10px;
               display: flex;
               margin-right: 2px; }
+              @media (max-width: 410px) {
+                main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row {
+                  flex-direction: column; } }
               main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div {
                 display: inline-block; }
                 main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div:nth-child(1) {
@@ -264,6 +307,11 @@ main {
                   display: flex;
                   justify-content: flex-end;
                   text-align: right; }
+                  @media (max-width: 410px) {
+                    main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div:nth-child(1) {
+                      width: auto;
+                      border-radius: 8px 8px 0 0;
+                      justify-content: flex-start; } }
                 main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div:nth-child(2) {
                   padding: 8px;
                   width: 75%;
@@ -274,6 +322,9 @@ main {
                   color: #a00000;
                   align-items: center;
                   display: flex; }
+                  @media (max-width: 410px) {
+                    main .section-container .data-detail .data-detail-container .detail .detail-rows .det-row div:nth-child(2) {
+                      width: 100%; } }
           main .section-container .data-detail .data-detail-container .detail .buttons-row {
             position: absolute;
             bottom: 0;
@@ -294,6 +345,9 @@ main {
               user-select: none;
               font-weight: 500;
               box-shadow: 0px 0px 8px 0px rrgba(0, 0, 0, 0.78); }
+              @media (max-width: 410px) {
+                main .section-container .data-detail .data-detail-container .detail .buttons-row .button {
+                  width: 80px; } }
               main .section-container .data-detail .data-detail-container .detail .buttons-row .button.btn-delete {
                 background-color: white;
                 color: #7d0000; }
@@ -306,6 +360,9 @@ main {
     main .section-container .data-insert {
       display: flex;
       width: 50%; }
+      @media (max-width: 900px) {
+        main .section-container .data-insert {
+          width: 100%; } }
       main .section-container .data-insert .data-insert-container {
         padding: 16px;
         width: 100%; }
@@ -330,12 +387,19 @@ main {
               border: 1px solid #7d0000;
               border-radius: 10px;
               background-color: #a00000; }
+              @media (max-width: 410px) {
+                main .section-container .data-insert .data-insert-container form .input-container .input-row {
+                  flex-direction: column; } }
               main .section-container .data-insert .data-insert-container form .input-container .input-row label {
                 width: 24%;
                 padding: 6px 20px 6px 6px;
                 text-align: right;
                 font-weight: 600;
                 color: white; }
+                @media (max-width: 410px) {
+                  main .section-container .data-insert .data-insert-container form .input-container .input-row label {
+                    width: 100%;
+                    text-align: left; } }
               main .section-container .data-insert .data-insert-container form .input-container .input-row input {
                 width: 74%;
                 min-height: 18px;
@@ -346,13 +410,23 @@ main {
                 background-color: white;
                 color: #a00000;
                 font-weight: 500; }
+                @media (max-width: 410px) {
+                  main .section-container .data-insert .data-insert-container form .input-container .input-row input {
+                    width: 85%;
+                    margin-bottom: 12px; } }
               main .section-container .data-insert .data-insert-container form .input-container .input-row input[type=radio] {
                 width: auto;
                 margin: 0 15px; }
+                @media (max-width: 410px) {
+                  main .section-container .data-insert .data-insert-container form .input-container .input-row input[type=radio] {
+                    margin: 0 8px; } }
               main .section-container .data-insert .data-insert-container form .input-container .input-row span.radio-value {
                 margin-right: 10px;
                 color: white;
                 font-weight: 500; }
+                @media (max-width: 410px) {
+                  main .section-container .data-insert .data-insert-container form .input-container .input-row span.radio-value {
+                    margin-right: 6px; } }
               main .section-container .data-insert .data-insert-container form .input-container .input-row textarea {
                 width: 74%;
                 color: #a00000;
@@ -360,6 +434,10 @@ main {
                 outline-color: yellow;
                 border-radius: 4px;
                 padding: 4px; }
+                @media (max-width: 410px) {
+                  main .section-container .data-insert .data-insert-container form .input-container .input-row textarea {
+                    width: 85%;
+                    margin-bottom: 12px; } }
               main .section-container .data-insert .data-insert-container form .input-container .input-row select {
                 width: 74%;
                 color: #a00000;

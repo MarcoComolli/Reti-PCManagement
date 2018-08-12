@@ -1,9 +1,13 @@
-﻿/* -- VARIABLES -- */
+﻿/* -- Colors-- */
 $btnBorderColor: rgba(0, 0, 0, 0.24);
 $primaryRed: #d70000;
 $secondaryRed: #a00000;
 $darkRedBorders: #7d0000;
 $lightGrey: #d4dbde;
+
+/* -- Sizes --*/
+$minDesktopSize: 900px;
+$minDeviceSize: 410px;
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -42,6 +46,11 @@ header {
     color: white;
     position: relative;
 
+    @media (max-width: $minDesktopSize) {
+        min-height: 35px;
+        text-align: center;
+    }
+
     img {
         padding: 4px;
         width: 6%;
@@ -49,6 +58,10 @@ header {
         margin-right: 15px;
         background-color: white;
         margin-top: 4px;
+
+        @media (max-width: $minDesktopSize) {
+            display: none;
+        }
     }
 
     .title {
@@ -58,12 +71,23 @@ header {
         top: 50%;
         transform: translateY(-55%);
         margin-left: 25px;
+
+        @media (max-width: $minDesktopSize) {
+            font-size: 14pt;
+            position: initial;
+        }
     }
 }
 
 nav {
     background: linear-gradient(to bottom, $secondaryRed 0%, $primaryRed 80%);
     border-bottom: 2px solid $btnBorderColor;
+
+    @media (max-width: $minDesktopSize) {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
 
     ul {
         margin: 0;
@@ -74,6 +98,17 @@ nav {
             font-weight: 500;
             display: inline-block;
             padding: 8px 45px;
+
+            @media (max-width: $minDesktopSize) {
+                padding: 4px 2px;
+                width: 24%;
+                text-align: center;
+            }
+
+            @media (max-width: $minDeviceSize) {
+                width: 23%;
+                font-size: 10pt;
+            }
 
             &:hover {
                 background-color: $darkRedBorders;
@@ -101,6 +136,10 @@ main {
         .error-msg-txt {
             width: 95%;
             display: inline-block;
+
+            @media (max-width: $minDeviceSize) {
+                width: 92%;
+            }
         }
 
         .close-btn {
@@ -155,6 +194,10 @@ main {
     .section-container {
         display: flex;
         justify-content: center;
+
+        @media (max-width: $minDesktopSize) {
+            flex-direction: column-reverse;
+        }
 
         .data-list {
 
@@ -279,6 +322,11 @@ main {
                 width: 50%;
                 float: left;
 
+                @media (max-width: $minDesktopSize) {
+                    width: 100%;
+                    float: none;
+                }
+
                 .data-list-container {
                     display: flex;
                     padding: 16px;
@@ -336,6 +384,11 @@ main {
             float: left;
             flex-direction: column;
 
+            @media (max-width: $minDesktopSize) {
+                width: 100%;
+                float: none;
+            }
+
             .data-detail-container {
                 padding: 16px;
 
@@ -370,6 +423,10 @@ main {
                             display: flex;
                             margin-right: 2px;
 
+                            @media (max-width: $minDeviceSize) {
+                                flex-direction: column;
+                            }
+
                             div {
                                 display: inline-block;
 
@@ -385,6 +442,12 @@ main {
                                     display: flex;
                                     justify-content: flex-end;
                                     text-align: right;
+
+                                    @media (max-width: $minDeviceSize) {
+                                        width: auto;
+                                        border-radius: 8px 8px 0 0;
+                                        justify-content: flex-start;
+                                    }
                                 }
 
                                 &:nth-child(2) {
@@ -397,6 +460,10 @@ main {
                                     color: $secondaryRed;
                                     align-items: center;
                                     display: flex;
+
+                                    @media (max-width: $minDeviceSize) {
+                                        width: 100%;
+                                    }
                                 }
                             }
                         }
@@ -425,6 +492,10 @@ main {
                             box-shadow: 0px 0px 8px 0px rrgba(0, 0, 0, 0.78);
 
 
+                            @media (max-width: $minDeviceSize) {
+                                width: 80px;
+                            }
+
 
                             &.btn-delete {
                                 background-color: white;
@@ -450,6 +521,9 @@ main {
             display: flex;
             width: 50%;
 
+            @media (max-width: $minDesktopSize) {
+                width: 100%;
+            }
 
             .data-insert-container {
                 padding: 16px;
@@ -485,12 +559,23 @@ main {
                             border-radius: 10px;
                             background-color: $secondaryRed;
 
+                            @media (max-width: $minDeviceSize) {
+                                flex-direction: column;
+                            }
+
+
+
                             label {
                                 width: 24%;
                                 padding: 6px 20px 6px 6px;
                                 text-align: right;
                                 font-weight: 600;
                                 color: white;
+
+                                @media (max-width: $minDeviceSize) {
+                                    width: 100%;
+                                    text-align: left;
+                                }
                             }
 
                             input {
@@ -503,11 +588,20 @@ main {
                                 background-color: white;
                                 color: $secondaryRed;
                                 font-weight: 500;
+
+                                @media (max-width: $minDeviceSize) {
+                                    width: 85%;
+                                    margin-bottom: 12px;
+                                }
                             }
 
                             input[type=radio] {
                                 width: auto;
                                 margin: 0 15px;
+
+                                @media (max-width: $minDeviceSize) {
+                                    margin: 0 8px;
+                                }
                             }
 
                             span {
@@ -515,6 +609,10 @@ main {
                                     margin-right: 10px;
                                     color: white;
                                     font-weight: 500;
+
+                                    @media (max-width: $minDeviceSize) {
+                                        margin-right: 6px;
+                                    }
                                 }
                             }
 
@@ -525,6 +623,11 @@ main {
                                 outline-color: yellow;
                                 border-radius: 4px;
                                 padding: 4px;
+
+                                @media (max-width: $minDeviceSize) {
+                                    width: 85%;
+                                    margin-bottom: 12px;
+                                }
                             }
 
                             select {
