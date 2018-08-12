@@ -90,7 +90,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Index.html" />
-    <Content Include="Pages\Test.html" />
     <Content Include="Resources\reti-logo.png" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
