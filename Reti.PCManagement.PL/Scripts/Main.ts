@@ -33,7 +33,7 @@ $("document").ready(() => {
     });
 
     $(".data-insert .close-x").click(() => {
-        closeInsert();
+        state.isCurrentInsert ? closeInsert() : closeEdit();
     });
 
     $("section.data-detail .btn-delete").click(() => {
@@ -54,6 +54,10 @@ $("document").ready(() => {
 
     $(".menu-resources").click(() => {
         changeResourceView(ResourceType.Resource);
+    });
+
+    $(".error-msg .close-btn").click(() => {
+        hideMessage();
     });
 
 
@@ -122,13 +126,18 @@ function onGetCourseSuccess(data: Course[], textStatus: string, jqXHR: JQuery.jq
             let cell1 = `<td>${item.Description}</td>`;
             let cell2 = `<td>${item.RefYear}</td>`;
             let cell3 = `<td>${item.IsPeriodic ? 'yes' : 'no'}</td>`;
-            let cell4 = `<td class='details-link'> DETAILS </td>`;
+            let cell4 = `<td class='details-link'><img src="./Resources/details-ico.png" alt="Details"></td>`;
 
             $(".table-list tbody").append(`<tr>${cell1}${cell2}${cell3}${cell4}</tr>`);
         });
 
         $(".data-list .table-list tbody tr .details-link").click((ev) => {
-            let index = $(ev.target).parent().index();
+            let selectedTr = ($(ev.target).is("img")) ? $(ev.target).parent().parent() : $(ev.target).parent();
+            if (state.selectedRow) {
+                $(state.selectedRow).removeClass("selected");
+            }
+            state.selectedRow = selectedTr.addClass("selected").get(0);
+            let index = selectedTr.index();
             if (index >= 0 && index < data.length) {
                 state.currentIdx = index;
                 openDetail(data[index], ResourceType.Course);
@@ -147,13 +156,18 @@ function onGetResourcesSuccess(data: Resource[], textStatus: string, jqXHR: JQue
             let cell1 = `<td>${item.Name}</td>`;
             let cell2 = `<td>${item.Surname}</td>`;
             let cell3 = `<td>${item.Status}</td>`;
-            let cell4 = `<td class='details-link'> DETAILS </td>`;
+            let cell4 = `<td class='details-link'><img src="./Resources/details-ico.png" alt="Details"></td>`;
 
             $(".table-list tbody").append(`<tr>${cell1}${cell2}${cell3}${cell4}</tr>`);
         });
 
         $(".data-list .table-list tbody tr .details-link").click((ev) => {
-            let index = $(ev.target).parent().index();
+            let selectedTr = ($(ev.target).is("img")) ? $(ev.target).parent().parent() : $(ev.target).parent();
+            if (state.selectedRow) {
+                $(state.selectedRow).removeClass("selected");
+            }
+            state.selectedRow = selectedTr.addClass("selected").get(0);
+            let index = selectedTr.index();
             if (index >= 0 && index < data.length) {
                 state.currentIdx = index;
                 openDetail(data[index], ResourceType.Resource);
@@ -172,13 +186,18 @@ function onGetEnrollmentsSuccess(data: Enrollment[], textStatus: string, jqXHR: 
             let cell1 = `<td>${toResourceString(item.Resource)}</td>`;
             let cell2 = `<td>${toCourseString(item.Course)}</td>`;
             let cell3 = `<td>${item.IsAdmitted ? 'yes' : 'no'}</td>`;
-            let cell4 = `<td class='details-link'> DETAILS </td>`;
+            let cell4 = `<td class='details-link'><img src="./Resources/details-ico.png" alt="Details"></td>`;
 
             $(".table-list tbody").append(`<tr>${cell1}${cell2}${cell3}${cell4}</tr>`);
         });
 
         $(".data-list .table-list tbody tr .details-link").click((ev) => {
-            let index = $(ev.target).parent().index();
+            let selectedTr = ($(ev.target).is("img")) ? $(ev.target).parent().parent() : $(ev.target).parent();
+            if (state.selectedRow) {
+                $(state.selectedRow).removeClass("selected");
+            }
+            state.selectedRow = selectedTr.addClass("selected").get(0);
+            let index = selectedTr.index();
             if (index >= 0 && index < data.length) {
                 state.currentIdx = index;
                 openDetail(data[index], ResourceType.Enrollment);
@@ -196,13 +215,18 @@ function onGetTeachersSuccess(data: Teacher[], textStatus: string, jqXHR: JQuery
         data.forEach((item: Teacher) => {
             let cell1 = `<td>${toResourceString(item.Resource)}</td>`;
             let cell2 = `<td>${toCourseString(item.Course)}</td>`;
-            let cell3 = `<td class='details-link'> DETAILS </td>`;
+            let cell3 = `<td class='details-link'><img src="./Resources/details-ico.png" alt="Details"></td>`;
 
             $(".table-list tbody").append(`<tr>${cell1}${cell2}${cell3}</tr>`);
         });
 
         $(".data-list .table-list tbody tr .details-link").click((ev) => {
-            let index = $(ev.target).parent().index();
+            let selectedTr = ($(ev.target).is("img")) ? $(ev.target).parent().parent() : $(ev.target).parent();
+            if (state.selectedRow) {
+                $(state.selectedRow).removeClass("selected");
+            }
+            state.selectedRow = selectedTr.addClass("selected").get(0);
+            let index = selectedTr.index();
             if (index >= 0 && index < data.length) {
                 state.currentIdx = index;
                 openDetail(data[index], ResourceType.Teacher);
@@ -275,6 +299,10 @@ function onError(jqXHR: JQuery.jqXHR, textStatus: string, errorThrown: string) {
     showMessage(jqXHR.responseText);
 }
 
+function hideMessage() {
+    $(".error-msg").fadeOut(400);
+}
+
 function showMessage(error?: string) {
     let generic = "An error occurred!";
     if (error) {
@@ -285,9 +313,7 @@ function showMessage(error?: string) {
 
     $(".error-msg").show();
 
-    $(".error-msg .close-btn").click(() => {
-        $(".error-msg").fadeOut(400);
-    });
+ 
 }
 
 function init() {
@@ -425,7 +451,7 @@ function openDetail(item: any, type: ResourceType) {
                     property = property ? "Yes" : "No";
                 }
                 if (key === "Course") {
-                    property = toCourseString(property);
+                    property = toCourseString(property, false);
                 }
                 $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
             });
@@ -440,7 +466,7 @@ function openDetail(item: any, type: ResourceType) {
                     property = toResourceString(tmp);
                 }
                 if (key === "Course") {
-                    property = toCourseString(property);
+                    property = toCourseString(property, false);
                 }
                 $(".data-detail .det-row div:nth-child(2)").eq(idx).text(property !== null ? property : "-");
             });
@@ -448,8 +474,6 @@ function openDetail(item: any, type: ResourceType) {
     }
 
     $("section.data-detail").first().slideDown(300, () => {
-        state.detail = true;
-        state.isPartialList = true;
         state.prevOpenDetail = true;
     });
 }
@@ -460,17 +484,14 @@ function closeDetail() {
         $("section.data-list").first().addClass("full-view");
         $("section.data-list").first().removeClass("partial-view");
     });
-
-    state.isPartialList = false;
-    state.detail = false;
-
-
 }
 
 function openInsert(type: ResourceType) {
     $("section.data-insert .btn-save").val(Constants.BTN_INSERT);
     $("section.data-list").first().addClass("partial-view");
     $("section.data-list").first().removeClass("full-view");
+    $(state.selectedRow).removeClass("selected");
+    $(".card-style form").trigger("reset");
 
     if (state.prevOpenDetail) { //if detail was opened
         $("section.data-detail").first().fadeOut(150, () => {
@@ -479,14 +500,10 @@ function openInsert(type: ResourceType) {
     } else {
         showInsert(type);
     }
-
-    state.insert = true;
-    state.isPartialList = true;
 }
 
 
 function showInsert(type: ResourceType) {
-    $("section.data-insert").first().fadeIn(150);
     switch (type) {
         case ResourceType.Course:
             $(".course-data-entry").show();
@@ -513,22 +530,18 @@ function showInsert(type: ResourceType) {
             $(".teacher-data-entry").show();
             break;
     }
+
+    $("section.data-insert").first().fadeIn(150);
 }
 
 function closeInsert() {
-    $("section.data-list").first().addClass("partial-view");
-    $("section.data-list").first().removeClass("full-view");
-
     $("section.data-insert").first().fadeOut(150, () => {
-        $("section.data-detail").first().fadeIn(150);
-        state.detail = true;
-        state.isPartialList = true;
-        state.insert = false;
+        $("section.data-list").first().addClass("full-view");
+        $("section.data-list").first().removeClass("partial-view");
     });
 }
 
 function openEdit(resourceIdx: number, type: ResourceType) {
-    showInsert(type);
     $("section.data-insert .btn-save").val(Constants.BTN_UPDATE);
     switch (type) {
         case ResourceType.Course:
@@ -574,16 +587,21 @@ function openEdit(resourceIdx: number, type: ResourceType) {
             break;
     }
 
+    
+
     $("section.data-detail").first().fadeOut(150, () => {
-        $("section.data-insert").first().fadeIn(150);
+        showInsert(type);
     });
 
-    state.insert = true;
-    state.isPartialList = true;
 }
 
 function closeEdit() {
+    $("section.data-list").first().addClass("partial-view");
+    $("section.data-list").first().removeClass("full-view");
 
+    $("section.data-insert").first().fadeOut(150, () => {
+        $("section.data-detail").first().fadeIn(150);
+    });
 }
 
 function insertOrUpdateData(type: ResourceType) {
@@ -793,8 +811,14 @@ function toResourceString(res: Resource): string {
     return res.Surname + " " + res.Name + " (" + res.Username + ")";
 }
 
-function toCourseString(res: Course): string {
-    return res.RefYear + " - " + res.Description.substr(0, 30);
+function toCourseString(res: Course, cropString = true): string {
+    if (cropString) {
+        if (res.Description.length > 30) {
+            return res.RefYear + " - " + res.Description.substr(0, 30) + "...";
+        }
+    }
+    return res.RefYear + " - " + res.Description;
+   
 }
 
 

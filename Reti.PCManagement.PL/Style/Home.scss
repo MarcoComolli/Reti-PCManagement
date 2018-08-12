@@ -1,5 +1,5 @@
 ﻿/* -- VARIABLES -- */
-$btnBorderColor: rgba(0, 0, 0, 0.15);
+$btnBorderColor: rgba(0, 0, 0, 0.24);
 $primaryRed: #d70000;
 $secondaryRed: #a00000;
 $darkRedBorders: #7d0000;
@@ -48,6 +48,7 @@ header {
         float: right;
         margin-right: 15px;
         background-color: white;
+        margin-top: 4px;
     }
 
     .title {
@@ -72,7 +73,7 @@ nav {
             color: white;
             font-weight: 500;
             display: inline-block;
-            padding: 6px 45px;
+            padding: 8px 45px;
 
             &:hover {
                 background-color: $darkRedBorders;
@@ -87,16 +88,34 @@ main {
     flex: 1 0 auto;
 
     .error-msg {
-        background-color: lightpink;
+        background-color: #ffd0b0;
         min-height: 40px;
         display: none;
+        color: $primaryRed;
+        border: 2px solid $primaryRed;
+        padding: 4px 10px;
+        font-weight: 700;
+        font-size: 11pt;
+        margin: 2px;
+
+        .error-msg-txt {
+            width: 95%;
+            display: inline-block;
+        }
 
         .close-btn {
             float: right;
-            color: red;
+            color: $primaryRed;
             cursor: pointer;
-            padding: 4px;
-            font-weight: 900;
+            font-weight: 700;
+            height: 14px;
+            width: 14px;
+            border-radius: 4px;
+            text-align: center;
+
+            div {
+                margin-top: -6px;
+            }
         }
     }
 
@@ -160,6 +179,12 @@ main {
                     margin-bottom: 8px;
                     font-size: 2em;
                 }
+
+                &:hover {
+                    span {
+                        color: $lightGrey;
+                    }
+                }
             }
 
             .title-row {
@@ -167,7 +192,7 @@ main {
                 font-size: x-large;
                 font-weight: 600;
                 margin-left: 10px;
-                color: $primaryRed;
+                color: $secondaryRed;
             }
 
             th {
@@ -175,7 +200,6 @@ main {
             }
 
             tr {
-                
                 font-weight: 500;
 
                 &:nth-child(even) {
@@ -185,9 +209,20 @@ main {
                 &:nth-child(odd) {
                     background-color: white;
                 }
+
+                img {
+                    width: 20px;
+                }
             }
 
-
+            tbody {
+                tr {
+                    &:hover {
+                        background-color: #ffaaaa;
+                        color: $darkRedBorders;
+                    }
+                }
+            }
 
             &.full-view {
                 width: 100%;
@@ -216,6 +251,11 @@ main {
                         tr {
                             border-bottom: solid 1px $darkRedBorders;
 
+                            &.selected {
+                                background-color: $secondaryRed;
+                                color: white;
+                            }
+
                             .details-link {
                                 cursor: pointer;
                                 user-select: none;
@@ -225,7 +265,7 @@ main {
                         th, td {
                             max-width: 20vw;
                             text-align: center;
-                            padding: 8px;
+                            padding: 14px;
                             text-overflow: ellipsis;
                             overflow: hidden;
                             white-space: nowrap;
@@ -262,6 +302,11 @@ main {
                             tr {
                                 border-bottom: solid 1px $darkRedBorders;
 
+                                &.selected {
+                                    background-color: $secondaryRed;
+                                    color: white;
+                                }
+
                                 .details-link {
                                     cursor: pointer;
                                     user-select: none;
@@ -271,7 +316,7 @@ main {
                             th, td {
                                 max-width: 20vw;
                                 text-align: center;
-                                padding: 8px;
+                                padding: 10px;
                                 text-overflow: ellipsis;
                                 overflow: hidden;
                                 white-space: nowrap;
@@ -364,7 +409,7 @@ main {
                         right: 0;
                         left: 0;
                         padding: 7px 30px;
-                        border-top: 1px solit $darkRedBorders;
+                        border-top: 1px solid $darkRedBorders;
 
                         .button {
                             padding: 5px;
@@ -379,6 +424,8 @@ main {
                             font-weight: 500;
                             box-shadow: 0px 0px 8px 0px rrgba(0, 0, 0, 0.78);
 
+
+
                             &.btn-delete {
                                 background-color: white;
                                 color: $darkRedBorders
@@ -388,6 +435,10 @@ main {
                                 background-color: white;
                                 color: $darkRedBorders;
                                 float: right;
+                            }
+
+                            &:hover {
+                                background-color: $lightGrey
                             }
                         }
                     }
@@ -419,54 +470,78 @@ main {
                     width: 100%;
                     padding: 10px;
 
-                    .input-row {
-                        display: flex;
-                        align-items: center;
-                        padding: 4px;
-                        margin: 8px;
-                        border: 1px solid $darkRedBorders;
-                        border-radius: 10px;
-                        background-color: $secondaryRed;
+                    .input-container {
+                        height: 60vh;
+                        overflow: auto;
+                        display: none;
 
-                        label {
-                            width: 24%;
-                            padding: 6px 20px 6px 6px;
-                            text-align: right;
-                            font-weight: 600;
-                            color: white;
-                        }
 
-                        input {
-                            width: 74%;
-                            min-height: 18px;
-                            padding: 6px;
-                            border-radius: 4px;
-                            border: none;
-                            outline-color: yellow;
-                            background-color: white;
-                            color: $secondaryRed;
-                            font-weight: 500;
-                        }
+                        .input-row {
+                            display: flex;
+                            align-items: center;
+                            padding: 4px;
+                            margin: 8px;
+                            border: 1px solid $darkRedBorders;
+                            border-radius: 10px;
+                            background-color: $secondaryRed;
 
-                        input[type=radio] {
-                            width: auto;
-                            margin: 0 15px;
-                        }
-
-                        span {
-                            &.radio-value {
-                                margin-right: 10px;
+                            label {
+                                width: 24%;
+                                padding: 6px 20px 6px 6px;
+                                text-align: right;
+                                font-weight: 600;
                                 color: white;
+                            }
+
+                            input {
+                                width: 74%;
+                                min-height: 18px;
+                                padding: 6px 8px;
+                                border-radius: 4px;
+                                border: none;
+                                outline-color: yellow;
+                                background-color: white;
+                                color: $secondaryRed;
                                 font-weight: 500;
                             }
-                        }
 
-                        textarea {
-                            width: 74%;
-                            color: $secondaryRed;
-                            font-weight: 500;
-                            outline-color: yellow;
-                            border-radius: 4px;
+                            input[type=radio] {
+                                width: auto;
+                                margin: 0 15px;
+                            }
+
+                            span {
+                                &.radio-value {
+                                    margin-right: 10px;
+                                    color: white;
+                                    font-weight: 500;
+                                }
+                            }
+
+                            textarea {
+                                width: 74%;
+                                color: $secondaryRed;
+                                font-weight: 500;
+                                outline-color: yellow;
+                                border-radius: 4px;
+                                padding: 4px;
+                            }
+
+                            select {
+                                width: 74%;
+                                color: $secondaryRed;
+                                font-weight: 500;
+                                outline-color: yellow;
+                                border-radius: 4px;
+                                padding: 4px 2px;
+                                margin-left: 2px;
+
+                                option {
+                                    font-weight: 600;
+                                    color: white;
+                                    background-color: $secondaryRed;
+                                }
+                            }
                         }
                     }
 
@@ -485,9 +560,15 @@ main {
                             border-radius: 12px;
                             outline: none;
                             cursor: pointer;
+                            background-color: $secondaryRed;
+                            color: white;
+                            font-weight: 600;
+                            box-shadow: 0px 0px 18px 1px rgba(71, 0, 0, 0.51);
+                            border-bottom: 2px solid $btnBorderColor;
+                            border-right: 1px solid $btnBorderColor;
 
                             &:hover {
-                                background-color: red;
+                                background-color: $primaryRed;
                             }
                         }
                     }

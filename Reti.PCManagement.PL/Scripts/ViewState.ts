@@ -5,15 +5,14 @@ import { Enrollment } from "../ViewModels/Enrollment";
 
 export class ViewState {
     public resourceSelected = ResourceType.Course;
-    public isPartialList = false;
-    public detail = false;
+
     public prevOpenDetail = false;
-    public edit = false;
-    public insert = false;
 
     public currentIdx = -1; //current resource index
 
     public isCurrentInsert = false;
+
+    public selectedRow: HTMLElement;
 
     public courses: Course[] = [];
     public resources: Resource[] = [];

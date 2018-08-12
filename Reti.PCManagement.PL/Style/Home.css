@@ -32,7 +32,8 @@ header {
     width: 6%;
     float: right;
     margin-right: 15px;
-    background-color: white; }
+    background-color: white;
+    margin-top: 4px; }
   header .title {
     font-size: 2vw;
     font-weight: 600;
@@ -43,7 +44,7 @@ header {
 
 nav {
   background: linear-gradient(to bottom, #a00000 0%, #d70000 80%);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.15); }
+  border-bottom: 2px solid rgba(0, 0, 0, 0.24); }
   nav ul {
     margin: 0;
     padding: 0; }
@@ -51,7 +52,7 @@ nav {
       color: white;
       font-weight: 500;
       display: inline-block;
-      padding: 6px 45px; }
+      padding: 8px 45px; }
       nav ul li:hover {
         background-color: #7d0000;
         cursor: pointer;
@@ -60,15 +61,29 @@ nav {
 main {
   flex: 1 0 auto; }
   main .error-msg {
-    background-color: lightpink;
+    background-color: #ffd0b0;
     min-height: 40px;
-    display: none; }
+    display: none;
+    color: #d70000;
+    border: 2px solid #d70000;
+    padding: 4px 10px;
+    font-weight: 700;
+    font-size: 11pt;
+    margin: 2px; }
+    main .error-msg .error-msg-txt {
+      width: 95%;
+      display: inline-block; }
     main .error-msg .close-btn {
       float: right;
-      color: red;
+      color: #d70000;
       cursor: pointer;
-      padding: 4px;
-      font-weight: 900; }
+      font-weight: 700;
+      height: 14px;
+      width: 14px;
+      border-radius: 4px;
+      text-align: center; }
+      main .error-msg .close-btn div {
+        margin-top: -6px; }
   main .card-style {
     background-color: white;
     height: 75vh;
@@ -118,12 +133,14 @@ main {
         color: white;
         margin-bottom: 8px;
         font-size: 2em; }
+      main .section-container .data-list .add-plus:hover span {
+        color: #d4dbde; }
     main .section-container .data-list .title-row {
       display: inline-block;
       font-size: x-large;
       font-weight: 600;
       margin-left: 10px;
-      color: #d70000; }
+      color: #a00000; }
     main .section-container .data-list th {
       color: #d70000; }
     main .section-container .data-list tr {
@@ -132,6 +149,11 @@ main {
         background-color: #ffecec; }
       main .section-container .data-list tr:nth-child(odd) {
         background-color: white; }
+      main .section-container .data-list tr img {
+        width: 20px; }
+    main .section-container .data-list tbody tr:hover {
+      background-color: #ffaaaa;
+      color: #7d0000; }
     main .section-container .data-list.full-view {
       width: 100%; }
       main .section-container .data-list.full-view .data-list-container {
@@ -151,13 +173,16 @@ main {
             border-bottom: solid 2px #7d0000; }
           main .section-container .data-list.full-view .table-container table tr {
             border-bottom: solid 1px #7d0000; }
+            main .section-container .data-list.full-view .table-container table tr.selected {
+              background-color: #a00000;
+              color: white; }
             main .section-container .data-list.full-view .table-container table tr .details-link {
               cursor: pointer;
               user-select: none; }
           main .section-container .data-list.full-view .table-container table th, main .section-container .data-list.full-view .table-container table td {
             max-width: 20vw;
             text-align: center;
-            padding: 8px;
+            padding: 14px;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap; }
@@ -181,13 +206,16 @@ main {
               border-bottom: solid 2px #7d0000; }
             main .section-container .data-list.partial-view .data-list-container .table-container table tr {
               border-bottom: solid 1px #7d0000; }
+              main .section-container .data-list.partial-view .data-list-container .table-container table tr.selected {
+                background-color: #a00000;
+                color: white; }
               main .section-container .data-list.partial-view .data-list-container .table-container table tr .details-link {
                 cursor: pointer;
                 user-select: none; }
             main .section-container .data-list.partial-view .data-list-container .table-container table th, main .section-container .data-list.partial-view .data-list-container .table-container table td {
               max-width: 20vw;
               text-align: center;
-              padding: 8px;
+              padding: 10px;
               text-overflow: ellipsis;
               overflow: hidden;
               white-space: nowrap; }
@@ -253,15 +281,15 @@ main {
             right: 0;
             left: 0;
             padding: 7px 30px;
-            border-top: 1px solit #7d0000; }
+            border-top: 1px solid #7d0000; }
             main .section-container .data-detail .data-detail-container .detail .buttons-row .button {
               padding: 5px;
               display: inline-block;
               width: 100px;
               text-align: center;
               border-radius: 4px;
-              border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-              border-right: 1px solid rgba(0, 0, 0, 0.15);
+              border-bottom: 2px solid rgba(0, 0, 0, 0.24);
+              border-right: 1px solid rgba(0, 0, 0, 0.24);
               cursor: pointer;
               user-select: none;
               font-weight: 500;
@@ -273,6 +301,8 @@ main {
                 background-color: white;
                 color: #7d0000;
                 float: right; }
+              main .section-container .data-detail .data-detail-container .detail .buttons-row .button:hover {
+                background-color: #d4dbde; }
     main .section-container .data-insert {
       display: flex;
       width: 50%; }
@@ -288,43 +318,60 @@ main {
         main .section-container .data-insert .data-insert-container form {
           width: 100%;
           padding: 10px; }
-          main .section-container .data-insert .data-insert-container form .input-row {
-            display: flex;
-            align-items: center;
-            padding: 4px;
-            margin: 8px;
-            border: 1px solid #7d0000;
-            border-radius: 10px;
-            background-color: #a00000; }
-            main .section-container .data-insert .data-insert-container form .input-row label {
-              width: 24%;
-              padding: 6px 20px 6px 6px;
-              text-align: right;
-              font-weight: 600;
-              color: white; }
-            main .section-container .data-insert .data-insert-container form .input-row input {
-              width: 74%;
-              min-height: 18px;
-              padding: 6px;
-              border-radius: 4px;
-              border: none;
-              outline-color: yellow;
-              background-color: white;
-              color: #a00000;
-              font-weight: 500; }
-            main .section-container .data-insert .data-insert-container form .input-row input[type=radio] {
-              width: auto;
-              margin: 0 15px; }
-            main .section-container .data-insert .data-insert-container form .input-row span.radio-value {
-              margin-right: 10px;
-              color: white;
-              font-weight: 500; }
-            main .section-container .data-insert .data-insert-container form .input-row textarea {
-              width: 74%;
-              color: #a00000;
-              font-weight: 500;
-              outline-color: yellow;
-              border-radius: 4px; }
+          main .section-container .data-insert .data-insert-container form .input-container {
+            height: 60vh;
+            overflow: auto;
+            display: none; }
+            main .section-container .data-insert .data-insert-container form .input-container .input-row {
+              display: flex;
+              align-items: center;
+              padding: 4px;
+              margin: 8px;
+              border: 1px solid #7d0000;
+              border-radius: 10px;
+              background-color: #a00000; }
+              main .section-container .data-insert .data-insert-container form .input-container .input-row label {
+                width: 24%;
+                padding: 6px 20px 6px 6px;
+                text-align: right;
+                font-weight: 600;
+                color: white; }
+              main .section-container .data-insert .data-insert-container form .input-container .input-row input {
+                width: 74%;
+                min-height: 18px;
+                padding: 6px 8px;
+                border-radius: 4px;
+                border: none;
+                outline-color: yellow;
+                background-color: white;
+                color: #a00000;
+                font-weight: 500; }
+              main .section-container .data-insert .data-insert-container form .input-container .input-row input[type=radio] {
+                width: auto;
+                margin: 0 15px; }
+              main .section-container .data-insert .data-insert-container form .input-container .input-row span.radio-value {
+                margin-right: 10px;
+                color: white;
+                font-weight: 500; }
+              main .section-container .data-insert .data-insert-container form .input-container .input-row textarea {
+                width: 74%;
+                color: #a00000;
+                font-weight: 500;
+                outline-color: yellow;
+                border-radius: 4px;
+                padding: 4px; }
+              main .section-container .data-insert .data-insert-container form .input-container .input-row select {
+                width: 74%;
+                color: #a00000;
+                font-weight: 500;
+                outline-color: yellow;
+                border-radius: 4px;
+                padding: 4px 2px;
+                margin-left: 2px; }
+                main .section-container .data-insert .data-insert-container form .input-container .input-row select option {
+                  font-weight: 600;
+                  color: white;
+                  background-color: #a00000; }
           main .section-container .data-insert .data-insert-container form .btn-row {
             display: flex;
             justify-content: center;
@@ -338,9 +385,15 @@ main {
               width: 200px;
               border-radius: 12px;
               outline: none;
-              cursor: pointer; }
+              cursor: pointer;
+              background-color: #a00000;
+              color: white;
+              font-weight: 600;
+              box-shadow: 0px 0px 18px 1px rgba(71, 0, 0, 0.51);
+              border-bottom: 2px solid rgba(0, 0, 0, 0.24);
+              border-right: 1px solid rgba(0, 0, 0, 0.24); }
               main .section-container .data-insert .data-insert-container form .btn-row input[type=button]:hover {
-                background-color: red; }
+                background-color: #d70000; }
 
 footer {
   color: #d4dbde;
