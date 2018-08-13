@@ -1,5 +1,7 @@
 ﻿export class Constants {
 
+    static WEB_API_PREFIX = "http://localhost:8888/API/";
+
     static BTN_INSERT = "Insert";
     static BTN_UPDATE = "Update";
 

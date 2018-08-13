@@ -127,6 +127,9 @@
     <TypeScriptCompile Include="Scripts\ConnectionManager.ts" />
     <TypeScriptCompile Include="Scripts\Main.ts" />
     <TypeScriptCompile Include="Scripts\Constants.ts" />
+    <TypeScriptCompile Include="Scripts\PageManager.ts" />
+    <TypeScriptCompile Include="Scripts\ResourcesManager.ts" />
+    <TypeScriptCompile Include="Scripts\Utilities.ts" />
     <TypeScriptCompile Include="Scripts\ViewState.ts" />
     <TypeScriptCompile Include="ViewModels\Course.ts" />
     <TypeScriptCompile Include="ViewModels\Enrollment.ts" />
