@@ -292,6 +292,7 @@ function onUpdateTeacherSuccess(data: any, textStatus: string, jqXHR: JQuery.jqX
 }
 
 function clearList() {
+    hideMessage();
     $(".table-list tbody").empty();
 }
 
@@ -479,6 +480,7 @@ function openDetail(item: any, type: ResourceType) {
 }
 
 function closeDetail() {
+    $(state.selectedRow).removeClass("selected");
     $("section.data-insert").first().hide();
     $("section.data-detail").first().slideUp(200, () => {
         $("section.data-list").first().addClass("full-view");
