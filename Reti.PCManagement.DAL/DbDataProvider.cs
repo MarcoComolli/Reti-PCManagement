@@ -4,11 +4,14 @@ using Reti.PCManagement.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Reti.PCManagement.DAL
 {
+    /// <summary>
+    /// Manage the Repositories and the Unit of Work to query the database.
+    /// Provide the "access point" to the DataAccessLayer to the Business Layer
+    /// </summary>
     public class DbDataProvider
     {
 
@@ -47,6 +50,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving resource " + id, ex);
+                    throw ex;
                 }
 
             }
@@ -67,6 +71,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving resource " + id + " " + username, ex);
+                    throw ex;
                 }
 
             }
@@ -87,6 +92,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving resources " + partUsername, ex);
+                    throw ex;
                 }
 
             }
@@ -106,6 +112,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error deleting resource " + resource.Id, ex);
+                    throw ex;
                 }
 
             }
@@ -124,6 +131,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error editing resource " + resource, ex);
+                    throw ex;
                 }
             }
         }
@@ -142,6 +150,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving all resources", ex);
+                    throw ex;
                 }
 
             }
@@ -183,6 +192,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving all courses", ex);
+                    throw ex;
                 }
             }
             return result;
@@ -202,6 +212,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving course " + id, ex);
+                    throw ex;
                 }
 
             }
@@ -222,6 +233,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error deleting course " + course.Id, ex);
+                    throw ex;
                 }
 
             }
@@ -265,6 +277,7 @@ namespace Reti.PCManagement.DAL
                 {
                     uow.Rollback();
                     DbLog.LogError("Error inserting enrollment " + enroll, ex);
+                    throw ex;
                 }
 
             }
@@ -284,6 +297,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving all Enrollments", ex);
+                    throw ex;
                 }
             }
             return result;
@@ -303,6 +317,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving enrollment " + id, ex);
+                    throw ex;
                 }
 
             }
@@ -322,6 +337,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error deleting enrollment " + enroll.Id, ex);
+                    throw ex;
                 }
 
             }
@@ -340,6 +356,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error editing enrollment " + enroll, ex);
+                    throw ex;
                 }
             }
         }
@@ -359,6 +376,7 @@ namespace Reti.PCManagement.DAL
                 {
                     uow.Rollback();
                     DbLog.LogError("Error inserting teacher " + teacher, ex);
+                    throw ex;
                 }
 
             }
@@ -378,6 +396,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving all teachers", ex);
+                    throw ex;
                 }
             }
             return result;
@@ -397,6 +416,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error retrieving teacher " + id, ex);
+                    throw ex;
                 }
 
             }
@@ -416,6 +436,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error deleting teacher " + teacher.Id, ex);
+                    throw ex;
                 }
 
             }
@@ -434,6 +455,7 @@ namespace Reti.PCManagement.DAL
                 catch (Exception ex)
                 {
                     DbLog.LogError("Error editing teacher " + teacher, ex);
+                    throw ex;
                 }
             }
         }

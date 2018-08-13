@@ -40,7 +40,10 @@ namespace Reti.PCManagement.DAL
             completedWithSuccess = false;
         }
 
-
+        /// <summary>
+        /// Commit the transaction and rollback the operation in case of errors
+        /// </summary>
+        /// <returns></returns>
         public bool ApplyChanges()
         {
             bool success = false;

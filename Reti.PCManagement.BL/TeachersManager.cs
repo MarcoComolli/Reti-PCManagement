@@ -8,6 +8,11 @@ namespace Reti.PCManagement.BL
 {
     public class TeachersManager
     {
+        /// <summary>
+        /// Retrieve missing information by id or username of the entities and build the 
+        /// Teacher to be inserted in the database
+        /// </summary>
+        /// <param name="tch"></param>
         public void InsertTeacher(TeacherEntity tch)
         {
             DbDataProvider ddp = new DbDataProvider();
@@ -48,6 +53,11 @@ namespace Reti.PCManagement.BL
             ddp.DeleteTeacher(teacher);
         }
 
+        /// <summary>
+        /// Retrieve missing information by id or username of the entities and build the 
+        /// Teacher that will be updated in the db
+        /// </summary>
+        /// <param name="teacher"></param>
         public void EditTeacher(TeacherEntity teacher)
         {
             DbDataProvider ddp = new DbDataProvider();

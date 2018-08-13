@@ -8,6 +8,11 @@ namespace Reti.PCManagement.BL
 {
     public class ResourcesManager
     {
+        /// <summary>
+        /// Generate the username based on the resource data and insert in the database
+        /// if hasn't a duplicate ID or username
+        /// </summary>
+        /// <param name="res"></param>
         public void InsertResource(ResourceEntity res)
         {
             if (string.IsNullOrEmpty(res.Username))
@@ -45,11 +50,19 @@ namespace Reti.PCManagement.BL
             ddp.DeleteResource(res);
         }
 
+        /// <summary>
+        /// Generate the username of the new resource and check if the firts 7 chars are the same of the old one.
+        /// In that case means that the username in not modified and replace the new generated with the old one
+        /// and update the resource in the db.
+        /// 
+        /// </summary>
+        /// <param name="newRes"></param>
+        /// <param name="oldRes"></param>
         public void EditResource(ResourceEntity newRes, ResourceEntity oldRes)
         {
             DbDataProvider ddp = new DbDataProvider();
             newRes.Username = GenerateUsername(newRes);
-            //if the generated username match the oldone don't increase the last number by one
+            //if the generated username match the old one don't increase the last number by one
             if (newRes.Username.Substring(0,7).Equals(oldRes.Username.Substring(0,7),StringComparison.OrdinalIgnoreCase))
             {
                 newRes.Username = oldRes.Username;
@@ -58,7 +71,11 @@ namespace Reti.PCManagement.BL
 
         }
 
-
+        /// <summary>
+        /// Check if the resource has duplicate id or username. If this is the case return false, true otherwise.
+        /// </summary>
+        /// <param name="res"></param>
+        /// <returns></returns>
         private bool CheckResourceInsert(ResourceEntity res)
         {
             DbDataProvider ddp = new DbDataProvider();
@@ -70,6 +87,16 @@ namespace Reti.PCManagement.BL
             return false;
         }
 
+        /// <summary>
+        /// Generate the username based on the Name, Surname and the number of the already inserted username with the same value.
+        /// Accepting only 8 chars the valid username are composed by the first 5 chars of the surname, the first 2 chars of the name
+        /// and a number. For this reason only 9 resources with the same prefix are accepted by the system. Further Resources inserted
+        /// past the 9 admitted are not managed and will be refused.
+        /// If a name or surname is too short to match the 7 char requisite the remaining characters will be padded with a 'A' char.
+        /// The result username will be in uppercase.
+        /// </summary>
+        /// <param name="res"></param>
+        /// <returns>The username generated</returns>
         private string GenerateUsername(ResourceEntity res)
         {
             try

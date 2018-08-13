@@ -8,6 +8,11 @@ namespace Reti.PCManagement.BL
 {
     public class CoursesManager
     {
+        /// <summary>
+        /// Check if the course to be inserted is valid (without duplicate id or username)
+        /// and insert it in the database
+        /// </summary>
+        /// <param name="course"></param>
         public void InsertCourse(CourseEntity course)
         {
             DbDataProvider ddp = new DbDataProvider();

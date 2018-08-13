@@ -8,6 +8,11 @@ namespace Reti.PCManagement.BL
 {
     public class EnrollmentsManager
     {
+        /// <summary>
+        /// Retrieve missing information by id or username of the entities and build the 
+        /// Enrollment to be inserted in the database
+        /// </summary>
+        /// <param name="enroll"></param>
         public void InsertEnrollment(EnrollmentEntity enroll)
         {
             DbDataProvider ddp = new DbDataProvider();
@@ -57,6 +62,11 @@ namespace Reti.PCManagement.BL
             ddp.DeleteEnrollment(enroll);
         }
 
+        /// <summary>
+        /// Retrieve missing information by id or username of the entities and build the 
+        /// Enrollment that will be updated
+        /// </summary>
+        /// <param name="enroll"></param>
         public void EditEnrollment(EnrollmentEntity enroll)
         {
             DbDataProvider ddp = new DbDataProvider();
