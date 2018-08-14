@@ -46,9 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Reti.PCManagement.Common\Reti.PCManagement.Common.csproj">
       <Project>{12e0a877-d6c5-46d2-a470-dc889c818343}</Project>
       <Name>Reti.PCManagement.Common</Name>

@@ -21,9 +21,9 @@ namespace Reti.PCManagement.Logger
         {
             try
             {
-                LOG_FILE_PATH = ConfigurationManager.AppSettings["FilePath"];
-                LOG_FILE_NAME = ConfigurationManager.AppSettings["FileName"];
-                Directory.CreateDirectory(LOG_FILE_PATH); //create path if doesn't exist
+                LOG_FILE_PATH = ConfigurationManager.AppSettings["LogFilePath"];
+                LOG_FILE_NAME = ConfigurationManager.AppSettings["LogFileName"];
+                var infos = Directory.CreateDirectory(LOG_FILE_PATH); //create path if doesn't exist
                 bool append = bool.Parse(ConfigurationManager.AppSettings["LogAppend"]);
                 if(!append)
                 {

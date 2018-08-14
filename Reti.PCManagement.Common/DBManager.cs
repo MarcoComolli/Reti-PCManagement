@@ -7,7 +7,7 @@ namespace Reti.PCManagement.DAL
     public class DBManager
     {
         private static DBManager dbm;
-        private readonly string CONNECTION_STRING_CONFIG_NAME = "PercorsoCircolareDB";
+        private readonly string CONNECTION_STRING_CONFIG_NAME = "PercorsoCircolareDB_Comolli";
         private string dbConnectionString;
 
 

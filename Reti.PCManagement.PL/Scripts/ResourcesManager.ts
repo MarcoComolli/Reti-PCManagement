@@ -62,7 +62,7 @@ export class ResourcesManager {
                 } else {
                     //convert Data
                     let refYear = parseInt(crsRefYearStr);
-                    let isRecursive = (crsIsRecursiveStr === "yes") ? true : false;
+                    let isRecursive = (crsIsRecursiveStr === "true") ? true : false;
     
                     let resourceFake = new Resource(-1, crsCoordinatorUsername, "", "", "");
                     let newCourse = new Course(-1, crsDescription, refYear, crsStartStr, crsEndStr, isRecursive, resourceFake);
@@ -90,6 +90,9 @@ export class ResourcesManager {
                 if (!resIdStr || resIdStr === "") {
                     resError = true;
                     resErrorMessage = "Please provide a Resource identifier.";
+                } else if ( parseInt(resIdStr) < 0) {
+                    resError = true;
+                    resErrorMessage = "Please provide a positive Resource identifier.";
                 }
                 if (!resName || resName === "") {
                     resError = true;

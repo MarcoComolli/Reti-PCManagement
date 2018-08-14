@@ -16,7 +16,7 @@ export class Utilities {
     }
     
     /**
-     * Convert input Course in a compact string representation with the description trimmed to 30 chars.
+     * Convert input Course in a compact string representation with the description trimmed to 45 chars.
      * If cropString parameter is set to false ehe Course description will not be cropped.
      *
      * @static
@@ -27,8 +27,8 @@ export class Utilities {
      */
     public static toCourseString(crs: Course, cropString = true): string {
         if (cropString) {
-            if (crs.Description.length > 30) {
-                return crs.RefYear + " - " + crs.Description.substr(0, 30) + "...";
+            if (crs.Description.length > 45) {
+                return crs.RefYear + " - " + crs.Description.substr(0, 45) + "...";
             }
         }
         return crs.RefYear + " - " + crs.Description;

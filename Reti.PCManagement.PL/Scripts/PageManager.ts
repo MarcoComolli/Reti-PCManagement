@@ -96,7 +96,9 @@ export class PageManager {
         });
 
         $("section.data-detail .btn-delete").click(() => {
-            this.resMng.deleteData(this.state.currentIdx, this.state.resourceSelected);
+            if (confirm("You're going to delete permanently the record, are you sure?")) {
+                this.resMng.deleteData(this.state.currentIdx, this.state.resourceSelected);
+            }
         });
 
         $(".menu-courses").click(() => {
